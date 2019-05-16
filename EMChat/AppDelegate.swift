@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         KPEMChatHelper.initializeEMChat()
         KPEMChatHelper.shared.empty()
         KPEMChatHelper.login(username: "1234567890", passWord: "1234567890")
+        window = UIWindow.init(frame: UIScreen.main.bounds)
+        window?.backgroundColor = UIColor.white
+        window?.rootViewController = UINavigationController.init(rootViewController: KPChatVC.init(conversationChatter: "123456789", conversationType: EMConversationTypeChat))
+        
+        window?.makeKeyAndVisible()
         return true
     }
 
