@@ -129,6 +129,7 @@
 		F1594D1C228D3D0B00191171 /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594CA4228D3D0B00191171 /* EaseUI.m */; };
 		F1594D1D228D3D2000191171 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1594B7A228D3D0300191171 /* Hyphenate.framework */; };
 		F1594D1E228D3D2000191171 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1594B7A228D3D0300191171 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F1594D26228D448300191171 /* KPEMChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1594D25228D448300191171 /* KPEMChatHelper.swift */; };
 		F1BED394228CFC7B00A1CB82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */; };
 		F1BED396228CFC7B00A1CB82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED395228CFC7B00A1CB82 /* ViewController.swift */; };
 		F1BED399228CFC7B00A1CB82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1BED397228CFC7B00A1CB82 /* Main.storyboard */; };
@@ -429,6 +430,7 @@
 		F1594CA4228D3D0B00191171 /* EaseUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUI.m; sourceTree = "<group>"; };
 		F1594D23228D401E00191171 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		F1594D24228D40B200191171 /* EMHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMHeader.h; sourceTree = "<group>"; };
+		F1594D25228D448300191171 /* KPEMChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMChatHelper.swift; sourceTree = "<group>"; };
 		F1BED390228CFC7B00A1CB82 /* EMChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1BED395228CFC7B00A1CB82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1104,6 +1106,7 @@
 				F1BED39C228CFC7C00A1CB82 /* LaunchScreen.storyboard */,
 				F1BED39F228CFC7C00A1CB82 /* Info.plist */,
 				F1594D24228D40B200191171 /* EMHeader.h */,
+				F1594D25228D448300191171 /* KPEMChatHelper.swift */,
 			);
 			path = EMChat;
 			sourceTree = "<group>";
@@ -1365,6 +1368,7 @@
 				F1594CFC228D3D0B00191171 /* MBProgressHUD.m in Sources */,
 				F1594CDA228D3D0B00191171 /* MWTapDetectingView.m in Sources */,
 				F1594CF0228D3D0B00191171 /* SDWebImageDownloader.m in Sources */,
+				F1594D26228D448300191171 /* KPEMChatHelper.swift in Sources */,
 				F1594D0A228D3D0B00191171 /* EaseChatBarMoreView.m in Sources */,
 				F1594CD6228D3D0B00191171 /* MWZoomingScrollView.m in Sources */,
 				F1594CB1228D3D0B00191171 /* EaseEmotionManager.m in Sources */,
