@@ -18,5 +18,6 @@
 #import "UIViewController+HUD.h"
 
 #import "EaseSDKHelper.h"
+#import "KPEM1v1VideoVC.h"
 
 #endif /* EMHeader_h */
