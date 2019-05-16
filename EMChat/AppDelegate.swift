@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        KPEMChatHelper.initializeEMChat()
+        KPEMChatHelper.shared.empty()
+        KPEMChatHelper.login(username: "1234567890", passWord: "1234567890")
         return true
     }
 

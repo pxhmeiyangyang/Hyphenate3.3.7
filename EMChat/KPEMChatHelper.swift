@@ -11,6 +11,9 @@ import UIKit
 /// karPro 环信聊天助手
 class KPEMChatHelper: NSObject {
     
+    /// 环信APP key 正式 请替换
+    static let EMAppKey = "1131190320085875#lidaobaochat"
+    
     /// 单例对象
     static let shared = KPEMChatHelper()
     
@@ -33,8 +36,9 @@ class KPEMChatHelper: NSObject {
         KPEMChatHelper.quit()
     }
     
-    /// 空函数
-    func empty(){}
+    /// 空函数 进行环信初始化
+    func empty(){
+    }
     
     
     deinit {
@@ -132,6 +136,15 @@ extension KPEMChatHelper: EMContactManagerDelegate{
 
 // MARK: - 登录注册相关
 extension KPEMChatHelper{
+    
+    /// 初始化环信聊天
+    class func initializeEMChat(){
+        guard let options = EMOptions.init(appkey: EMAppKey) else { return }
+        options.isAutoAcceptGroupInvitation = false
+        options.apnsCertName = "chatdemoui_dev"
+        EMClient.shared()?.initializeSDK(with: options)
+    }
+    
     /// 注册
     ///
     /// - Parameters:
