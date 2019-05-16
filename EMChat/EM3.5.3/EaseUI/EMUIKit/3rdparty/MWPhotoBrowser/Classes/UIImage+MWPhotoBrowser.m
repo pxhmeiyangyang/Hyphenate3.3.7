@@ -7,7 +7,7 @@
 //
 
 #import "UIImage+MWPhotoBrowser.h"
-
+#import <UIKit/UIKit.h>
 @implementation UIImage (MWPhotoBrowser)
 
 + (UIImage *)imageForResourcePath:(NSString *)path ofType:(NSString *)type inBundle:(NSBundle *)bundle {

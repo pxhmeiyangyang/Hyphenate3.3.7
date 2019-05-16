@@ -11,7 +11,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 #define EASEUI_EMOTION_DEFAULT_EXT @"em_emotion"
 
 #define MESSAGE_ATTR_IS_BIG_EXPRESSION @"em_is_big_expression"

@@ -427,6 +427,8 @@
 		F1594CA1228D3D0B00191171 /* EaseUI-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseUI-Prefix.pch"; sourceTree = "<group>"; };
 		F1594CA3228D3D0B00191171 /* EaseUIResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseUIResource.bundle; sourceTree = "<group>"; };
 		F1594CA4228D3D0B00191171 /* EaseUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUI.m; sourceTree = "<group>"; };
+		F1594D23228D401E00191171 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		F1594D24228D40B200191171 /* EMHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMHeader.h; sourceTree = "<group>"; };
 		F1BED390228CFC7B00A1CB82 /* EMChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1BED395228CFC7B00A1CB82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1073,6 +1075,7 @@
 		F1BED387228CFC7B00A1CB82 = {
 			isa = PBXGroup;
 			children = (
+				F1594D23228D401E00191171 /* BridgingHeader.h */,
 				F1BED392228CFC7B00A1CB82 /* EMChat */,
 				F1BED3A7228CFC7C00A1CB82 /* EMChatTests */,
 				F1BED3B2228CFC7C00A1CB82 /* EMChatUITests */,
@@ -1100,6 +1103,7 @@
 				F1BED39A228CFC7C00A1CB82 /* Assets.xcassets */,
 				F1BED39C228CFC7C00A1CB82 /* LaunchScreen.storyboard */,
 				F1BED39F228CFC7C00A1CB82 /* Info.plist */,
+				F1594D24228D40B200191171 /* EMHeader.h */,
 			);
 			path = EMChat;
 			sourceTree = "<group>";
@@ -1567,6 +1571,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unisound.UniKar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1595,6 +1600,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unisound.UniKar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -7,7 +7,7 @@
 //
 
 #import "MWTapDetectingView.h"
-
+#import <UIKit/UIKit.h>
 @implementation MWTapDetectingView
 
 - (id)init {
