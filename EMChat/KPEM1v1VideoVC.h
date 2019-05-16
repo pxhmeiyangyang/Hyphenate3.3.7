@@ -18,6 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(void)initializeVideoCall;
 
+/**
+ 开始视频聊天
+
+ @param type 聊天类型
+ @param name 用户名
+ */
++(void)startVideoCallType:(EMCallType)type Name: (NSString* )name Block:(typeof(void(^)(EMCallSession *, EMError *)))block;
+
 @end
 
 NS_ASSUME_NONNULL_END
