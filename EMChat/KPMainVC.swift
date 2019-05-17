@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SnapKit
 /// 主页内容
 class KPMainVC: UIViewController {
 
@@ -27,6 +27,10 @@ class KPMainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        KPChatVC.init(conversationChatter: "123456789", conversationType: EMConversationTypeChat)
+        self.title = "环信聊天"
+        tableview.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
 }
@@ -51,10 +55,11 @@ extension KPMainVC: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else{
-            return UITableViewCell.init(style: .default, reuseIdentifier: "cell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil {
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
         }
-        cell.textLabel?.text = datas[indexPath.row]
-        return cell
+        cell?.textLabel?.text = datas[indexPath.row]
+        return cell!
     }
 }

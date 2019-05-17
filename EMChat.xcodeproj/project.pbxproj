@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26511E1D47BC0F54ECCC958C /* Pods_EMChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93FC583B48B635E9F0208A31 /* Pods_EMChatTests.framework */; };
+		9393D66958ABB2D80199137E /* Pods_EMChatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4572AAD044731724F78FFB9 /* Pods_EMChatUITests.framework */; };
+		A0064CC960D67567171C32E0 /* Pods_EMChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2AD651642D88062ED2E9CB /* Pods_EMChat.framework */; };
 		F1594CA5228D3D0B00191171 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594B83228D3D0B00191171 /* UIViewController+HUD.m */; };
 		F1594CA6228D3D0B00191171 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594B84228D3D0B00191171 /* NSDate+Category.m */; };
 		F1594CA7228D3D0B00191171 /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594B85228D3D0B00191171 /* NSString+Valid.m */; };
@@ -172,6 +175,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		05B0861685F4CA52FC7955C7 /* Pods-EMChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChatUITests.release.xcconfig"; path = "Target Support Files/Pods-EMChatUITests/Pods-EMChatUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1449A37D7EBD95D53399D816 /* Pods-EMChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChat.debug.xcconfig"; path = "Target Support Files/Pods-EMChat/Pods-EMChat.debug.xcconfig"; sourceTree = "<group>"; };
+		19BD97A46ECF12ED78169672 /* Pods-EMChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChat.release.xcconfig"; path = "Target Support Files/Pods-EMChat/Pods-EMChat.release.xcconfig"; sourceTree = "<group>"; };
+		2302EB2DF4E0DE71B389B32A /* Pods-EMChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChatTests.release.xcconfig"; path = "Target Support Files/Pods-EMChatTests/Pods-EMChatTests.release.xcconfig"; sourceTree = "<group>"; };
+		9205E41B969F862E728062CE /* Pods-EMChatUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChatUITests.debug.xcconfig"; path = "Target Support Files/Pods-EMChatUITests/Pods-EMChatUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		93FC583B48B635E9F0208A31 /* Pods_EMChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EMChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A21FA781EDD9D568E0CFEF98 /* Pods-EMChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChatTests.debug.xcconfig"; path = "Target Support Files/Pods-EMChatTests/Pods-EMChatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CC2AD651642D88062ED2E9CB /* Pods_EMChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EMChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4572AAD044731724F78FFB9 /* Pods_EMChatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EMChatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1594B7A228D3D0300191171 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		F1594B7D228D3D0B00191171 /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
 		F1594B80228D3D0B00191171 /* EaseLocalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseLocalDefine.h; sourceTree = "<group>"; };
@@ -456,6 +468,7 @@
 				F1594CC8228D3D0B00191171 /* libopencore-amrwb.a in Frameworks */,
 				F1594D1D228D3D2000191171 /* Hyphenate.framework in Frameworks */,
 				F1594CC9228D3D0B00191171 /* libopencore-amrnb.a in Frameworks */,
+				A0064CC960D67567171C32E0 /* Pods_EMChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +476,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26511E1D47BC0F54ECCC958C /* Pods_EMChatTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,12 +484,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9393D66958ABB2D80199137E /* Pods_EMChatUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D9A153AB24340ACFCAA38DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC2AD651642D88062ED2E9CB /* Pods_EMChat.framework */,
+				93FC583B48B635E9F0208A31 /* Pods_EMChatTests.framework */,
+				D4572AAD044731724F78FFB9 /* Pods_EMChatUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB5BD1A17479E32E65FA540E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1449A37D7EBD95D53399D816 /* Pods-EMChat.debug.xcconfig */,
+				19BD97A46ECF12ED78169672 /* Pods-EMChat.release.xcconfig */,
+				A21FA781EDD9D568E0CFEF98 /* Pods-EMChatTests.debug.xcconfig */,
+				2302EB2DF4E0DE71B389B32A /* Pods-EMChatTests.release.xcconfig */,
+				9205E41B969F862E728062CE /* Pods-EMChatUITests.debug.xcconfig */,
+				05B0861685F4CA52FC7955C7 /* Pods-EMChatUITests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F1594B78228D3CF400191171 /* EM3.5.3 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1084,6 +1123,8 @@
 				F1BED3A7228CFC7C00A1CB82 /* EMChatTests */,
 				F1BED3B2228CFC7C00A1CB82 /* EMChatUITests */,
 				F1BED391228CFC7B00A1CB82 /* Products */,
+				AB5BD1A17479E32E65FA540E /* Pods */,
+				7D9A153AB24340ACFCAA38DA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1139,10 +1180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1BED3B8228CFC7C00A1CB82 /* Build configuration list for PBXNativeTarget "EMChat" */;
 			buildPhases = (
+				39379AB2CB48910F3389721C /* [CP] Check Pods Manifest.lock */,
 				F1BED38C228CFC7B00A1CB82 /* Sources */,
 				F1BED38D228CFC7B00A1CB82 /* Frameworks */,
 				F1BED38E228CFC7B00A1CB82 /* Resources */,
 				F1594D1F228D3D2000191171 /* Embed Frameworks */,
+				F86D30031110ADDA79AAB073 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1157,6 +1200,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1BED3BB228CFC7C00A1CB82 /* Build configuration list for PBXNativeTarget "EMChatTests" */;
 			buildPhases = (
+				472473C8CA62E72B158D3D83 /* [CP] Check Pods Manifest.lock */,
 				F1BED3A0228CFC7C00A1CB82 /* Sources */,
 				F1BED3A1228CFC7C00A1CB82 /* Frameworks */,
 				F1BED3A2228CFC7C00A1CB82 /* Resources */,
@@ -1175,6 +1219,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F1BED3BE228CFC7C00A1CB82 /* Build configuration list for PBXNativeTarget "EMChatUITests" */;
 			buildPhases = (
+				8BB10AA2B180A57FE5790624 /* [CP] Check Pods Manifest.lock */,
 				F1BED3AB228CFC7C00A1CB82 /* Sources */,
 				F1BED3AC228CFC7C00A1CB82 /* Frameworks */,
 				F1BED3AD228CFC7C00A1CB82 /* Resources */,
@@ -1260,6 +1305,97 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		39379AB2CB48910F3389721C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EMChat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		472473C8CA62E72B158D3D83 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EMChatTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BB10AA2B180A57FE5790624 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EMChatUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F86D30031110ADDA79AAB073 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EMChat/Pods-EMChat-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EMChat/Pods-EMChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F1BED38C228CFC7B00A1CB82 /* Sources */ = {
@@ -1550,6 +1686,7 @@
 		};
 		F1BED3B9228CFC7C00A1CB82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1449A37D7EBD95D53399D816 /* Pods-EMChat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1572,13 +1709,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.unisound.UniKar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		F1BED3BA228CFC7C00A1CB82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19BD97A46ECF12ED78169672 /* Pods-EMChat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1601,13 +1739,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.unisound.UniKar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		F1BED3BC228CFC7C00A1CB82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A21FA781EDD9D568E0CFEF98 /* Pods-EMChatTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1628,6 +1767,7 @@
 		};
 		F1BED3BD228CFC7C00A1CB82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2302EB2DF4E0DE71B389B32A /* Pods-EMChatTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1648,6 +1788,7 @@
 		};
 		F1BED3BF228CFC7C00A1CB82 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9205E41B969F862E728062CE /* Pods-EMChatUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1667,6 +1808,7 @@
 		};
 		F1BED3C0228CFC7C00A1CB82 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05B0861685F4CA52FC7955C7 /* Pods-EMChatUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

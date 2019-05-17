@@ -29,7 +29,7 @@ class KPEM1v1VideoVC: UIViewController {
         let height = viewRect.height / viewRect.height * width
         callSession.localVideoView = EMCallLocalView.init(frame: CGRect.init(x: viewRect.width - 90, y: 10, width: width, height: height))
         self.view.addSubview(callSession.localVideoView)
-        self.view.bringSubviewToFront(callSession.localVideoView)
+        self.view.bringSubview(toFront: callSession.localVideoView)
     }
     
     /// 接受通话调用
