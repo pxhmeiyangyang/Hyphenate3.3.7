@@ -24,13 +24,18 @@ class KPEM1v1VideoVC: UIViewController {
         localVideo()
     }
     
+    override var prefersStatusBarHidden: Bool{
+        return true
+    }
+    
     /// 加载通话界面
     private func addCallingView(){
-        let callingView = KPEMCallingView.init(type: .caller, fame: kScreenRect)
+        let callingView = KPEMCallingView.init(type: .caller)
         self.view.addSubview(callingView)
         callingView.snp.makeConstraints { (make) in
             make.width.equalTo(kScreenRect.height)
             make.height.equalTo(kScreenRect.width)
+            make.center.equalToSuperview()
         }
     }
     

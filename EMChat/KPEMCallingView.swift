@@ -27,7 +27,7 @@ class KPEMCallingView: UIView {
     /// 头像
     lazy var headerIM: UIImageView = {
         let view = UIImageView()
-        self.addSubview(view)
+        BGIM.addSubview(view)
         view.image = UIImage.init(named: "video_face1")
         return view
     }()
@@ -36,25 +36,27 @@ class KPEMCallingView: UIView {
     /// 标题
     lazy var titleLB: UILabel = {
         let view = UILabel()
-        self.addSubview(view)
+        BGIM.addSubview(view)
         view.textColor = UIColor.white
         view.font = UIFont.systemFont(ofSize: 22)
+        view.text = "拥有花朵的懵喵"
         return view
     }()
     
     /// 呼叫状态
     lazy var callingLB: UILabel = {
         let view = UILabel()
-        self.addSubview(view)
+        BGIM.addSubview(view)
         view.textColor = UIColor.white
         view.font = UIFont.systemFont(ofSize: 16)
+        view.text = "正在呼叫......"
         return view
     }()
     
     /// 取消按钮
     lazy var cancelBTN: CallingBTN = {
-        let view = CallingBTN.init(title: "取消")
-        self.addSubview(view)
+        let view = CallingBTN.init(title: "取消",height: 90)
+        BGIM.addSubview(view)
         view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.normal)
         view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.highlighted)
         return view
@@ -62,8 +64,8 @@ class KPEMCallingView: UIView {
     
     /// 取消按钮
     lazy var answerBTN: CallingBTN = {
-        let view = CallingBTN.init(title: "接听")
-        self.addSubview(view)
+        let view = CallingBTN.init(title: "接听",height: 90)
+        BGIM.addSubview(view)
         view.setImage(UIImage.init(named: "video_chat2"), for: UIControlState.normal)
         view.setImage(UIImage.init(named: "video_chat2"), for: UIControlState.highlighted)
         return view
@@ -71,8 +73,8 @@ class KPEMCallingView: UIView {
     
     /// 切换语音
     lazy var voiceBTN: CallingBTN = {
-        let view = CallingBTN.init(title: "切换到语音通话")
-        self.addSubview(view)
+        let view = CallingBTN.init(title: "切换到语音通话",height: 60)
+        BGIM.addSubview(view)
         view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.normal)
         view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.highlighted)
         return view
@@ -83,7 +85,7 @@ class KPEMCallingView: UIView {
     /// - Parameters:
     ///   - type: 呼叫类型
     ///   - fame: 大小
-    convenience init(type: callType,fame: CGRect ) {
+    convenience init(type: callType) {
         self.init()
         deploySubviews()
         self.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
@@ -107,15 +109,12 @@ class KPEMCallingView: UIView {
             answerBTN.snp.updateConstraints { (make) in
                 make.centerX.equalToSuperview().offset(90)
             }
-        default:
-            break
         }
     }
     
     /// 布局子view
     private func deploySubviews(){
         self.addSubview(BGIM)
-        BGIM.sendSubview(toBack: self)
         BGIM.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
@@ -143,6 +142,7 @@ class KPEMCallingView: UIView {
             make.width.equalTo(60)
             make.height.equalTo(90)
             make.centerX.equalToSuperview()
+            make.bottom.equalTo(-27)
         }
         
         /// 取消按钮
@@ -150,12 +150,13 @@ class KPEMCallingView: UIView {
             make.width.equalTo(60)
             make.height.equalTo(90)
             make.centerX.equalToSuperview()
+            make.bottom.equalTo(-27)
         }
         
         /// 切换语音
         voiceBTN.snp.makeConstraints { (make) in
             make.top.equalTo(34)
-            make.left.equalTo(-20)
+            make.right.equalTo(-20)
             make.width.equalTo(100)
             make.height.equalTo(60)
         }
@@ -177,12 +178,12 @@ class CallingBTN: UIButton{
         return view
     }()
     
-    convenience init(title: String) {
+    convenience init(title: String,height: CGFloat) {
         self.init()
         deploySubviews()
         self.titleLB.text = title
         self.titleLB.sizeToFit()
-        self.imageEdgeInsets = UIEdgeInsets.init(top: 30, left: 0, bottom: 0, right: 0)
+        self.imageEdgeInsets = UIEdgeInsets.init(top: height - 30, left: 0, bottom: 0, right: 0)
     }
     
     /// 配置子view
