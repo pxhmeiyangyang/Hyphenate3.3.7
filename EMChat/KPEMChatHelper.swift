@@ -29,6 +29,7 @@ class KPEMChatHelper: NSObject {
         EMClient.shared()?.contactManager.add(self, delegateQueue: nil)
         EMClient.shared()?.roomManager.add(self, delegateQueue: nil)
         EMClient.shared()?.chatManager.add(self, delegateQueue: nil)
+        EMClient.shared()?.callManager.add?(self, delegateQueue: nil)
     }
     
     /// 环信聊天helper 清理函数
@@ -47,6 +48,7 @@ class KPEMChatHelper: NSObject {
         EMClient.shared()?.contactManager.removeDelegate(self)
         EMClient.shared()?.roomManager.remove(self)
         EMClient.shared()?.chatManager.remove(self)
+        EMClient.shared()?.callManager.remove?(self)
     }
 }
 
@@ -132,6 +134,66 @@ extension KPEMChatHelper: EMChatroomManagerDelegate{
 // MARK: - EMContactManagerDelegate
 extension KPEMChatHelper: EMContactManagerDelegate{
     
+}
+
+
+// MARK: - EMCallManagerDelegate
+extension KPEMChatHelper: EMCallManagerDelegate{
+    /*!
+     *  \~chinese
+     *  用户A拨打用户B，用户B会收到这个回调
+     */
+    func callDidReceive(_ aSession: EMCallSession!) {
+        let videoVC = KPEM1v1VideoVC.init(type: .called)
+        videoVC.callSession = aSession
+        KPEMCommon.rootVC()?.present(videoVC, animated: true, completion: nil)
+    }
+    /*!
+     *  \~chinese
+     *  通话通道建立完成，用户A和用户B都会收到这个回调
+     */
+    func callDidConnect(_ aSession: EMCallSession!) {
+        
+    }
+    /*!
+     *  \~chinese
+     *  用户B同意用户A拨打的通话后，用户A会收到这个回调
+     */
+    func callDidAccept(_ aSession: EMCallSession!) {
+        
+    }
+    /*!
+     *  \~chinese
+     *  1. 用户A或用户B结束通话后，双方会收到该回调
+     *  2. 通话出现错误，双方都会收到该回调
+     */
+    func callDidEnd(_ aSession: EMCallSession!, reason aReason: EMCallEndReason, error aError: EMError!) {
+        
+    }
+    
+    /*!
+     *  \~chinese
+     *  用户A和用户B正在通话中，用户A中断或者继续数据流传输时，用户B会收到该回调
+     */
+    func callStateDidChange(_ aSession: EMCallSession!, type aType: EMCallStreamingStatus) {
+        
+    }
+    
+    /*!
+     *  \~chinese
+     *  用户A和用户B正在通话中，用户A的网络状态出现不稳定，用户A会收到该回调
+
+     */
+    func callNetworkDidChange(_ aSession: EMCallSession!, status aStatus: EMCallNetworkStatus) {
+        
+    }
+    /*!
+     *  \~chinese
+     *  建立通话时，自定义语音类别
+     */
+    func callDidCustomAudioSessionCategoryOptions(withCategory aCategory: String!) {
+        
+    }
 }
 
 // MARK: - 登录注册相关

@@ -137,6 +137,7 @@
 		F1607406228E5761008D54BA /* KPEM1v1VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */; };
 		F1607408228E857F008D54BA /* KPMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1607407228E857F008D54BA /* KPMainVC.swift */; };
 		F160740A228E8D31008D54BA /* KPEMCallingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1607409228E8D31008D54BA /* KPEMCallingView.swift */; };
+		F1607413228EBA6A008D54BA /* KPEMCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1607412228EBA6A008D54BA /* KPEMCommon.swift */; };
 		F1BED394228CFC7B00A1CB82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */; };
 		F1BED39B228CFC7C00A1CB82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1BED39A228CFC7C00A1CB82 /* Assets.xcassets */; };
 		F1BED39E228CFC7C00A1CB82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1BED39C228CFC7C00A1CB82 /* LaunchScreen.storyboard */; };
@@ -449,6 +450,7 @@
 		F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEM1v1VideoVC.swift; sourceTree = "<group>"; };
 		F1607407228E857F008D54BA /* KPMainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPMainVC.swift; sourceTree = "<group>"; };
 		F1607409228E8D31008D54BA /* KPEMCallingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMCallingView.swift; sourceTree = "<group>"; };
+		F1607412228EBA6A008D54BA /* KPEMCommon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMCommon.swift; sourceTree = "<group>"; };
 		F1BED390228CFC7B00A1CB82 /* EMChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1BED39A228CFC7C00A1CB82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1153,6 +1155,7 @@
 				F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */,
 				F1607407228E857F008D54BA /* KPMainVC.swift */,
 				F1607409228E8D31008D54BA /* KPEMCallingView.swift */,
+				F1607412228EBA6A008D54BA /* KPEMCommon.swift */,
 			);
 			path = EMChat;
 			sourceTree = "<group>";
@@ -1473,6 +1476,7 @@
 				F1594D0F228D3D0B00191171 /* EaseChatToolbar.m in Sources */,
 				F1594CD2228D3D0B00191171 /* EMAudioPlayerUtil.m in Sources */,
 				F1594CCA228D3D0B00191171 /* wav.mm in Sources */,
+				F1607413228EBA6A008D54BA /* KPEMCommon.swift in Sources */,
 				F1594D0B228D3D0B00191171 /* EaseImageView.m in Sources */,
 				F1594CF7228D3D0B00191171 /* NSData+ImageContentType.m in Sources */,
 				F1594CF3228D3D0B00191171 /* SDWebImageCompat.m in Sources */,

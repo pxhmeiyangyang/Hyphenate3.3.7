@@ -18,11 +18,18 @@ class KPEM1v1VideoVC: UIViewController {
     var callSession: EMCallSession!{
         set{
             _callSession = newValue
-            localVideo()
         }
         get{
             return _callSession
         }
+    }
+    
+    /// 视频通话类型
+    private var callType: KPEMCallingView.callType = .caller
+    
+    convenience init(type: KPEMCallingView.callType) {
+        self.init()
+        self.callType = type
     }
     
     override func viewDidLoad() {
@@ -38,7 +45,7 @@ class KPEM1v1VideoVC: UIViewController {
     
     /// 加载通话界面
     private func addCallingView(){
-        let callingView = KPEMCallingView.init(type: .caller)
+        let callingView = KPEMCallingView.init(type: self.callType)
         self.view.addSubview(callingView)
         callingView.delegate = self
         callingView.snp.makeConstraints { (make) in
@@ -88,7 +95,10 @@ class KPEM1v1VideoVC: UIViewController {
         }
         print("=====应答失败\(error.debugDescription)")
     }
-    
+    /// 退出
+    private func quit(){
+        self.dismiss(animated: true, completion: nil)
+    }
     
     deinit {
         //移除实时通话回调
@@ -172,7 +182,7 @@ extension KPEM1v1VideoVC: EMCallManagerDelegate{
      *  @param aError    Error
      */
     func callDidEnd(_ aSession: EMCallSession!, reason aReason: EMCallEndReason, error aError: EMError!) {
-        
+        self.quit()
     }
     
     /*!
