@@ -32,6 +32,7 @@ class KPEM1v1VideoVC: UIViewController {
     private func addCallingView(){
         let callingView = KPEMCallingView.init(type: .caller)
         self.view.addSubview(callingView)
+        callingView.delegate = self
         callingView.snp.makeConstraints { (make) in
             make.width.equalTo(kScreenRect.height)
             make.height.equalTo(kScreenRect.width)
@@ -63,7 +64,21 @@ class KPEM1v1VideoVC: UIViewController {
         EMClient.shared()?.callManager.remove?(self)
     }
 }
-
+// MARK: - KPEMCallingViewDelegate
+extension KPEM1v1VideoVC: KPEMCallingViewDelegate{
+    func action(index: Int) {
+        switch index {
+        case 2000: //取消
+            break
+        case 2001: //接听
+            break
+        case 2002: //切换
+            break
+        default:
+            break
+        }
+    }
+}
 // MARK: - EMCallManagerDelegate
 extension KPEM1v1VideoVC: EMCallManagerDelegate{
     /*!

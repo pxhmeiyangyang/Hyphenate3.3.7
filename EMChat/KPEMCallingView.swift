@@ -8,9 +8,21 @@
 
 import UIKit
 
+/// 呼叫界面回调
+protocol KPEMCallingViewDelegate {
+    func action(index: Int)
+}
+
+
 /// 视频呼叫界面
 class KPEMCallingView: UIView {
 
+    /// 协议
+    var delegate: KPEMCallingViewDelegate?
+    
+    /// 视图tag
+    private let viewTag = 2000
+    
     /// 呼叫类型
     ///
     /// - caller: 主叫
@@ -59,6 +71,8 @@ class KPEMCallingView: UIView {
         BGIM.addSubview(view)
         view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.normal)
         view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = self.viewTag
         return view
     }()
     
@@ -68,6 +82,8 @@ class KPEMCallingView: UIView {
         BGIM.addSubview(view)
         view.setImage(UIImage.init(named: "video_chat2"), for: UIControlState.normal)
         view.setImage(UIImage.init(named: "video_chat2"), for: UIControlState.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = self.viewTag + 1
         return view
     }()
     
@@ -77,6 +93,8 @@ class KPEMCallingView: UIView {
         BGIM.addSubview(view)
         view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.normal)
         view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = self.viewTag + 2
         return view
     }()
     
@@ -89,6 +107,7 @@ class KPEMCallingView: UIView {
         self.init()
         deploySubviews()
         self.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
+        self.updateUI(type: type)
     }
     
     /// 更新UI界面
@@ -97,7 +116,7 @@ class KPEMCallingView: UIView {
     private func updateUI(type: callType){
         switch type {
         case .caller:
-            answerBTN.isHidden = true
+            answerBTN.callHidden = true
             cancelBTN.snp.updateConstraints { (make) in
                 make.centerX.equalToSuperview()
             }
@@ -105,7 +124,7 @@ class KPEMCallingView: UIView {
             cancelBTN.snp.updateConstraints { (make) in
                 make.centerX.equalToSuperview().offset(-90)
             }
-            answerBTN.isHidden = false
+            answerBTN.callHidden = false
             answerBTN.snp.updateConstraints { (make) in
                 make.centerX.equalToSuperview().offset(90)
             }
@@ -115,6 +134,7 @@ class KPEMCallingView: UIView {
     /// 布局子view
     private func deploySubviews(){
         self.addSubview(BGIM)
+        BGIM.isUserInteractionEnabled = true
         BGIM.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
@@ -162,11 +182,30 @@ class KPEMCallingView: UIView {
         }
         
     }
+    
+    
+    @objc func buttonAction(sender: UIButton){
+        if let delegate = delegate{
+            delegate.action(index: sender.tag)
+        }
+    }
 }
 
 
 /// 呼叫button
 class CallingBTN: UIButton{
+    
+    var _callHidden: Bool = false
+    var callHidden: Bool{
+        set{
+            _callHidden = newValue
+            titleLB.isHidden = newValue
+            self.isHidden = newValue
+        }
+        get{
+            return _callHidden
+        }
+    }
     
     /// 标签
     lazy var titleLB: UILabel = {
@@ -183,14 +222,15 @@ class CallingBTN: UIButton{
         deploySubviews()
         self.titleLB.text = title
         self.titleLB.sizeToFit()
-        self.imageEdgeInsets = UIEdgeInsets.init(top: height - 30, left: 0, bottom: 0, right: 0)
     }
+    
+    
     
     /// 配置子view
     private func deploySubviews(){
         titleLB.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(10)
         }
     }
 }
