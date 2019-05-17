@@ -54,7 +54,7 @@ extension KPMainVC: UITableViewDelegate,UITableViewDataSource{
                 self.present(videoVC, animated: false, completion: nil)
             }
         case "监控":
-            break
+            self.navigationController?.pushViewController(KPEMMonitoringVC(), animated: true)
         default:
             break
         }
