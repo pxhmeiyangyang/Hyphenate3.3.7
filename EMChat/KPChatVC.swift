@@ -18,13 +18,7 @@ class KPChatVC: EaseMessageViewController {
     
     
     @objc func notificationSelector(){
-        KPEMChatHelper.initializeEMChat()
-        KPEMChatHelper.startVideoCall(name: "123456789") { (callSession, error) in
-            guard let callSession = callSession else { return }
-            let videoVC = KPEM1v1VideoVC()
-            videoVC.callSession = callSession
-            self.present(videoVC, animated: false, completion: nil)
-        }
+        
     }
     
     deinit {

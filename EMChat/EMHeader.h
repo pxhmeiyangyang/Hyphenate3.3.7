@@ -19,4 +19,6 @@
 
 #import "EaseSDKHelper.h"
 
+#import "MBProgressHUD.h"
+
 #endif /* EMHeader_h */

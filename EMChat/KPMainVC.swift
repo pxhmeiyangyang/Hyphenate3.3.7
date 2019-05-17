@@ -8,6 +8,10 @@
 
 import UIKit
 import SnapKit
+
+/// 屏幕frame
+let kScreenRect = UIScreen.main.bounds
+
 /// 主页内容
 class KPMainVC: UIViewController {
 
@@ -42,7 +46,13 @@ extension KPMainVC: UITableViewDelegate,UITableViewDataSource{
         case "语聊":
             self.navigationController?.pushViewController(KPChatVC.init(conversationChatter: "123456789", conversationType: EMConversationTypeChat), animated: true)
         case "视频":
-            break
+            KPEMChatHelper.initializeEMChat()
+            KPEMChatHelper.startVideoCall(name: "123456789") { (callSession, error) in
+                guard let callSession = callSession else { return }
+                let videoVC = KPEM1v1VideoVC()
+                videoVC.callSession = callSession
+                self.present(videoVC, animated: false, completion: nil)
+            }
         case "监控":
             break
         default:

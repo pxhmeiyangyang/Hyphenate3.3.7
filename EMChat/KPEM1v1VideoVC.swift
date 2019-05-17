@@ -18,9 +18,20 @@ class KPEM1v1VideoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addCallingView()
         viewRect = self.view.bounds
         EMClient.shared()?.callManager.add?(self, delegateQueue: nil)
         localVideo()
+    }
+    
+    /// 加载通话界面
+    private func addCallingView(){
+        let callingView = KPEMCallingView.init(type: .caller, fame: kScreenRect)
+        self.view.addSubview(callingView)
+        callingView.snp.makeConstraints { (make) in
+            make.width.equalTo(kScreenRect.height)
+            make.height.equalTo(kScreenRect.width)
+        }
     }
     
     /// 本地视频
