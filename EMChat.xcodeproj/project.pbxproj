@@ -133,8 +133,6 @@
 		F1594E64228D62A600191171 /* KPChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1594E63228D62A600191171 /* KPChatVC.swift */; };
 		F1607406228E5761008D54BA /* KPEM1v1VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */; };
 		F1BED394228CFC7B00A1CB82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */; };
-		F1BED396228CFC7B00A1CB82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED395228CFC7B00A1CB82 /* ViewController.swift */; };
-		F1BED399228CFC7B00A1CB82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1BED397228CFC7B00A1CB82 /* Main.storyboard */; };
 		F1BED39B228CFC7C00A1CB82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1BED39A228CFC7C00A1CB82 /* Assets.xcassets */; };
 		F1BED39E228CFC7C00A1CB82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1BED39C228CFC7C00A1CB82 /* LaunchScreen.storyboard */; };
 		F1BED3A9228CFC7C00A1CB82 /* EMChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3A8228CFC7C00A1CB82 /* EMChatTests.swift */; };
@@ -437,8 +435,6 @@
 		F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEM1v1VideoVC.swift; sourceTree = "<group>"; };
 		F1BED390228CFC7B00A1CB82 /* EMChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F1BED395228CFC7B00A1CB82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F1BED398228CFC7B00A1CB82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F1BED39A228CFC7C00A1CB82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1BED39D228CFC7C00A1CB82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F1BED39F228CFC7C00A1CB82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1104,8 +1100,6 @@
 			children = (
 				F1594B78228D3CF400191171 /* EM3.5.3 */,
 				F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */,
-				F1BED395228CFC7B00A1CB82 /* ViewController.swift */,
-				F1BED397228CFC7B00A1CB82 /* Main.storyboard */,
 				F1BED39A228CFC7C00A1CB82 /* Assets.xcassets */,
 				F1BED39C228CFC7C00A1CB82 /* LaunchScreen.storyboard */,
 				F1BED39F228CFC7C00A1CB82 /* Info.plist */,
@@ -1244,7 +1238,6 @@
 				F1594D1B228D3D0B00191171 /* EaseUIResource.bundle in Resources */,
 				F1BED39B228CFC7C00A1CB82 /* Assets.xcassets in Resources */,
 				F1594CB7228D3D0B00191171 /* MJRefresh.bundle in Resources */,
-				F1BED399228CFC7B00A1CB82 /* Main.storyboard in Resources */,
 				F1594CFB228D3D0B00191171 /* MWPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1335,7 +1328,6 @@
 				F1594CF5228D3D0B00191171 /* SDImageCache.m in Sources */,
 				F1594CE2228D3D0B00191171 /* PSTCollectionViewData.m in Sources */,
 				F1594CA9228D3D0B00191171 /* NSDateFormatter+Category.m in Sources */,
-				F1BED396228CFC7B00A1CB82 /* ViewController.swift in Sources */,
 				F1594D0F228D3D0B00191171 /* EaseChatToolbar.m in Sources */,
 				F1594CD2228D3D0B00191171 /* EMAudioPlayerUtil.m in Sources */,
 				F1594CCA228D3D0B00191171 /* wav.mm in Sources */,
@@ -1425,14 +1417,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F1BED397228CFC7B00A1CB82 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F1BED398228CFC7B00A1CB82 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F1BED39C228CFC7C00A1CB82 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
