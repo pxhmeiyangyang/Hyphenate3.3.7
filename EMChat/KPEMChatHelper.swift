@@ -145,6 +145,32 @@ extension KPEMChatHelper{
         EMClient.shared()?.initializeSDK(with: options)
     }
     
+    /// 初始化环信视频聊天
+    class func initializeVideoCall(){
+        guard let manager = EMClient.shared()?.callManager else { return }
+        guard let options = manager.getCallOptions?() else { return }
+        //当对方不在线时，是否给对方发送离线消息和推送，并等待对方回应
+        options.isSendPushIfOffline = false
+        //设置视频分辨率：自适应分辨率、352 * 288、640 * 480、1280 * 720
+        options.videoResolution = EMCallVideoResolutionAdaptive;
+        //最大视频码率，范围 50 < videoKbps < 5000, 默认0, 0为自适应，建议设置为0
+        options.maxVideoKbps = 0;
+        //最小视频码率
+        options.minVideoKbps = 0;
+        //是否固定视频分辨率，默认为NO
+        options.isFixedVideoResolution = false;
+        manager.setCallOptions?(options)
+    }
+    
+    /// 开始视频通话
+    ///
+    /// - Parameter callBack: 开始回调
+    class func startVideoCall(name: String ,callBack: @escaping (_ aCallSession: EMCallSession?,_ aError: EMError?)->()){
+        EMClient.shared()?.callManager.start?(EMCallTypeVideo, remoteName: name, ext: nil, completion: { (callSession, error) in
+            callBack(callSession,error)
+        })
+    }
+    
     /// 注册
     ///
     /// - Parameters:

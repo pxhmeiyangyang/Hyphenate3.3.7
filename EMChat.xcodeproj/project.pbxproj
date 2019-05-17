@@ -131,7 +131,7 @@
 		F1594D1E228D3D2000191171 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1594B7A228D3D0300191171 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1594D26228D448300191171 /* KPEMChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1594D25228D448300191171 /* KPEMChatHelper.swift */; };
 		F1594E64228D62A600191171 /* KPChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1594E63228D62A600191171 /* KPChatVC.swift */; };
-		F1594FA6228D8BC500191171 /* KPEM1v1VideoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594FA5228D8BC500191171 /* KPEM1v1VideoVC.m */; };
+		F1607406228E5761008D54BA /* KPEM1v1VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */; };
 		F1BED394228CFC7B00A1CB82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */; };
 		F1BED396228CFC7B00A1CB82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED395228CFC7B00A1CB82 /* ViewController.swift */; };
 		F1BED399228CFC7B00A1CB82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1BED397228CFC7B00A1CB82 /* Main.storyboard */; };
@@ -434,8 +434,7 @@
 		F1594D24228D40B200191171 /* EMHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMHeader.h; sourceTree = "<group>"; };
 		F1594D25228D448300191171 /* KPEMChatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMChatHelper.swift; sourceTree = "<group>"; };
 		F1594E63228D62A600191171 /* KPChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPChatVC.swift; sourceTree = "<group>"; };
-		F1594FA4228D8BC500191171 /* KPEM1v1VideoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPEM1v1VideoVC.h; sourceTree = "<group>"; };
-		F1594FA5228D8BC500191171 /* KPEM1v1VideoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPEM1v1VideoVC.m; sourceTree = "<group>"; };
+		F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEM1v1VideoVC.swift; sourceTree = "<group>"; };
 		F1BED390228CFC7B00A1CB82 /* EMChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EMChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1BED395228CFC7B00A1CB82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1113,8 +1112,7 @@
 				F1594D24228D40B200191171 /* EMHeader.h */,
 				F1594D25228D448300191171 /* KPEMChatHelper.swift */,
 				F1594E63228D62A600191171 /* KPChatVC.swift */,
-				F1594FA4228D8BC500191171 /* KPEM1v1VideoVC.h */,
-				F1594FA5228D8BC500191171 /* KPEM1v1VideoVC.m */,
+				F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */,
 			);
 			path = EMChat;
 			sourceTree = "<group>";
@@ -1282,6 +1280,7 @@
 				F1594D17228D3D0B00191171 /* EaseBubbleView+Voice.m in Sources */,
 				F1594D05228D3D0B00191171 /* EaseConversationCell.m in Sources */,
 				F1594D16228D3D0B00191171 /* EaseBubbleView+Video.m in Sources */,
+				F1607406228E5761008D54BA /* KPEM1v1VideoVC.swift in Sources */,
 				F1594CC3228D3D0B00191171 /* MJRefreshFooter.m in Sources */,
 				F1594CBE228D3D0B00191171 /* MJRefreshAutoGifFooter.m in Sources */,
 				F1594D08228D3D0B00191171 /* EaseMessageCell.m in Sources */,
@@ -1368,7 +1367,6 @@
 				F1594D01228D3D0B00191171 /* EaseRefreshTableViewController.m in Sources */,
 				F1594CE9228D3D0B00191171 /* PSTCollectionViewLayout.m in Sources */,
 				F1594CC1228D3D0B00191171 /* MJRefreshStateHeader.m in Sources */,
-				F1594FA6228D8BC500191171 /* KPEM1v1VideoVC.m in Sources */,
 				F1594CD5228D3D0B00191171 /* MWCaptionView.m in Sources */,
 				F1594CED228D3D0B00191171 /* SDWebImageManager.m in Sources */,
 				F1594D0C228D3D0B00191171 /* EaseFacialView.m in Sources */,
