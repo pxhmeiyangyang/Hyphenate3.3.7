@@ -14,14 +14,22 @@ class KPEM1v1VideoVC: UIViewController {
     /// 视图 frame
     var viewRect = CGRect.zero
     
-    var callSession: EMCallSession!
+    var _callSession: EMCallSession!
+    var callSession: EMCallSession!{
+        set{
+            _callSession = newValue
+            localVideo()
+        }
+        get{
+            return _callSession
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addCallingView()
         viewRect = self.view.bounds
         EMClient.shared()?.callManager.add?(self, delegateQueue: nil)
-        localVideo()
     }
     
     override var prefersStatusBarHidden: Bool{
@@ -53,11 +61,34 @@ class KPEM1v1VideoVC: UIViewController {
     ///
     /// - Parameter aSession: 通话对象
     private func receiveAnswer(aSession: EMCallSession){
+        self.callSession = aSession
         //同意接听视频通话之后
         aSession.remoteVideoView = EMCallRemoteView.init(frame: CGRect.init(x: 0, y: 0, width: viewRect.width, height: viewRect.height))
         aSession.remoteVideoView.scaleMode = EMCallViewScaleModeAspectFill
         self.view.addSubview(aSession.remoteVideoView)
     }
+    
+    /// 挂断
+    private func hangup(){
+        guard let callId = self.callSession.callId,
+            let manager = EMClient.shared()?.callManager else { return }
+        let options = manager.getCallOptions?()
+        options?.enableCustomizeVideoData = false
+        let error = manager.endCall?(callId, reason: EMCallEndReasonHangup)
+        if let _ = error {
+            print("挂断失败")
+        }
+    }
+    
+    /// 应答
+    private func answer(){
+        let error = EMClient.shared()?.callManager.answerIncomingCall?(self.callSession.callId)
+        guard error != nil else {
+            return
+        }
+        print("=====应答失败\(error.debugDescription)")
+    }
+    
     
     deinit {
         //移除实时通话回调
@@ -69,9 +100,9 @@ extension KPEM1v1VideoVC: KPEMCallingViewDelegate{
     func action(index: Int) {
         switch index {
         case 2000: //取消
-            break
+            self.hangup()
         case 2001: //接听
-            break
+            self.answer()
         case 2002: //切换
             break
         default:
