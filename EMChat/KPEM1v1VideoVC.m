@@ -50,9 +50,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //注册实时通话回调
+    [[EMClient sharedClient].callManager addDelegate:self delegateQueue:nil];
+    
+    //前提：EMCallSession *callSession 存在
+    CGFloat width = 80;
+    CGFloat height = self.view.frame.size.height / self.view.frame.size.width * width;
+//    _callSession.localVideoView = [[EMCallLocalView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 90, CGRectGetMaxY(_statusLabel.frame), width, height)];
+    _callSession.localVideoView = [[EMCallLocalView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 90, 100, width, height)];
+    [self.view addSubview:_callSession.localVideoView];
+    [_callSession.localVideoView bringSubviewToFront:self.view];
+}
+
+/**
+ 同意接听通话
+ */
+- (void)receiveAnswer:(EMCallSession *)aSession{
+    //同意接听视频通话之后
+    aSession.remoteVideoView = [[EMCallRemoteView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    //设置视频页面缩放方式
+    aSession.remoteVideoView.scaleMode = EMCallViewScaleModeAspectFill;
+    [self.view addSubview:aSession.remoteVideoView];
 }
 
 
+- (void)dealloc
+{
+    //移除实时通话回调
+    [[EMClient sharedClient].callManager removeDelegate:self];
+}
+
+#pragma mark - EMCallManagerDelegate
 /*!
  *  \~chinese
  *  用户A拨打用户B，用户B会收到这个回调
@@ -95,7 +123,7 @@
  *  @param aSession
  */
 - (void)callDidAccept:(EMCallSession *)aSession{
-    
+    [self receiveAnswer:aSession];
 }
 
 /*!

@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface KPEM1v1VideoVC : UIViewController
 
+@property(nonatomic,strong)EMCallSession* callSession;
+
 
 /**
  初始化视频聊天
