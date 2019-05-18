@@ -10,7 +10,7 @@ import UIKit
 
 /// 呼叫界面回调
 protocol KPEMVideoControlViewDelegate {
-    func action(type: KPEMVideoControlView.ControlEvent?)
+    func action(sender: UIButton,type: KPEMVideoControlView.ControlEvent?)
 }
 
 /// 环信 视频通话控制界面
@@ -71,8 +71,8 @@ class KPEMVideoControlView: UIView {
     /// 静音按钮
     lazy var muteBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_icon5_1"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_icon5"), for: UIControlState.selected)
+        view.setImage(UIImage.init(named: "video_icon5"), for: UIControlState.normal)
+        view.setImage(UIImage.init(named: "video_icon5_1"), for: UIControlState.selected)
         self.addSubview(view)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
         view.tag = self.viewTag + 2
@@ -182,7 +182,7 @@ class KPEMVideoControlView: UIView {
     
     @objc func buttonAction(sender: UIButton){
         if let delegate = delegate{
-            delegate.action(type: KPEMVideoControlView.ControlEvent.init(rawValue: sender.tag))
+            delegate.action(sender: sender, type: KPEMVideoControlView.ControlEvent.init(rawValue: sender.tag))
         }
     }
 }

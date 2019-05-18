@@ -93,7 +93,7 @@ extension KPEMChatHelper: EMChatManagerDelegate{
         
     }
     func didReceiveMessages(_ aMessages: [Any]!) {
-  
+        
     }
 }
 
@@ -185,7 +185,7 @@ extension KPEMChatHelper: EMCallManagerDelegate{
     /*!
      *  \~chinese
      *  用户A和用户B正在通话中，用户A的网络状态出现不稳定，用户A会收到该回调
-
+     
      */
     func callNetworkDidChange(_ aSession: EMCallSession!, status aStatus: EMCallNetworkStatus) {
         
@@ -342,7 +342,25 @@ extension KPEMChatHelper{
         }
     }
     
+    /// 切换摄像头方向
+    ///
+    /// - Parameter aSession: 通话对象
+    class func switchCamera(aSession: EMCallSession, position: Bool){
+        aSession.switchCameraPosition(position)
+    }
     
+    /// 视频静音
+    ///
+    /// - Parameters:
+    ///   - aSession: 通话对象
+    ///   - isMute: 是否静音
+    class func videoMute(aSession: EMCallSession, isMute: Bool){
+        if isMute {
+            aSession.pauseVoice()
+        }else{
+            aSession.resumeVoice()
+        }
+    }
     
     /// 退出函数
     class func quit(){

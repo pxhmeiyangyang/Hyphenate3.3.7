@@ -106,6 +106,8 @@ class KPEM1v1VideoVC: UIViewController {
     }
     
     deinit {
+        self.callSession.localVideoView.removeFromSuperview()
+        self.callSession.remoteVideoView.removeFromSuperview()
         //移除实时通话回调
         EMClient.shared()?.callManager.remove?(self)
     }
@@ -113,22 +115,22 @@ class KPEM1v1VideoVC: UIViewController {
 
 // MARK: - KPEMVideoControlViewDelegate
 extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
-    func action(type: KPEMVideoControlView.ControlEvent?) {
+    func action(sender: UIButton, type: KPEMVideoControlView.ControlEvent?) {
         guard let type = type else { return }
         switch type {
         case .chageVoice:
             break
         case .rollback:
-            break
-
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.switchCamera(aSession: self.callSession, position: sender.isSelected)
         case .mute:
-            break
-
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.videoMute(aSession: self.callSession, isMute: sender.isSelected)
         case .hangup:
             self.hangup()
         case .picture:
             break
-
+            
         case .record:
             break
         }
