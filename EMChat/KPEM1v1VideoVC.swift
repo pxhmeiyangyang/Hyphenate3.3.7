@@ -68,23 +68,13 @@ class KPEM1v1VideoVC: UIViewController {
     ///
     /// - Parameter aSession: 通话对象
     private func receiveAnswer(aSession: EMCallSession){
-        self.callSession = aSession
-        //同意接听视频通话之后
-        aSession.remoteVideoView = EMCallRemoteView.init(frame: CGRect.init(x: 0, y: 0, width: viewRect.width, height: viewRect.height))
-        aSession.remoteVideoView.scaleMode = EMCallViewScaleModeAspectFill
-        self.view.addSubview(aSession.remoteVideoView)
+        let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession, frame: view.bounds)
+        self.view.addSubview(videoView)
     }
     
     /// 挂断
     private func hangup(){
-        guard let callId = self.callSession.callId,
-            let manager = EMClient.shared()?.callManager else { return }
-        let options = manager.getCallOptions?()
-        options?.enableCustomizeVideoData = false
-        let error = manager.endCall?(callId, reason: EMCallEndReasonHangup)
-        if let _ = error {
-            print("挂断失败")
-        }
+        KPEMChatHelper.hangupVideoCall(aSession: self.callSession)
     }
     
     /// 应答

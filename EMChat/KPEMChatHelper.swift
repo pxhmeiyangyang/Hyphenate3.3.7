@@ -322,6 +322,28 @@ extension KPEMChatHelper{
         }
     }
     
+    /// 接听视频通话
+    class func receiveVideoCall(aSession: EMCallSession, frame: CGRect)->EMCallRemoteView{
+        //同意接听视频通话之后
+        aSession.remoteVideoView = EMCallRemoteView.init(frame: frame)
+        aSession.remoteVideoView.scaleMode = EMCallViewScaleModeAspectFill
+        return aSession.remoteVideoView
+    }
+    
+    /// 挂断视频通话
+    class func hangupVideoCall(aSession: EMCallSession){
+        guard let callId = aSession.callId,
+            let manager = EMClient.shared()?.callManager else { return }
+        let options = manager.getCallOptions?()
+        options?.enableCustomizeVideoData = false
+        let error = manager.endCall?(callId, reason: EMCallEndReasonHangup)
+        if let _ = error {
+            print("挂断失败")
+        }
+    }
+    
+    
+    
     /// 退出函数
     class func quit(){
         guard let error = EMClient.shared()?.logout(true) else {
