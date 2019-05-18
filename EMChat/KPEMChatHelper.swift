@@ -8,6 +8,9 @@
 
 import UIKit
 
+let testEMName = "123456789"
+//azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11  //机器人
+
 /// karPro 环信聊天助手
 class KPEMChatHelper: NSObject {
     
@@ -227,8 +230,8 @@ extension KPEMChatHelper{
     /// 开始视频通话
     ///
     /// - Parameter callBack: 开始回调
-    class func startVideoCall(name: String ,callBack: @escaping (_ aCallSession: EMCallSession?,_ aError: EMError?)->()){
-        EMClient.shared()?.callManager.start?(EMCallTypeVideo, remoteName: name, ext: nil, completion: { (callSession, error) in
+    class func startVideoCall(name: String ,ext: String ,callBack: @escaping (_ aCallSession: EMCallSession?,_ aError: EMError?)->()){
+        EMClient.shared()?.callManager.start?(EMCallTypeVideo, remoteName: name, ext: ext, completion: { (callSession, error) in
             callBack(callSession,error)
         })
     }

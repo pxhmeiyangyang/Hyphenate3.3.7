@@ -30,7 +30,6 @@ class KPMainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        KPChatVC.init(conversationChatter: "123456789", conversationType: EMConversationTypeChat)
         self.title = "环信聊天"
         tableview.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -44,10 +43,11 @@ extension KPMainVC: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch datas[indexPath.row] {
         case "语聊":
-            self.navigationController?.pushViewController(KPChatVC.init(conversationChatter: "123456789", conversationType: EMConversationTypeChat), animated: true)
+            self.navigationController?.pushViewController(KPChatVC.init(conversationChatter: testEMName, conversationType: EMConversationTypeChat), animated: true)
         case "视频":
+            let ext = "{\"userIcon\": \"http://ks3-cn-shanghai.ksyun.com/kar-chat-audio/2019/04/16/acWNzWgY4HnaLIsOqGF2hi.JPEG\",\"userName\": \"用户2707\"}"
             KPEMChatHelper.initializeEMChat()
-            KPEMChatHelper.startVideoCall(name: "123456789") { (callSession, error) in
+            KPEMChatHelper.startVideoCall(name: testEMName, ext: ext) { (callSession, error) in
                 guard let callSession = callSession else { return }
                 let videoVC = KPEM1v1VideoVC.init(type: .caller)
                 videoVC.callSession = callSession
