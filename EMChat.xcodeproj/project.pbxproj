@@ -146,9 +146,15 @@
 		F1BED3B4228CFC7C00A1CB82 /* EMChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3B3228CFC7C00A1CB82 /* EMChatUITests.swift */; };
 		F1DE3A0B228FB64F00FC4F73 /* KPEMVideoControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */; };
 		F1DE3A0D228FE03200FC4F73 /* UIView+Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */; };
-		F1DE3A12228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A10228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a */; };
-		F1DE3A13228FEDF900FC4F73 /* libffmpeg-ios-full.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A11228FEDF900FC4F73 /* libffmpeg-ios-full.a */; };
 		F1DE3A15228FEE4800FC4F73 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A14228FEE4800FC4F73 /* libbz2.tbd */; };
+		F1DE3A1A228FFFFC00FC4F73 /* libHyphenateAVRecorderPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A18228FFFFB00FC4F73 /* libHyphenateAVRecorderPlugin.a */; };
+		F1DE3A1B228FFFFC00FC4F73 /* libffmpeg-ios-full.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A19228FFFFB00FC4F73 /* libffmpeg-ios-full.a */; };
+		F1DE3A1D2290006000FC4F73 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A1C2290006000FC4F73 /* libz.1.2.5.tbd */; };
+		F1DE3A1F2290006A00FC4F73 /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A1E2290006A00FC4F73 /* libbz2.1.0.tbd */; };
+		F1DE3A212290007700FC4F73 /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A202290007700FC4F73 /* libiconv.2.tbd */; };
+		F1DE3A232290008000FC4F73 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A222290008000FC4F73 /* AudioToolbox.framework */; };
+		F1DE3A252290008800FC4F73 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A242290008800FC4F73 /* VideoToolbox.framework */; };
+		F1DE3A272290009000FC4F73 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A262290009000FC4F73 /* CoreMedia.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -471,10 +477,16 @@
 		F1BED3B5228CFC7C00A1CB82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMVideoControlView.swift; sourceTree = "<group>"; };
 		F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rect.swift"; sourceTree = "<group>"; };
-		F1DE3A0F228FEDF900FC4F73 /* EMCallRecorderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallRecorderPlugin.h; sourceTree = "<group>"; };
-		F1DE3A10228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHyphenateAVRecorderPlugin.a; sourceTree = "<group>"; };
-		F1DE3A11228FEDF900FC4F73 /* libffmpeg-ios-full.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libffmpeg-ios-full.a"; sourceTree = "<group>"; };
 		F1DE3A14228FEE4800FC4F73 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		F1DE3A17228FFFFB00FC4F73 /* EMCallRecorderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallRecorderPlugin.h; sourceTree = "<group>"; };
+		F1DE3A18228FFFFB00FC4F73 /* libHyphenateAVRecorderPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHyphenateAVRecorderPlugin.a; sourceTree = "<group>"; };
+		F1DE3A19228FFFFB00FC4F73 /* libffmpeg-ios-full.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libffmpeg-ios-full.a"; sourceTree = "<group>"; };
+		F1DE3A1C2290006000FC4F73 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		F1DE3A1E2290006A00FC4F73 /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = usr/lib/libbz2.1.0.tbd; sourceTree = SDKROOT; };
+		F1DE3A202290007700FC4F73 /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
+		F1DE3A222290008000FC4F73 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F1DE3A242290008800FC4F73 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		F1DE3A262290009000FC4F73 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,12 +494,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1DE3A272290009000FC4F73 /* CoreMedia.framework in Frameworks */,
+				F1DE3A252290008800FC4F73 /* VideoToolbox.framework in Frameworks */,
+				F1DE3A232290008000FC4F73 /* AudioToolbox.framework in Frameworks */,
+				F1DE3A212290007700FC4F73 /* libiconv.2.tbd in Frameworks */,
+				F1DE3A1F2290006A00FC4F73 /* libbz2.1.0.tbd in Frameworks */,
+				F1DE3A1D2290006000FC4F73 /* libz.1.2.5.tbd in Frameworks */,
 				F1DE3A15228FEE4800FC4F73 /* libbz2.tbd in Frameworks */,
-				F1DE3A12228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a in Frameworks */,
 				F1594CC8228D3D0B00191171 /* libopencore-amrwb.a in Frameworks */,
 				F1594D1D228D3D2000191171 /* Hyphenate.framework in Frameworks */,
-				F1DE3A13228FEDF900FC4F73 /* libffmpeg-ios-full.a in Frameworks */,
 				F1594CC9228D3D0B00191171 /* libopencore-amrnb.a in Frameworks */,
+				F1DE3A1B228FFFFC00FC4F73 /* libffmpeg-ios-full.a in Frameworks */,
+				F1DE3A1A228FFFFC00FC4F73 /* libHyphenateAVRecorderPlugin.a in Frameworks */,
 				A0064CC960D67567171C32E0 /* Pods_EMChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,6 +532,12 @@
 		7D9A153AB24340ACFCAA38DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1DE3A262290009000FC4F73 /* CoreMedia.framework */,
+				F1DE3A242290008800FC4F73 /* VideoToolbox.framework */,
+				F1DE3A222290008000FC4F73 /* AudioToolbox.framework */,
+				F1DE3A202290007700FC4F73 /* libiconv.2.tbd */,
+				F1DE3A1E2290006A00FC4F73 /* libbz2.1.0.tbd */,
+				F1DE3A1C2290006000FC4F73 /* libz.1.2.5.tbd */,
 				F1DE3A14228FEE4800FC4F73 /* libbz2.tbd */,
 				CC2AD651642D88062ED2E9CB /* Pods_EMChat.framework */,
 				93FC583B48B635E9F0208A31 /* Pods_EMChatTests.framework */,
@@ -538,7 +562,7 @@
 		F1594B78228D3CF400191171 /* EM3.5.3 */ = {
 			isa = PBXGroup;
 			children = (
-				F1DE3A0E228FEDF900FC4F73 /* plugin */,
+				F1DE3A16228FFFFB00FC4F73 /* plugin */,
 				F1594B7C228D3D0B00191171 /* EaseUI */,
 				F1594B79228D3D0300191171 /* HyphenateFullSDK */,
 			);
@@ -1199,12 +1223,12 @@
 			path = EMChatUITests;
 			sourceTree = "<group>";
 		};
-		F1DE3A0E228FEDF900FC4F73 /* plugin */ = {
+		F1DE3A16228FFFFB00FC4F73 /* plugin */ = {
 			isa = PBXGroup;
 			children = (
-				F1DE3A0F228FEDF900FC4F73 /* EMCallRecorderPlugin.h */,
-				F1DE3A10228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a */,
-				F1DE3A11228FEDF900FC4F73 /* libffmpeg-ios-full.a */,
+				F1DE3A17228FFFFB00FC4F73 /* EMCallRecorderPlugin.h */,
+				F1DE3A18228FFFFB00FC4F73 /* libHyphenateAVRecorderPlugin.a */,
+				F1DE3A19228FFFFB00FC4F73 /* libffmpeg-ios-full.a */,
 			);
 			path = plugin;
 			sourceTree = "<group>";
