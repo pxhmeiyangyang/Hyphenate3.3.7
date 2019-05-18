@@ -12,6 +12,10 @@ import SnapKit
 /// 屏幕frame
 let kScreenRect = UIScreen.main.bounds
 
+let kRatioX = kScreenRect.width / 375.0
+
+let kRatioY = kScreenRect.height / 667.0
+
 /// 主页内容
 class KPMainVC: UIViewController {
 

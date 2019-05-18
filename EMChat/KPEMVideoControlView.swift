@@ -126,7 +126,7 @@ class KPEMVideoControlView: UIView {
     private func deploySubviews(){
         /// 切换语音
         voiceBTN.snp.makeConstraints { (make) in
-            make.top.equalTo(34)
+            make.top.equalTo(24)
             make.left.equalTo(20)
             make.width.equalTo(100)
             make.height.equalTo(60)
@@ -177,7 +177,7 @@ class KPEMVideoControlView: UIView {
     ///
     /// - Returns: 间隔数据
     private func interval(tag: Int)->CGFloat{
-        return CGFloat(tag - 3003) * 140.0
+        return CGFloat(tag - 3003) * 140.0 * kRatioY
     }
     
     @objc func buttonAction(sender: UIButton){

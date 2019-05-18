@@ -29,6 +29,7 @@ class KPEM1v1VideoVC: UIViewController {
         let view = KPEMVideoControlView.init(type: KPEMVideoControlView.ControlType.video)
         self.view.addSubview(view)
         view.delegate = self
+        view.isHidden = true
         return view
     }()
     
@@ -45,6 +46,7 @@ class KPEM1v1VideoVC: UIViewController {
         addCallingView()
         viewRect = self.view.bounds
         EMClient.shared()?.callManager.add?(self, delegateQueue: nil)
+        deploySubviews()
     }
     
     override var prefersStatusBarHidden: Bool{
@@ -64,20 +66,35 @@ class KPEM1v1VideoVC: UIViewController {
     }
     
     /// 本地视频
-    private func localVideo(){
+    private func localVideo(aSession: EMCallSession){
         let width: CGFloat = 80.0
         let height = viewRect.height / viewRect.height * width
         callSession.localVideoView = EMCallLocalView.init(frame: CGRect.init(x: viewRect.width - 90, y: 10, width: width, height: height))
+        let view = callSession.localVideoView
+        view?.layer.masksToBounds = true
+        view?.layer.cornerRadius = 5
         self.view.addSubview(callSession.localVideoView)
-        self.view.bringSubview(toFront: callSession.localVideoView)
+        
+    }
+    
+    /// 配置子视图
+    private func deploySubviews(){
+        controlView.snp.makeConstraints { (make) in
+            make.width.equalTo(kScreenRect.height)
+            make.height.equalTo(kScreenRect.width)
+            make.center.equalToSuperview()
+        }
     }
     
     /// 接受通话调用
     ///
     /// - Parameter aSession: 通话对象
     private func receiveAnswer(aSession: EMCallSession){
+        self.controlView.isHidden = false
         let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession, frame: view.bounds)
         self.view.addSubview(videoView)
+        self.view.bringSubview(toFront: controlView)
+        self.localVideo(aSession: aSession)
     }
     
     /// 挂断
