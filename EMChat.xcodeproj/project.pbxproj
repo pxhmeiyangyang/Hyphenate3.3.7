@@ -146,6 +146,9 @@
 		F1BED3B4228CFC7C00A1CB82 /* EMChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3B3228CFC7C00A1CB82 /* EMChatUITests.swift */; };
 		F1DE3A0B228FB64F00FC4F73 /* KPEMVideoControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */; };
 		F1DE3A0D228FE03200FC4F73 /* UIView+Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */; };
+		F1DE3A12228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A10228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a */; };
+		F1DE3A13228FEDF900FC4F73 /* libffmpeg-ios-full.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A11228FEDF900FC4F73 /* libffmpeg-ios-full.a */; };
+		F1DE3A15228FEE4800FC4F73 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A14228FEE4800FC4F73 /* libbz2.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -468,6 +471,10 @@
 		F1BED3B5228CFC7C00A1CB82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMVideoControlView.swift; sourceTree = "<group>"; };
 		F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rect.swift"; sourceTree = "<group>"; };
+		F1DE3A0F228FEDF900FC4F73 /* EMCallRecorderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallRecorderPlugin.h; sourceTree = "<group>"; };
+		F1DE3A10228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHyphenateAVRecorderPlugin.a; sourceTree = "<group>"; };
+		F1DE3A11228FEDF900FC4F73 /* libffmpeg-ios-full.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libffmpeg-ios-full.a"; sourceTree = "<group>"; };
+		F1DE3A14228FEE4800FC4F73 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,8 +482,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1DE3A15228FEE4800FC4F73 /* libbz2.tbd in Frameworks */,
+				F1DE3A12228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a in Frameworks */,
 				F1594CC8228D3D0B00191171 /* libopencore-amrwb.a in Frameworks */,
 				F1594D1D228D3D2000191171 /* Hyphenate.framework in Frameworks */,
+				F1DE3A13228FEDF900FC4F73 /* libffmpeg-ios-full.a in Frameworks */,
 				F1594CC9228D3D0B00191171 /* libopencore-amrnb.a in Frameworks */,
 				A0064CC960D67567171C32E0 /* Pods_EMChat.framework in Frameworks */,
 			);
@@ -504,6 +514,7 @@
 		7D9A153AB24340ACFCAA38DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F1DE3A14228FEE4800FC4F73 /* libbz2.tbd */,
 				CC2AD651642D88062ED2E9CB /* Pods_EMChat.framework */,
 				93FC583B48B635E9F0208A31 /* Pods_EMChatTests.framework */,
 				D4572AAD044731724F78FFB9 /* Pods_EMChatUITests.framework */,
@@ -527,6 +538,7 @@
 		F1594B78228D3CF400191171 /* EM3.5.3 */ = {
 			isa = PBXGroup;
 			children = (
+				F1DE3A0E228FEDF900FC4F73 /* plugin */,
 				F1594B7C228D3D0B00191171 /* EaseUI */,
 				F1594B79228D3D0300191171 /* HyphenateFullSDK */,
 			);
@@ -1187,6 +1199,16 @@
 			path = EMChatUITests;
 			sourceTree = "<group>";
 		};
+		F1DE3A0E228FEDF900FC4F73 /* plugin */ = {
+			isa = PBXGroup;
+			children = (
+				F1DE3A0F228FEDF900FC4F73 /* EMCallRecorderPlugin.h */,
+				F1DE3A10228FEDF900FC4F73 /* libHyphenateAVRecorderPlugin.a */,
+				F1DE3A11228FEDF900FC4F73 /* libffmpeg-ios-full.a */,
+			);
+			path = plugin;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1622,6 +1644,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1683,6 +1706,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1710,6 +1734,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7PMZEC39K6;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EMChat/EM3.5.3/HyphenateFullSDK",
@@ -1724,6 +1749,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EMChat/EM3.5.3/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/EMChat/EM3.5.3/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/EMChat/EM3.5.3/plugin",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"SnapKit\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unisound.UniKar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1740,6 +1772,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7PMZEC39K6;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EMChat/EM3.5.3/HyphenateFullSDK",
@@ -1754,6 +1787,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/EMChat/EM3.5.3/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/EMChat/EM3.5.3/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/EMChat/EM3.5.3/plugin",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"SnapKit\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.unisound.UniKar;
 				PRODUCT_NAME = "$(TARGET_NAME)";

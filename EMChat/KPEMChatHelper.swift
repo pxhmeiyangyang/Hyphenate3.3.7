@@ -362,6 +362,46 @@ extension KPEMChatHelper{
         }
     }
     
+    
+    /// 环信文件存储路径
+    ///
+    /// - Parameter file: 文件类型
+    /// - Returns: 返回文件路径
+    class func EMFilePath(file: String)->String?{
+        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return nil}
+        let filePath = path + "/KARPro/" + file
+        let fileManager = FileManager.default
+        var directoryExists = ObjCBool(false)
+        if fileManager.fileExists(atPath: filePath, isDirectory: &directoryExists){
+            do{
+                try fileManager.createDirectory(atPath: filePath, withIntermediateDirectories: true, attributes: nil)
+            }catch{
+            }
+        }
+        return filePath
+    }
+    
+    
+    /// 截取远程视频
+    class func takeRemoteVideoPicture(){
+        guard let filePath = self.EMFilePath(file: "image") else { return }
+        let time = Date().timeIntervalSince1970
+        let fileName = String.init(format: "%@/%.0f.jpeg", filePath, time)
+        EMCallRecorderPlugin.sharedInstance()?.screenCapture(toFilePath: fileName, error: nil)
+    }
+    
+    /// 录制视频
+    class func recorderVideo(isRecorder: Bool){
+        guard let filePath = self.EMFilePath(file: "video") else { return }
+        if isRecorder {
+            EMCallRecorderPlugin.sharedInstance()?.startVideoRecording(toFilePath: filePath, error: nil)
+        }else{
+            let path = EMCallRecorderPlugin.sharedInstance()?.stopVideoRecording(nil)
+            print("录制视频路径\(path)")
+        }
+    }
+    
+    
     /// 退出函数
     class func quit(){
         guard let error = EMClient.shared()?.logout(true) else {

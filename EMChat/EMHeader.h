@@ -20,5 +20,6 @@
 #import "EaseSDKHelper.h"
 
 #import "MBProgressHUD.h"
-
+//环信 截屏 录制
+#import "EMCallRecorderPlugin.h"
 #endif /* EMHeader_h */

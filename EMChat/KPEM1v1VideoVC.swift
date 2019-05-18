@@ -129,10 +129,10 @@ extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
         case .hangup:
             self.hangup()
         case .picture:
-            break
-            
+            KPEMChatHelper.takeRemoteVideoPicture()
         case .record:
-            break
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
         }
     }
 }
