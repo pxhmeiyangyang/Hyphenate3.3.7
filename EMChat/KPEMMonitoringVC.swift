@@ -113,7 +113,7 @@ class KPEMMonitoringVC: UIViewController {
             simpleControlView.addSubview(button)
             button.snp.makeConstraints { (make) in
                 make.centerY.equalToSuperview()
-                make.centerX.equalToSuperview().offset(interval(index: i))
+                make.centerX.equalToSuperview().offset(autoLayoutX(X: interval(index: i)))
                 make.width.equalTo(25)
                 make.height.equalTo(21)
             }
@@ -166,7 +166,7 @@ class KPEMMonitoringVC: UIViewController {
     ///
     /// - Returns: 间隔距离
     private func interval(index: Int)->CGFloat{
-        return CGFloat(index - 3) * 53.0
+        return CGFloat(index - 3) * 60.0
     }
     
     /// 按钮点击事件
