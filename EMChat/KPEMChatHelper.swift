@@ -23,6 +23,7 @@ class KPEMChatHelper: NSObject {
     private override init() {
         super.init()
         deployDelegate()
+        EMCallRecorderPlugin.initGlobalConfig() //初始化环信全局录制对象
     }
     
     /// 遵循所有环信协议
