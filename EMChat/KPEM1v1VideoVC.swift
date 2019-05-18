@@ -24,6 +24,14 @@ class KPEM1v1VideoVC: UIViewController {
         }
     }
     
+    /// 控制界面
+    lazy var controlView: KPEMVideoControlView = {
+        let view = KPEMVideoControlView.init(type: KPEMVideoControlView.ControlType.video)
+        self.view.addSubview(view)
+        view.delegate = self
+        return view
+    }()
+    
     /// 视频通话类型
     private var callType: KPEMCallingView.callType = .caller
     
@@ -95,6 +103,32 @@ class KPEM1v1VideoVC: UIViewController {
         EMClient.shared()?.callManager.remove?(self)
     }
 }
+
+// MARK: - KPEMVideoControlViewDelegate
+extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
+    func action(type: KPEMVideoControlView.ControlEvent?) {
+        guard let type = type else { return }
+        switch type {
+        case .chageVoice:
+            break
+        case .rollback:
+            break
+
+        case .mute:
+            break
+
+        case .hangup:
+            break
+
+        case .picture:
+            break
+
+        case .record:
+            break
+        }
+    }
+}
+
 // MARK: - KPEMCallingViewDelegate
 extension KPEM1v1VideoVC: KPEMCallingViewDelegate{
     func action(index: Int) {

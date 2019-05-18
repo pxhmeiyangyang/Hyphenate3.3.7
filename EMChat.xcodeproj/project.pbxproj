@@ -144,6 +144,7 @@
 		F1BED39E228CFC7C00A1CB82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1BED39C228CFC7C00A1CB82 /* LaunchScreen.storyboard */; };
 		F1BED3A9228CFC7C00A1CB82 /* EMChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3A8228CFC7C00A1CB82 /* EMChatTests.swift */; };
 		F1BED3B4228CFC7C00A1CB82 /* EMChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3B3228CFC7C00A1CB82 /* EMChatUITests.swift */; };
+		F1DE3A0B228FB64F00FC4F73 /* KPEMVideoControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -464,6 +465,7 @@
 		F1BED3AF228CFC7C00A1CB82 /* EMChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EMChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1BED3B3228CFC7C00A1CB82 /* EMChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMChatUITests.swift; sourceTree = "<group>"; };
 		F1BED3B5228CFC7C00A1CB82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMVideoControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1159,6 +1161,7 @@
 				F1607409228E8D31008D54BA /* KPEMCallingView.swift */,
 				F1607412228EBA6A008D54BA /* KPEMCommon.swift */,
 				F1607414228EC01B008D54BA /* KPEMMonitoringVC.swift */,
+				F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */,
 			);
 			path = EMChat;
 			sourceTree = "<group>";
@@ -1531,6 +1534,7 @@
 				F1594CEB228D3D0B00191171 /* UIImage+WebP.m in Sources */,
 				F1594CDE228D3D0B00191171 /* PSTCollectionViewController.m in Sources */,
 				F1594D12228D3D0B00191171 /* EaseBubbleView+Text.m in Sources */,
+				F1DE3A0B228FB64F00FC4F73 /* KPEMVideoControlView.swift in Sources */,
 				F1594CD3228D3D0B00191171 /* EMCDDeviceManagerBase.m in Sources */,
 				F1594D0E228D3D0B00191171 /* EaseTextView.m in Sources */,
 			);
