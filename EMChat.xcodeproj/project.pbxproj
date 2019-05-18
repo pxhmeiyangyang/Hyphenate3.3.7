@@ -145,6 +145,7 @@
 		F1BED3A9228CFC7C00A1CB82 /* EMChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3A8228CFC7C00A1CB82 /* EMChatTests.swift */; };
 		F1BED3B4228CFC7C00A1CB82 /* EMChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3B3228CFC7C00A1CB82 /* EMChatUITests.swift */; };
 		F1DE3A0B228FB64F00FC4F73 /* KPEMVideoControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */; };
+		F1DE3A0D228FE03200FC4F73 /* UIView+Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -466,6 +467,7 @@
 		F1BED3B3228CFC7C00A1CB82 /* EMChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMChatUITests.swift; sourceTree = "<group>"; };
 		F1BED3B5228CFC7C00A1CB82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMVideoControlView.swift; sourceTree = "<group>"; };
+		F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rect.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1162,6 +1164,7 @@
 				F1607412228EBA6A008D54BA /* KPEMCommon.swift */,
 				F1607414228EC01B008D54BA /* KPEMMonitoringVC.swift */,
 				F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */,
+				F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */,
 			);
 			path = EMChat;
 			sourceTree = "<group>";
@@ -1512,6 +1515,7 @@
 				F1594CD4228D3D0B00191171 /* MWPhotoBrowser.m in Sources */,
 				F1594D01228D3D0B00191171 /* EaseRefreshTableViewController.m in Sources */,
 				F1594CE9228D3D0B00191171 /* PSTCollectionViewLayout.m in Sources */,
+				F1DE3A0D228FE03200FC4F73 /* UIView+Rect.swift in Sources */,
 				F1594CC1228D3D0B00191171 /* MJRefreshStateHeader.m in Sources */,
 				F1594CD5228D3D0B00191171 /* MWCaptionView.m in Sources */,
 				F1594CED228D3D0B00191171 /* SDWebImageManager.m in Sources */,

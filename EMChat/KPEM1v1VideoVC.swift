@@ -14,15 +14,7 @@ class KPEM1v1VideoVC: UIViewController {
     /// 视图 frame
     var viewRect = CGRect.zero
     
-    var _callSession: EMCallSession!
-    var callSession: EMCallSession!{
-        set{
-            _callSession = newValue
-        }
-        get{
-            return _callSession
-        }
-    }
+    var callSession: EMCallSession!
     
     /// 控制界面
     lazy var controlView: KPEMVideoControlView = {
@@ -67,14 +59,12 @@ class KPEM1v1VideoVC: UIViewController {
     
     /// 本地视频
     private func localVideo(aSession: EMCallSession){
-        let width: CGFloat = 80.0
-        let height = viewRect.height / viewRect.height * width
-        callSession.localVideoView = EMCallLocalView.init(frame: CGRect.init(x: viewRect.width - 90, y: 10, width: width, height: height))
-        let view = callSession.localVideoView
-        view?.layer.masksToBounds = true
-        view?.layer.cornerRadius = 5
+        self.callSession = aSession
+        callSession.localVideoView = EMCallLocalView.init(frame: CGRect.init(x: kScreenW - 100, y: kScreenH - 170 , width: 90, height: 160))
+        callSession.localVideoView.scaleMode = EMCallViewScaleModeAspectFill
+        callSession.localVideoView?.layer.cornerRadius = 5
+        callSession.localVideoView?.layer.masksToBounds = true
         self.view.addSubview(callSession.localVideoView)
-        
     }
     
     /// 配置子视图
@@ -135,8 +125,7 @@ extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
             break
 
         case .hangup:
-            break
-
+            self.hangup()
         case .picture:
             break
 

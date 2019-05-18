@@ -177,7 +177,7 @@ class KPEMVideoControlView: UIView {
     ///
     /// - Returns: 间隔数据
     private func interval(tag: Int)->CGFloat{
-        return CGFloat(tag - 3003) * 140.0 * kRatioY
+        return autoLayoutY(Y: CGFloat(tag - 3003) * 140.0)
     }
     
     @objc func buttonAction(sender: UIButton){
