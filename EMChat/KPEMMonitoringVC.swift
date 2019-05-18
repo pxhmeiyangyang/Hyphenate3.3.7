@@ -10,7 +10,7 @@ import UIKit
 
 /// 环信聊天 监控界面
 class KPEMMonitoringVC: UIViewController {
-
+    
     /// 通话对象
     private var callSession: EMCallSession!
     
@@ -18,6 +18,15 @@ class KPEMMonitoringVC: UIViewController {
     lazy var videoView: UIView = {
         let view = UIView()
         self.view.addSubview(view)
+        view.backgroundColor = UIColor.black
+        return view
+    }()
+    
+    /// 简单控制界面
+    lazy var simpleControlView: UIView = {
+        let view = UIView()
+        self.videoView.addSubview(view)
+        view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.6)
         return view
     }()
     
@@ -94,6 +103,41 @@ class KPEMMonitoringVC: UIViewController {
             make.height.equalTo(261)
         }
         
+        simpleControlView.snp.makeConstraints { (make) in
+            make.height.equalTo(50)
+            make.left.right.bottom.equalTo(0)
+        }
+        
+        for i in 1...5 {
+            let button = UIButton()
+            simpleControlView.addSubview(button)
+            button.snp.makeConstraints { (make) in
+                make.centerY.equalToSuperview()
+                make.centerX.equalToSuperview().offset(interval(index: i))
+                make.width.equalTo(25)
+                make.height.equalTo(21)
+            }
+            button.tag = 1
+            button.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+            switch i {
+            case 1:
+                button.setImage(UIImage.init(named: "video_icon12"), for: UIControlState.normal)
+                button.setImage(UIImage.init(named: "video_icon11"), for: UIControlState.selected)
+                break
+            case 2:
+                button.setImage(UIImage.init(named: "video_icon10"), for: UIControlState.normal)
+                button.setImage(UIImage.init(named: "video_icon13"), for: UIControlState.selected)
+            case 3:
+                button.setImage(UIImage.init(named: "video_icon9"), for: UIControlState.normal)
+            case 4:
+                button.setImage(UIImage.init(named: "video_icon8"), for: UIControlState.normal)
+            case 5:
+                button.setImage(UIImage.init(named: "video_icon14"), for: UIControlState.normal)
+            default:
+                break
+            }
+        }
+        
         controlView.snp.makeConstraints { (make) in
             make.left.right.bottom.equalTo(0)
             make.top.equalTo(videoView.snp.bottom)
@@ -115,6 +159,34 @@ class KPEMMonitoringVC: UIViewController {
             make.width.equalTo(180)
             make.height.equalTo(241)
             make.left.equalTo(controlBG.snp.centerX)
+        }
+    }
+    
+    /// 间隔
+    ///
+    /// - Returns: 间隔距离
+    private func interval(index: Int)->CGFloat{
+        return CGFloat(index - 3) * 53.0
+    }
+    
+    /// 按钮点击事件
+    ///
+    /// - Parameter sender: 按钮
+    @objc private func buttonAction(sender: UIButton){
+        switch sender.tag {
+        case 1:
+            
+            break
+        case 2:
+            break
+        case 3:
+            break
+        case 4:
+            break
+        case 5:
+            break
+        default:
+            break
         }
     }
     
@@ -186,7 +258,7 @@ extension KPEMMonitoringVC: EMCallManagerDelegate{
      *  @param aError    Error
      */
     func callDidEnd(_ aSession: EMCallSession!, reason aReason: EMCallEndReason, error aError: EMError!) {
-
+        
     }
     
     /*!
