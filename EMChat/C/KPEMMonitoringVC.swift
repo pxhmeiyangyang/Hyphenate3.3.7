@@ -218,6 +218,7 @@ class KPEMMonitoringVC: UIViewController {
     private func halfScreen(){
         guard let callSession = self.callSession else { return }
         callSession.remoteVideoView.removeFromSuperview()
+        callSession.remoteVideoView.transform = CGAffineTransform.init(rotationAngle: CGFloat(-M_PI_2))
         videoView.addSubview(callSession.remoteVideoView)
         videoView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()

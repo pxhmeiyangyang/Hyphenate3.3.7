@@ -201,7 +201,7 @@ class KPEMVideoControlView: UIView {
                 make.left.top.equalTo(10)
             }
             
-            let width = kScreenW * 0.25
+            let width = kScreenH * 0.25
             
             /// 静音按钮
             muteBTN.snp.makeConstraints { (make) in
@@ -233,20 +233,6 @@ class KPEMVideoControlView: UIView {
         }
         
     }
-    
-    
-    /// 更新UI
-//    private func updateUI(type: ControlType){
-//        self.hiddenUI(isHidden: type == .monitoring)
-//    }
-//
-//    private func hiddenUI(isHidden: Bool){
-//        cancelBTN.isHidden = !isHidden
-//        voiceBTN.isHidden = isHidden
-//        rollbackBTN.isHidden = isHidden
-//        hangupBTN.isHidden = isHidden
-//    }
-    
     /// 计算图标间隔
     ///
     /// - Returns: 间隔数据
