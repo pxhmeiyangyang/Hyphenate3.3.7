@@ -11,6 +11,20 @@ import UIKit
 /// 环信视频聊天界面
 class KPEM1v1VideoVC: UIViewController {
 
+    /// 切换到语音控制参数
+    private var _onlyVoice: Bool = false
+    private var onlyVoice: Bool{
+        set{
+            _onlyVoice = newValue
+            if newValue {
+                callingView?.voiceBTN.isHidden = true
+            }
+        }
+        get{
+            return _onlyVoice
+        }
+    }
+    
     /// 视图 frame
     var viewRect = CGRect.zero
     
@@ -24,6 +38,9 @@ class KPEM1v1VideoVC: UIViewController {
         view.isHidden = true
         return view
     }()
+    
+    /// 呼叫控制界面
+    private var callingView: KPEMCallingView?
     
     /// 视频通话类型
     private var callType: KPEMCallingView.callType = .caller
@@ -60,11 +77,17 @@ class KPEM1v1VideoVC: UIViewController {
     /// 本地视频
     private func localVideo(aSession: EMCallSession){
         self.callSession = aSession
-        aSession.localVideoView = EMCallLocalView.init(frame: CGRect.init(x: kScreenW - 100, y: kScreenH - 170 , width: 90, height: 160))
+        aSession.localVideoView = EMCallLocalView.init()
         aSession.localVideoView.scaleMode = EMCallViewScaleModeAspectFill
         aSession.localVideoView?.layer.cornerRadius = 5
         aSession.localVideoView?.layer.masksToBounds = true
         self.view.addSubview(aSession.localVideoView)
+        aSession.localVideoView.snp.makeConstraints { (make) in
+            make.width.equalTo(90)
+            make.height.equalTo(160)
+            make.right.equalTo(-10)
+            make.bottom.equalTo(-10)
+        }
     }
     
     /// 配置子视图
@@ -81,8 +104,11 @@ class KPEM1v1VideoVC: UIViewController {
     /// - Parameter aSession: 通话对象
     private func receiveAnswer(aSession: EMCallSession){
         self.controlView.isHidden = false
-        let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession, frame: view.bounds)
+        let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession)
         self.view.addSubview(videoView)
+        videoView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         self.view.bringSubview(toFront: controlView)
         self.localVideo(aSession: aSession)
     }
@@ -147,7 +173,7 @@ extension KPEM1v1VideoVC: KPEMCallingViewDelegate{
         case 2001: //接听
             self.answer()
         case 2002: //切换
-            break
+            self.onlyVoice = true
         default:
             break
         }

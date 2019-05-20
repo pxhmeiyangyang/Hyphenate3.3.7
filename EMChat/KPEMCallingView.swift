@@ -175,7 +175,7 @@ class KPEMCallingView: UIView {
         
         /// 切换语音
         voiceBTN.snp.makeConstraints { (make) in
-            make.top.equalTo(34)
+            make.top.equalTo(24)
             make.right.equalTo(-20)
             make.width.equalTo(100)
             make.height.equalTo(60)

@@ -89,7 +89,7 @@ class KPEMMonitoringVC: UIViewController {
     private func receiveAnswer(aSession: EMCallSession){
         self.callSession = aSession
         //同意接听视频通话之后
-        let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession, frame: CGRect.zero)
+        let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession)
         self.videoView.addSubview(videoView)
         aSession.remoteVideoView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
@@ -197,7 +197,6 @@ class KPEMMonitoringVC: UIViewController {
         guard let callSession = self.callSession else { return }
         guard let window = UIApplication.shared.keyWindow else { return }
         window.addSubview(callSession.remoteVideoView)
-        callSession.remoteVideoView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
         callSession.remoteVideoView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalTo(kScreenH)

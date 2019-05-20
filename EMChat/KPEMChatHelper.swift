@@ -335,9 +335,9 @@ extension KPEMChatHelper{
     }
     
     /// 接听视频通话
-    class func receiveVideoCall(aSession: EMCallSession, frame: CGRect)->EMCallRemoteView{
+    class func receiveVideoCall(aSession: EMCallSession)->EMCallRemoteView{
         //同意接听视频通话之后
-        aSession.remoteVideoView = EMCallRemoteView.init(frame: frame)
+        aSession.remoteVideoView = EMCallRemoteView.init()
         aSession.remoteVideoView.scaleMode = EMCallViewScaleModeAspectFill
         return aSession.remoteVideoView
     }
