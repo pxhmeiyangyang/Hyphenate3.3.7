@@ -10,6 +10,8 @@
 		26511E1D47BC0F54ECCC958C /* Pods_EMChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93FC583B48B635E9F0208A31 /* Pods_EMChatTests.framework */; };
 		9393D66958ABB2D80199137E /* Pods_EMChatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4572AAD044731724F78FFB9 /* Pods_EMChatUITests.framework */; };
 		A0064CC960D67567171C32E0 /* Pods_EMChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC2AD651642D88062ED2E9CB /* Pods_EMChat.framework */; };
+		F1583EFF2292AFF2007122C9 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1583EFE2292AFF2007122C9 /* Hyphenate.framework */; };
+		F1583F002292AFF2007122C9 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1583EFE2292AFF2007122C9 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1594CA5228D3D0B00191171 /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594B83228D3D0B00191171 /* UIViewController+HUD.m */; };
 		F1594CA6228D3D0B00191171 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594B84228D3D0B00191171 /* NSDate+Category.m */; };
 		F1594CA7228D3D0B00191171 /* NSString+Valid.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594B85228D3D0B00191171 /* NSString+Valid.m */; };
@@ -130,8 +132,6 @@
 		F1594D1A228D3D0B00191171 /* EaseSDKHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594C9F228D3D0B00191171 /* EaseSDKHelper.m */; };
 		F1594D1B228D3D0B00191171 /* EaseUIResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F1594CA3228D3D0B00191171 /* EaseUIResource.bundle */; };
 		F1594D1C228D3D0B00191171 /* EaseUI.m in Sources */ = {isa = PBXBuildFile; fileRef = F1594CA4228D3D0B00191171 /* EaseUI.m */; };
-		F1594D1D228D3D2000191171 /* Hyphenate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1594B7A228D3D0300191171 /* Hyphenate.framework */; };
-		F1594D1E228D3D2000191171 /* Hyphenate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F1594B7A228D3D0300191171 /* Hyphenate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F1594D26228D448300191171 /* KPEMChatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1594D25228D448300191171 /* KPEMChatHelper.swift */; };
 		F1594E64228D62A600191171 /* KPChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1594E63228D62A600191171 /* KPChatVC.swift */; };
 		F1607406228E5761008D54BA /* KPEM1v1VideoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */; };
@@ -184,7 +184,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F1594D1E228D3D2000191171 /* Hyphenate.framework in Embed Frameworks */,
+				F1583F002292AFF2007122C9 /* Hyphenate.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,7 +201,7 @@
 		A21FA781EDD9D568E0CFEF98 /* Pods-EMChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EMChatTests.debug.xcconfig"; path = "Target Support Files/Pods-EMChatTests/Pods-EMChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CC2AD651642D88062ED2E9CB /* Pods_EMChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EMChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4572AAD044731724F78FFB9 /* Pods_EMChatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EMChatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1594B7A228D3D0300191171 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
+		F1583EFE2292AFF2007122C9 /* Hyphenate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Hyphenate.framework; sourceTree = "<group>"; };
 		F1594B7D228D3D0B00191171 /* EaseUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUI.h; sourceTree = "<group>"; };
 		F1594B80228D3D0B00191171 /* EaseLocalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseLocalDefine.h; sourceTree = "<group>"; };
 		F1594B82228D3D0B00191171 /* UIViewController+DismissKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DismissKeyboard.h"; sourceTree = "<group>"; };
@@ -508,10 +508,10 @@
 				F1DE3A1D2290006000FC4F73 /* libz.1.2.5.tbd in Frameworks */,
 				F1DE3A15228FEE4800FC4F73 /* libbz2.tbd in Frameworks */,
 				F1594CC8228D3D0B00191171 /* libopencore-amrwb.a in Frameworks */,
-				F1594D1D228D3D2000191171 /* Hyphenate.framework in Frameworks */,
 				F1594CC9228D3D0B00191171 /* libopencore-amrnb.a in Frameworks */,
 				F1DE3A1B228FFFFC00FC4F73 /* libffmpeg-ios-full.a in Frameworks */,
 				F1DE3A1A228FFFFC00FC4F73 /* libHyphenateAVRecorderPlugin.a in Frameworks */,
+				F1583EFF2292AFF2007122C9 /* Hyphenate.framework in Frameworks */,
 				A0064CC960D67567171C32E0 /* Pods_EMChat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,7 +578,7 @@
 		F1594B79228D3D0300191171 /* HyphenateFullSDK */ = {
 			isa = PBXGroup;
 			children = (
-				F1594B7A228D3D0300191171 /* Hyphenate.framework */,
+				F1583EFE2292AFF2007122C9 /* Hyphenate.framework */,
 			);
 			path = HyphenateFullSDK;
 			sourceTree = "<group>";
@@ -1782,6 +1782,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EMChat/EM3.5.3/HyphenateFullSDK",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = EMChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1820,6 +1821,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/EMChat/EM3.5.3/HyphenateFullSDK",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = EMChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
