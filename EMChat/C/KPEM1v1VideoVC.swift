@@ -148,7 +148,7 @@ extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
     func action(sender: UIButton, type: KPEMVideoControlView.ControlEvent?) {
         guard let type = type else { return }
         switch type {
-        case .chageVoice:
+        case .changeVoice:
             break
         case .rollback:
             sender.isSelected = !sender.isSelected
@@ -163,6 +163,10 @@ extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
         case .record:
             sender.isSelected = !sender.isSelected
             KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
+        case .cancel:
+            break
+        case .monitor2Video:
+            break
         }
     }
 }

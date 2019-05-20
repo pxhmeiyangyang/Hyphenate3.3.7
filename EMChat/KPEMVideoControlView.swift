@@ -34,17 +34,28 @@ class KPEMVideoControlView: UIView {
     /// - picture: 拍照
     /// - record: 录像
     enum ControlEvent: Int {
-        case chageVoice = 3000
+        case changeVoice = 3000
         case rollback
         case mute
         case hangup
         case picture
         case record
+        case cancel
+        case monitor2Video
     }
     
-    private let viewTag: Int = 3000
-    
     var delegate: KPEMVideoControlViewDelegate?
+    
+    /// 返回按钮
+    lazy var cancelBTN: UIButton = {
+        let view = UIButton()
+        addSubview(view)
+        view.setImage(UIImage.init(named: "back_white"), for: UIControlState.normal)
+        view.setImage(UIImage.init(named: "back_white"), for: UIControlState.normal)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = ControlEvent.cancel.rawValue
+        return view
+    }()
     
     /// 切换语音
     lazy var voiceBTN: CallingBTN = {
@@ -53,7 +64,7 @@ class KPEMVideoControlView: UIView {
         view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.normal)
         view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.highlighted)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.tag = self.viewTag
+        view.tag = ControlEvent.changeVoice.rawValue
         return view
     }()
     
@@ -64,7 +75,7 @@ class KPEMVideoControlView: UIView {
         view.setImage(UIImage.init(named: "video_icon1"), for: UIControlState.highlighted)
         self.addSubview(view)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.tag = self.viewTag + 1
+        view.tag = ControlEvent.rollback.rawValue
         return view
     }()
     
@@ -75,7 +86,7 @@ class KPEMVideoControlView: UIView {
         view.setImage(UIImage.init(named: "video_icon5_1"), for: UIControlState.selected)
         self.addSubview(view)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.tag = self.viewTag + 2
+        view.tag = ControlEvent.mute.rawValue
         return view
     }()
     
@@ -88,7 +99,7 @@ class KPEMVideoControlView: UIView {
         view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.highlighted)
         self.addSubview(view)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.tag = self.viewTag + 3
+        view.tag = ControlEvent.hangup.rawValue
         return view
     }()
     
@@ -100,7 +111,7 @@ class KPEMVideoControlView: UIView {
         view.setImage(UIImage.init(named: "video_icon3"), for: UIControlState.highlighted)
         self.addSubview(view)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.tag = self.viewTag + 4
+        view.tag = ControlEvent.picture.rawValue
         return view
     }()
     
@@ -111,67 +122,130 @@ class KPEMVideoControlView: UIView {
         view.setImage(UIImage.init(named: "video_icon6_1"), for: UIControlState.selected)
         self.addSubview(view)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.tag = self.viewTag + 5
+        view.tag = ControlEvent.record.rawValue
         return view
     }()
+    
+    /// 监控切视频通话
+    lazy var monitor2VideoBTN: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage.init(named: "video_iconSXT"), for: UIControlState.normal)
+        view.setImage(UIImage.init(named: "video_iconSXT"), for: UIControlState.highlighted)
+        self.addSubview(view)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = ControlEvent.monitor2Video.rawValue
+        return view
+    }()
+    
     
     convenience init(type: ControlType) {
         self.init()
         self.backgroundColor = UIColor.clear
-        self.deploySubviews()
+        self.deploySubviews(type: type)
         self.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
+//        self.updateUI(type: type)
     }
 
     /// 配置布局子视图
-    private func deploySubviews(){
-        /// 切换语音
-        voiceBTN.snp.makeConstraints { (make) in
-            make.top.equalTo(24)
-            make.left.equalTo(20)
-            make.width.equalTo(100)
-            make.height.equalTo(60)
-        }
-        
-        
-        /// 反转摄像头
-        rollbackBTN.snp.makeConstraints { (make) in
-            make.width.height.equalTo(60)
-            make.bottom.equalTo(-20)
-            make.centerX.equalToSuperview().offset(interval(tag: rollbackBTN.tag))
-        }
-        
-        /// 静音按钮
-        muteBTN.snp.makeConstraints { (make) in
-            make.width.height.equalTo(60)
-            make.bottom.equalTo(-20)
-            make.centerX.equalToSuperview().offset(interval(tag: muteBTN.tag))
-        }
-        
-        
-        /// 挂断按钮
-        hangupBTN.snp.makeConstraints { (make) in
-            make.width.height.equalTo(60)
-            make.bottom.equalTo(-20)
-            make.centerX.equalToSuperview()
-        }
-        
-        
-        /// 拍照按钮
-        pictureBTN.snp.makeConstraints { (make) in
-            make.width.height.equalTo(60)
-            make.bottom.equalTo(-20)
-            make.centerX.equalToSuperview().offset(interval(tag: pictureBTN.tag))
-        }
-        
-        /// 录制按钮
-        recordBTN.snp.makeConstraints { (make) in
-            make.width.height.equalTo(60)
-            make.bottom.equalTo(-20)
-            make.centerX.equalToSuperview().offset(interval(tag: recordBTN.tag))
+    private func deploySubviews(type: ControlType){
+        if type == .video {
+            /// 切换语音
+            voiceBTN.snp.makeConstraints { (make) in
+                make.top.equalTo(24)
+                make.left.equalTo(20)
+                make.width.equalTo(100)
+                make.height.equalTo(60)
+            }
+            
+            
+            /// 反转摄像头
+            rollbackBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview().offset(interval(tag: rollbackBTN.tag))
+            }
+            
+            /// 静音按钮
+            muteBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview().offset(interval(tag: muteBTN.tag))
+            }
+            
+            
+            /// 挂断按钮
+            hangupBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview()
+            }
+            
+            
+            /// 拍照按钮
+            pictureBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview().offset(interval(tag: pictureBTN.tag))
+            }
+            
+            /// 录制按钮
+            recordBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview().offset(interval(tag: recordBTN.tag))
+            }
+        }else{
+            // 返回按钮
+            cancelBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(42)
+                make.left.top.equalTo(10)
+            }
+            
+            let width = kScreenW * 0.25
+            
+            /// 静音按钮
+            muteBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview().offset(width * 0.5)
+            }
+            
+            /// 监控切视频按钮
+            monitor2VideoBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview().offset(width * 1.5)
+            }
+            
+            /// 拍照按钮
+            pictureBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview().offset(width * 2.5)
+            }
+            
+            /// 录制按钮
+            recordBTN.snp.makeConstraints { (make) in
+                make.width.height.equalTo(60)
+                make.bottom.equalTo(-20)
+                make.centerX.equalToSuperview().offset(width * 3.5)
+            }
         }
         
     }
     
+    
+    /// 更新UI
+//    private func updateUI(type: ControlType){
+//        self.hiddenUI(isHidden: type == .monitoring)
+//    }
+//
+//    private func hiddenUI(isHidden: Bool){
+//        cancelBTN.isHidden = !isHidden
+//        voiceBTN.isHidden = isHidden
+//        rollbackBTN.isHidden = isHidden
+//        hangupBTN.isHidden = isHidden
+//    }
     
     /// 计算图标间隔
     ///
