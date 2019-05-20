@@ -347,7 +347,8 @@ extension KPEMChatHelper{
     /// 切换摄像头方向
     ///
     /// - Parameter aSession: 通话对象
-    class func switchCamera(aSession: EMCallSession, position: Bool){
+    class func switchCamera(aSession: EMCallSession?, position: Bool){
+        guard let aSession = aSession else { return }
         aSession.switchCameraPosition(position)
     }
     
@@ -356,7 +357,8 @@ extension KPEMChatHelper{
     /// - Parameters:
     ///   - aSession: 通话对象
     ///   - isMute: 是否静音
-    class func videoMute(aSession: EMCallSession, isMute: Bool){
+    class func videoMute(aSession: EMCallSession?, isMute: Bool){
+        guard let aSession = aSession else { return }
         if isMute {
             aSession.pauseVoice()
         }else{
