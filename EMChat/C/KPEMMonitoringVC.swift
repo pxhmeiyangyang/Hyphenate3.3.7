@@ -185,11 +185,25 @@ class KPEMMonitoringVC: UIViewController {
         case 4:  //拍照
             KPEMChatHelper.takeRemoteVideoPicture()
         case 5:  //全屏
-            break
+            fullScreen()
         default:
             break
         }
     }
+    
+    /// 全屏
+    private func fullScreen(){
+        guard let callSession = self.callSession else { return }
+        guard let window = UIApplication.shared.keyWindow else { return }
+        window.addSubview(callSession.remoteVideoView)
+        callSession.remoteVideoView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
+        callSession.remoteVideoView.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+            make.width.equalTo(kScreenH)
+            make.height.equalTo(kScreenW)
+        }
+    }
+    
     
     deinit {
         EMClient.shared()?.callManager.remove?(self)

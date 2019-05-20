@@ -60,11 +60,11 @@ class KPEM1v1VideoVC: UIViewController {
     /// 本地视频
     private func localVideo(aSession: EMCallSession){
         self.callSession = aSession
-        callSession.localVideoView = EMCallLocalView.init(frame: CGRect.init(x: kScreenW - 100, y: kScreenH - 170 , width: 90, height: 160))
-        callSession.localVideoView.scaleMode = EMCallViewScaleModeAspectFill
-        callSession.localVideoView?.layer.cornerRadius = 5
-        callSession.localVideoView?.layer.masksToBounds = true
-        self.view.addSubview(callSession.localVideoView)
+        aSession.localVideoView = EMCallLocalView.init(frame: CGRect.init(x: kScreenW - 100, y: kScreenH - 170 , width: 90, height: 160))
+        aSession.localVideoView.scaleMode = EMCallViewScaleModeAspectFill
+        aSession.localVideoView?.layer.cornerRadius = 5
+        aSession.localVideoView?.layer.masksToBounds = true
+        self.view.addSubview(aSession.localVideoView)
     }
     
     /// 配置子视图
@@ -94,7 +94,8 @@ class KPEM1v1VideoVC: UIViewController {
     
     /// 应答
     private func answer(){
-        let error = EMClient.shared()?.callManager.answerIncomingCall?(self.callSession.callId)
+        guard let callSession = self.callSession else { return }
+        let error = EMClient.shared()?.callManager.answerIncomingCall?(callSession.callId)
         guard error != nil else {
             return
         }
@@ -106,8 +107,8 @@ class KPEM1v1VideoVC: UIViewController {
     }
     
     deinit {
-        self.callSession.localVideoView.removeFromSuperview()
-        self.callSession.remoteVideoView.removeFromSuperview()
+        self.callSession?.localVideoView.removeFromSuperview()
+        self.callSession?.remoteVideoView.removeFromSuperview()
         //移除实时通话回调
         EMClient.shared()?.callManager.remove?(self)
     }
