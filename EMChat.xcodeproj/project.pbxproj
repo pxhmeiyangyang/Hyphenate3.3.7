@@ -155,6 +155,7 @@
 		F1DE3A232290008000FC4F73 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A222290008000FC4F73 /* AudioToolbox.framework */; };
 		F1DE3A252290008800FC4F73 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A242290008800FC4F73 /* VideoToolbox.framework */; };
 		F1DE3A272290009000FC4F73 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A262290009000FC4F73 /* CoreMedia.framework */; };
+		F1F4BFE5229240560089DE56 /* KPLinkManVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1F4BFE4229240560089DE56 /* KPLinkManVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -487,6 +488,7 @@
 		F1DE3A222290008000FC4F73 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F1DE3A242290008800FC4F73 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		F1DE3A262290009000FC4F73 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F1F4BFE4229240560089DE56 /* KPLinkManVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPLinkManVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1186,6 +1188,7 @@
 		F1BED392228CFC7B00A1CB82 /* EMChat */ = {
 			isa = PBXGroup;
 			children = (
+				F1F4BFE62292406E0089DE56 /* C */,
 				F1594B78228D3CF400191171 /* EM3.5.3 */,
 				F1BED393228CFC7B00A1CB82 /* AppDelegate.swift */,
 				F1BED39A228CFC7C00A1CB82 /* Assets.xcassets */,
@@ -1193,12 +1196,9 @@
 				F1BED39F228CFC7C00A1CB82 /* Info.plist */,
 				F1594D24228D40B200191171 /* EMHeader.h */,
 				F1594D25228D448300191171 /* KPEMChatHelper.swift */,
-				F1594E63228D62A600191171 /* KPChatVC.swift */,
-				F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */,
 				F1607407228E857F008D54BA /* KPMainVC.swift */,
 				F1607409228E8D31008D54BA /* KPEMCallingView.swift */,
 				F1607412228EBA6A008D54BA /* KPEMCommon.swift */,
-				F1607414228EC01B008D54BA /* KPEMMonitoringVC.swift */,
 				F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */,
 				F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */,
 			);
@@ -1231,6 +1231,17 @@
 				F1DE3A19228FFFFB00FC4F73 /* libffmpeg-ios-full.a */,
 			);
 			path = plugin;
+			sourceTree = "<group>";
+		};
+		F1F4BFE62292406E0089DE56 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				F1607414228EC01B008D54BA /* KPEMMonitoringVC.swift */,
+				F1594E63228D62A600191171 /* KPChatVC.swift */,
+				F1607405228E5761008D54BA /* KPEM1v1VideoVC.swift */,
+				F1F4BFE4229240560089DE56 /* KPLinkManVC.swift */,
+			);
+			path = C;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1580,6 +1591,7 @@
 				F1594CE3228D3D0B00191171 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				F1594CE6228D3D0B00191171 /* PSTCollectionViewItemKey.m in Sources */,
 				F1594CA7228D3D0B00191171 /* NSString+Valid.m in Sources */,
+				F1F4BFE5229240560089DE56 /* KPLinkManVC.swift in Sources */,
 				F1594CD0228D3D0B00191171 /* EMCDDeviceManager+Microphone.m in Sources */,
 				F1594CEB228D3D0B00191171 /* UIImage+WebP.m in Sources */,
 				F1594CDE228D3D0B00191171 /* PSTCollectionViewController.m in Sources */,
