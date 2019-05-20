@@ -40,7 +40,7 @@ extension KPMainVC: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch datas[indexPath.row] {
         case "语聊":
-            self.navigationController?.pushViewController(KPChatVC.init(conversationChatter: testEMName, conversationType: EMConversationTypeChat), animated: true)
+            self.navigationController?.pushViewController(KPLinkManVC(), animated: true)
         case "视频":
             let ext = "{\"userIcon\": \"http://ks3-cn-shanghai.ksyun.com/kar-chat-audio/2019/04/16/acWNzWgY4HnaLIsOqGF2hi.JPEG\",\"userName\": \"用户2707\"}"
             KPEMChatHelper.initializeEMChat()
