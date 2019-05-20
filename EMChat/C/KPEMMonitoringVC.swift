@@ -196,7 +196,9 @@ class KPEMMonitoringVC: UIViewController {
     private func fullScreen(){
         guard let callSession = self.callSession else { return }
         guard let window = UIApplication.shared.keyWindow else { return }
+        callSession.remoteVideoView.removeFromSuperview()
         window.addSubview(callSession.remoteVideoView)
+        callSession.remoteVideoView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
         callSession.remoteVideoView.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
             make.width.equalTo(kScreenH)

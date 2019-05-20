@@ -106,8 +106,11 @@ class KPEM1v1VideoVC: UIViewController {
         self.controlView.isHidden = false
         let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession)
         self.view.addSubview(videoView)
+        videoView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
         videoView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+            make.center.equalToSuperview()
+            make.width.equalTo(kScreenH)
+            make.height.equalTo(kScreenW)
         }
         self.view.bringSubview(toFront: controlView)
         self.localVideo(aSession: aSession)
