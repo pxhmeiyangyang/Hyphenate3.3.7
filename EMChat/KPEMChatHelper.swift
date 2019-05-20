@@ -11,6 +11,8 @@ import UIKit
 let testEMName = "123456789"
 //azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11  //机器人
 
+let kMonitorToVideoNN = NSNotification.Name.init("MonitoringToVideoCall")
+
 /// karPro 环信聊天助手
 class KPEMChatHelper: NSObject {
     
@@ -24,6 +26,7 @@ class KPEMChatHelper: NSObject {
         super.init()
         deployDelegate()
         EMCallRecorderPlugin.initGlobalConfig() //初始化环信全局录制对象
+        NotificationCenter.default.addObserver(self, selector: #selector(notiAction(noti:)), name: kMonitorToVideoNN, object: nil)
     }
     
     /// 遵循所有环信协议
@@ -45,6 +48,13 @@ class KPEMChatHelper: NSObject {
     func empty(){
     }
     
+    /// 通知事件
+    ///
+    /// - Parameter noti: 通知对象
+    @objc func notiAction(noti: Notification){
+        KPEMChatHelper.present1v1VideoCall()
+    }
+    
     
     deinit {
         EMClient.shared()?.removeDelegate(self)
@@ -53,6 +63,7 @@ class KPEMChatHelper: NSObject {
         EMClient.shared()?.roomManager.remove(self)
         EMClient.shared()?.chatManager.remove(self)
         EMClient.shared()?.callManager.remove?(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -402,6 +413,19 @@ extension KPEMChatHelper{
         }else{
             let path = EMCallRecorderPlugin.sharedInstance()?.stopVideoRecording(nil)
             print("录制视频路径\(path)")
+        }
+    }
+    
+    
+    /// present一对一视频聊天
+    class func present1v1VideoCall(){
+        let ext = "{\"userIcon\": \"http://ks3-cn-shanghai.ksyun.com/kar-chat-audio/2019/04/16/acWNzWgY4HnaLIsOqGF2hi.JPEG\",\"userName\": \"用户2707\"}"
+        KPEMChatHelper.initializeEMChat()
+        KPEMChatHelper.startVideoCall(name: testEMName, ext: ext) { (callSession, error) in
+            guard let callSession = callSession else { return }
+            let videoVC = KPEM1v1VideoVC.init(type: .caller)
+            videoVC.callSession = callSession
+            KPEMCommon.rootVC()?.present(videoVC, animated: false, completion: nil)
         }
     }
     

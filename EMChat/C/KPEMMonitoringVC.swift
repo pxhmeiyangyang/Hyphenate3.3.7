@@ -94,6 +94,7 @@ class KPEMMonitoringVC: UIViewController {
         aSession.remoteVideoView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        self.videoView.bringSubview(toFront: simpleControlView)
     }
     
     /// 配置子view
@@ -117,7 +118,7 @@ class KPEMMonitoringVC: UIViewController {
                 make.width.equalTo(25)
                 make.height.equalTo(21)
             }
-            button.tag = 1
+            button.tag = i
             button.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
             switch i {
             case 1:
@@ -181,7 +182,7 @@ class KPEMMonitoringVC: UIViewController {
             sender.isSelected = !sender.isSelected
             KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
         case 3:  //转视频通话
-            break
+            self.huangup()
         case 4:  //拍照
             KPEMChatHelper.takeRemoteVideoPicture()
         case 5:  //全屏
@@ -202,13 +203,53 @@ class KPEMMonitoringVC: UIViewController {
             make.width.equalTo(kScreenH)
             make.height.equalTo(kScreenW)
         }
+        //加载控制界面
+        let controlView = KPEMVideoControlView.init(type: .monitoring)
+        controlView.delegate = self
+        callSession.remoteVideoView.addSubview(controlView)
+        controlView.snp.makeConstraints { (make) in
+            make.width.equalTo(kScreenRect.height)
+            make.height.equalTo(kScreenRect.width)
+            make.center.equalToSuperview()
+        }
     }
     
+    
+    /// 监控转视频通话
+    private func huangup(){
+        KPEMChatHelper.hangupVideoCall(aSession: self.callSession)
+        self.navigationController?.popViewController(animated: false)
+        NotificationCenter.default.post(name: kMonitorToVideoNN, object: nil)
+    }
     
     deinit {
         EMClient.shared()?.callManager.remove?(self)
     }
     
+}
+
+// MARK: - KPEMVideoControlViewDelegate
+extension KPEMMonitoringVC: KPEMVideoControlViewDelegate{
+    func action(sender: UIButton, type: KPEMVideoControlView.ControlEvent?) {
+        guard let type = type else { return }
+        switch type {
+        case .chageVoice:
+            break
+        case .rollback:
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.switchCamera(aSession: self.callSession, position: sender.isSelected)
+        case .mute:
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.videoMute(aSession: self.callSession, isMute: sender.isSelected)
+        case .hangup:
+            break
+        case .picture:
+            KPEMChatHelper.takeRemoteVideoPicture()
+        case .record:
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
+        }
+    }
 }
 
 // MARK: - EMCallManagerDelegate

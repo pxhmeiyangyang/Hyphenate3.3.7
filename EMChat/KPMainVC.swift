@@ -42,14 +42,7 @@ extension KPMainVC: UITableViewDelegate,UITableViewDataSource{
         case "语聊":
             self.navigationController?.pushViewController(KPLinkManVC(), animated: true)
         case "视频":
-            let ext = "{\"userIcon\": \"http://ks3-cn-shanghai.ksyun.com/kar-chat-audio/2019/04/16/acWNzWgY4HnaLIsOqGF2hi.JPEG\",\"userName\": \"用户2707\"}"
-            KPEMChatHelper.initializeEMChat()
-            KPEMChatHelper.startVideoCall(name: testEMName, ext: ext) { (callSession, error) in
-                guard let callSession = callSession else { return }
-                let videoVC = KPEM1v1VideoVC.init(type: .caller)
-                videoVC.callSession = callSession
-                self.present(videoVC, animated: false, completion: nil)
-            }
+            KPEMChatHelper.present1v1VideoCall()
         case "监控":
             self.navigationController?.pushViewController(KPEMMonitoringVC(), animated: true)
         default:
