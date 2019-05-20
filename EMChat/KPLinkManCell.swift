@@ -12,8 +12,8 @@ import UIKit
 class KPLinkManCell: UITableViewCell {
 
     /// 头像图标
-    lazy var headerIM: UIImageView = {
-        let view = UIImageView.init(image: UIImage.init(named: "chat_speek_face1"))
+    private lazy var headerIM: HeaderIM = {
+        let view = HeaderIM.init(imageName: "chat_speek_face1")
         addSubview(view)
         return view
     }()
@@ -163,3 +163,59 @@ private class StatusLabel: UILabel{
         self.text = "在线"
     }
 }
+
+
+/// 联系人定制头像
+private class HeaderIM: UIImageView {
+    
+    var _onLine: Bool = true //默认在线
+    var onLine: Bool{
+        set{
+            _onLine = newValue
+            badge.isHidden = !newValue
+            masking.isHidden = newValue
+        }
+        get{
+            return _onLine
+        }
+    }
+    
+    /// 徽章
+    lazy var badge: UIView = {
+        let view = UIView()
+        addSubview(view)
+        view.backgroundColor = UIColor.hexStringToColor(hexString: "FF3638")
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 4.5
+        return view
+    }()
+    
+    /// 蒙版图片
+    lazy var masking: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.init(red: 255, green: 255, blue: 255, alpha: 0.5)
+        return view
+    }()
+    
+    
+    convenience init(imageName: String) {
+        self.init()
+        self.image = UIImage.init(named: imageName)
+        deploySubviews()
+        self.onLine = true
+    }
+    
+    private func deploySubviews(){
+        badge.snp.makeConstraints { (make) in
+            make.width.height.equalTo(9)
+            make.top.equalTo(0)
+            make.right.equalTo(-4.5)
+        }
+        
+        addSubview(masking)
+        masking.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+    }
+}
+
