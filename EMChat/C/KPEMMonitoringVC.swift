@@ -209,12 +209,21 @@ class KPEMMonitoringVC: UIViewController {
         controlView.delegate = self
         callSession.remoteVideoView.addSubview(controlView)
         controlView.snp.makeConstraints { (make) in
-            make.width.equalTo(kScreenRect.height)
-            make.height.equalTo(kScreenRect.width)
-            make.center.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
+    
+    /// 半屏
+    private func halfScreen(){
+        guard let callSession = self.callSession else { return }
+        callSession.remoteVideoView.removeFromSuperview()
+        videoView.addSubview(callSession.remoteVideoView)
+        videoView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        videoView.sendSubview(toBack: callSession.remoteVideoView)
+    }
     
     /// 监控转视频通话
     private func huangup(){
@@ -250,9 +259,9 @@ extension KPEMMonitoringVC: KPEMVideoControlViewDelegate{
             sender.isSelected = !sender.isSelected
             KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
         case .cancel:
-            break
+            halfScreen()
         case .monitor2Video:
-            break
+            self.huangup()
         }
     }
 }

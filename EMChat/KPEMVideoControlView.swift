@@ -142,7 +142,7 @@ class KPEMVideoControlView: UIView {
         self.init()
         self.backgroundColor = UIColor.clear
         self.deploySubviews(type: type)
-        self.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
+//        self.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
 //        self.updateUI(type: type)
     }
 
@@ -207,28 +207,28 @@ class KPEMVideoControlView: UIView {
             muteBTN.snp.makeConstraints { (make) in
                 make.width.height.equalTo(60)
                 make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview().offset(width * 0.5)
+                make.centerX.equalTo(width * 0.5)
             }
             
             /// 监控切视频按钮
             monitor2VideoBTN.snp.makeConstraints { (make) in
                 make.width.height.equalTo(60)
                 make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview().offset(width * 1.5)
+                make.centerX.equalTo(width * 1.5)
             }
             
             /// 拍照按钮
             pictureBTN.snp.makeConstraints { (make) in
                 make.width.height.equalTo(60)
                 make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview().offset(width * 2.5)
+                make.centerX.equalTo(width * 2.5)
             }
             
             /// 录制按钮
             recordBTN.snp.makeConstraints { (make) in
                 make.width.height.equalTo(60)
                 make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview().offset(width * 3.5)
+                make.centerX.equalTo(width * 3.5)
             }
         }
         
