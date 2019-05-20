@@ -12,7 +12,7 @@ import UIKit
 class KPEMMonitoringVC: UIViewController {
     
     /// 通话对象
-    private var callSession: EMCallSession!
+    private var callSession: EMCallSession?
     
     /// 视屏界面
     lazy var videoView: UIView = {
@@ -166,7 +166,7 @@ class KPEMMonitoringVC: UIViewController {
     ///
     /// - Returns: 间隔距离
     private func interval(index: Int)->CGFloat{
-        return CGFloat(index - 3) * 60.0
+        return CGFloat(index - 3) * 77.0
     }
     
     /// 按钮点击事件
@@ -174,16 +174,17 @@ class KPEMMonitoringVC: UIViewController {
     /// - Parameter sender: 按钮
     @objc private func buttonAction(sender: UIButton){
         switch sender.tag {
-        case 1:
-            
+        case 1:  //静音
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.videoMute(aSession: self.callSession, isMute: sender.isSelected)
+        case 2:  //录制
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
+        case 3:  //转视频通话
             break
-        case 2:
-            break
-        case 3:
-            break
-        case 4:
-            break
-        case 5:
+        case 4:  //拍照
+            KPEMChatHelper.takeRemoteVideoPicture()
+        case 5:  //全屏
             break
         default:
             break

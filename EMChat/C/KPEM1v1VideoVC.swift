@@ -14,7 +14,7 @@ class KPEM1v1VideoVC: UIViewController {
     /// 视图 frame
     var viewRect = CGRect.zero
     
-    var callSession: EMCallSession!
+    var callSession: EMCallSession?
     
     /// 控制界面
     lazy var controlView: KPEMVideoControlView = {
