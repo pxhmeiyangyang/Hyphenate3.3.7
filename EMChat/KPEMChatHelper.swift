@@ -332,7 +332,8 @@ extension KPEMChatHelper{
     }
     
     /// 挂断视频通话
-    class func hangupVideoCall(aSession: EMCallSession){
+    class func hangupVideoCall(aSession: EMCallSession?){
+        guard let aSession = aSession else { return }
         guard let callId = aSession.callId,
             let manager = EMClient.shared()?.callManager else { return }
         let options = manager.getCallOptions?()
