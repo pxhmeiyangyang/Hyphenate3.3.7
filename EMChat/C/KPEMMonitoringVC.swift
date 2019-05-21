@@ -87,7 +87,6 @@ class KPEMMonitoringVC: UIViewController {
     ///
     /// - Parameter aSession: 通话对象
     private func receiveAnswer(aSession: EMCallSession){
-        self.callSession = aSession
         //同意接听视频通话之后
         let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession)
         self.videoView.addSubview(videoView)
@@ -109,22 +108,20 @@ class KPEMMonitoringVC: UIViewController {
             make.left.right.bottom.equalTo(0)
         }
         
-        for i in 1...5 {
+        
+        let interval = kScreenW * 0.25
+        for i in 2...5 {
             let button = UIButton()
             simpleControlView.addSubview(button)
             button.snp.makeConstraints { (make) in
                 make.centerY.equalToSuperview()
-                make.centerX.equalToSuperview().offset(autoLayoutX(X: interval(index: i)))
+                make.centerX.equalTo((CGFloat(i - 2) + 0.5) * interval)
                 make.width.equalTo(25)
                 make.height.equalTo(21)
             }
             button.tag = i
             button.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
             switch i {
-            case 1:
-                button.setImage(UIImage.init(named: "video_icon12"), for: UIControlState.normal)
-                button.setImage(UIImage.init(named: "video_icon11"), for: UIControlState.selected)
-                break
             case 2:
                 button.setImage(UIImage.init(named: "video_icon10"), for: UIControlState.normal)
                 button.setImage(UIImage.init(named: "video_icon13"), for: UIControlState.selected)
@@ -295,7 +292,8 @@ extension KPEMMonitoringVC: EMCallManagerDelegate{
      *  @param aSession  Session instance
      */
     func callDidConnect(_ aSession: EMCallSession!) {
-        
+        KPEMChatHelper.videoMute(aSession: aSession, isMute: true)
+        self.callSession = aSession
     }
     /*!
      *  \~chinese
