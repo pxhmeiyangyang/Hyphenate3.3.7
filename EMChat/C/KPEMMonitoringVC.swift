@@ -17,6 +17,17 @@ class KPEMMonitoringVC: UIViewController {
     /// 通话计时
     private var callDurationTimer: Timer?
     private var callDuration: Int = 0
+    
+    //加载控制界面 屏幕切换控制
+    let fullControlView = KPEMVideoControlView.init(type: .monitoring)
+    
+    /*
+     * 记录进入全屏前的parentView和frame
+     */
+    var movieViewParentView: UIView? = nil
+    var movieViewFrame = CGRect.zero
+    
+    
     /// 视屏界面
     lazy var videoView: UIView = {
         let view = UIView()
@@ -110,6 +121,7 @@ class KPEMMonitoringVC: UIViewController {
         }
         self.videoView.bringSubview(toFront: simpleControlView)
         self.videoView.bringSubview(toFront: timeLB)
+        self.callSession = aSession
     }
     
     /// 配置子view
@@ -215,6 +227,9 @@ class KPEMMonitoringVC: UIViewController {
     private func fullScreen(){
         guard let callSession = self.callSession else { return }
         guard let window = UIApplication.shared.keyWindow else { return }
+        self.movieViewParentView = callSession.remoteVideoView.superview
+        self.movieViewFrame = callSession.remoteVideoView.frame
+        
         callSession.remoteVideoView.removeFromSuperview()
         window.addSubview(callSession.remoteVideoView)
         callSession.remoteVideoView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
@@ -223,11 +238,9 @@ class KPEMMonitoringVC: UIViewController {
             make.width.equalTo(kScreenH)
             make.height.equalTo(kScreenW)
         }
-        //加载控制界面
-        let controlView = KPEMVideoControlView.init(type: .monitoring)
-        controlView.delegate = self
-        callSession.remoteVideoView.addSubview(controlView)
-        controlView.snp.makeConstraints { (make) in
+        fullControlView.delegate = self
+        callSession.remoteVideoView.addSubview(fullControlView)
+        fullControlView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
     }
@@ -236,13 +249,15 @@ class KPEMMonitoringVC: UIViewController {
     /// 半屏
     private func halfScreen(){
         guard let callSession = self.callSession else { return }
+        let frame = self.movieViewParentView?.convert(self.movieViewFrame, to: UIApplication.shared.keyWindow)
+        fullControlView.removeFromSuperview()
+        callSession.remoteVideoView.transform = CGAffineTransform.identity
+        callSession.remoteVideoView.frame = frame!
+        
         callSession.remoteVideoView.removeFromSuperview()
-        callSession.remoteVideoView.transform = CGAffineTransform.init(rotationAngle: CGFloat(-M_PI_2))
-        videoView.addSubview(callSession.remoteVideoView)
-        videoView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-        videoView.sendSubview(toBack: callSession.remoteVideoView)
+        callSession.remoteVideoView.frame = self.movieViewFrame
+        self.movieViewParentView?.addSubview(callSession.remoteVideoView)
+        self.movieViewParentView?.sendSubview(toBack: callSession.remoteVideoView)
     }
     
     /// 挂断通话
@@ -358,7 +373,6 @@ extension KPEMMonitoringVC: EMCallManagerDelegate{
      */
     func callDidConnect(_ aSession: EMCallSession!) {
         KPEMChatHelper.videoMute(aSession: aSession, isMute: true)
-        self.callSession = aSession
     }
     /*!
      *  \~chinese
