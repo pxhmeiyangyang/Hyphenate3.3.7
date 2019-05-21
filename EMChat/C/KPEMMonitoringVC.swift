@@ -29,7 +29,7 @@ class KPEMMonitoringVC: UIViewController {
     
     /// 设备旋转控制
     private var orientationTimer: Timer?
-    
+    private var orientationCount: Int = 0
     /// 视屏界面
     lazy var videoView: UIView = {
         let view = UIView()
@@ -300,9 +300,15 @@ class KPEMMonitoringVC: UIViewController {
         case 5:  //全屏
             fullScreen()
         case 2000:  //左转
-            orientation(left: true)
+            stopOrientationTimer()
+            if orientationCount == 0{
+                orientation(left: true, time: 10)
+            }
         case 2001:  //右转
-            orientation(left: false)
+            stopOrientationTimer()
+            if orientationCount == 0{
+                orientation(left: false, time: 10)
+            }
         default:
             break
         }
@@ -312,8 +318,15 @@ class KPEMMonitoringVC: UIViewController {
     ///
     /// - Parameter sender: 按钮
     @objc private func buttonDragDown(sender: UIButton){
+        print("=========buttonDragDown")
         stopOrientationTimer()
-//        self.orientationTimer = Timer.init(timeInterval: 1.0, target: self, selector: #selector(orientationTimerAction), userInfo: nil, repeats: true)
+        self.orientationCount = 0
+        if sender.tag == 2000 { //左转
+            self.orientationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(leftTimerAction(timer:)), userInfo: nil, repeats: true)
+        }
+        if sender.tag == 2001 { //右转
+            self.orientationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(rightTimerAction(timer:)), userInfo: nil, repeats: true)
+        }
     }
     
     /// 停止设备转头及时
@@ -324,21 +337,24 @@ class KPEMMonitoringVC: UIViewController {
         }
     }
     
-    /// 设备转头方法
-    @objc private func orientationTimerAction(){
-        
+    /// 设备转头方法 左向
+    @objc private func leftTimerAction(timer: Timer){
+        self.orientationCount += 1
+        orientation(left: true, time: 15)
+    }
+    
+    /// 设备转头方法 右向
+    @objc private func rightTimerAction(timer: Timer){
+        self.orientationCount += 1
+        orientation(left: false, time: 15)
     }
     
     /// 转头
     ///
     /// - Parameter left: 左转还是右转
-    private func orientation(left: Bool){
+    private func orientation(left: Bool, time: Int){
         let orientation = left ? "left" : "right"
-        if let _ = self.orientationTimer{
-            stopOrientationTimer()
-        }else{
-            KPEMChatHelper.sendCMDMessage(ext: ["amplitude":10,"orientation":orientation])
-        }
+        KPEMChatHelper.sendCMDMessage(ext: ["amplitude":time,"orientation":orientation])
     }
     
     deinit {
