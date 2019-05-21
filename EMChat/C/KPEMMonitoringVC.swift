@@ -27,6 +27,8 @@ class KPEMMonitoringVC: UIViewController {
     var movieViewParentView: UIView? = nil
     var movieViewFrame = CGRect.zero
     
+    /// 设备旋转控制
+    private var orientationTimer: Timer?
     
     /// 视屏界面
     lazy var videoView: UIView = {
@@ -79,6 +81,7 @@ class KPEMMonitoringVC: UIViewController {
         view.setBackgroundImage(UIImage.init(named: "video_anjian_L"), for: UIControlState.highlighted)
         view.setBackgroundImage(UIImage.init(named: "video_anjian_LS"), for: UIControlState.disabled)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonDragDown(sender:)), for: UIControlEvents.touchDown)
         view.tag = 2000
         return view
     }()
@@ -91,6 +94,7 @@ class KPEMMonitoringVC: UIViewController {
         view.setBackgroundImage(UIImage.init(named: "video_anjian_R"), for: UIControlState.highlighted)
         view.setBackgroundImage(UIImage.init(named: "video_anjian_RS"), for: UIControlState.disabled)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonDragDown(sender:)), for: UIControlEvents.touchDown)
         view.tag = 2001
         return view
     }()
@@ -208,31 +212,7 @@ class KPEMMonitoringVC: UIViewController {
         return CGFloat(index - 3) * 77.0
     }
     
-    /// 按钮点击事件
-    ///
-    /// - Parameter sender: 按钮
-    @objc private func buttonAction(sender: UIButton){
-        switch sender.tag {
-        case 1:  //静音
-            sender.isSelected = !sender.isSelected
-            KPEMChatHelper.videoMute(aSession: self.callSession, isMute: sender.isSelected)
-        case 2:  //录制
-            sender.isSelected = !sender.isSelected
-            KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
-        case 3:  //转视频通话
-            self.monitor2Video()
-        case 4:  //拍照
-            KPEMChatHelper.takeRemoteVideoPicture()
-        case 5:  //全屏
-            fullScreen()
-        case 2000:  //左转
-            KPEMChatHelper.sendCMDMessage(ext: ["amplitude":10,"orientation":"left"])
-        case 2001:  //右转
-            KPEMChatHelper.sendCMDMessage(ext: ["amplitude":10,"orientation":"right"])
-        default:
-            break
-        }
-    }
+    
     
     /// 全屏
     private func fullScreen(){
@@ -291,7 +271,6 @@ class KPEMMonitoringVC: UIViewController {
     /// - Parameter noti: 通知携带数据
     @objc func notiAction(noti: Notification){
         guard let object = noti.object as? String else { return }
-        print("======\(object)")
         if object == "min" {
             leftBTN.isEnabled = false
         }else if object == "max" {
@@ -302,6 +281,65 @@ class KPEMMonitoringVC: UIViewController {
         }
     }
     
+    /// 按钮点击事件
+    ///
+    /// - Parameter sender: 按钮
+    @objc private func buttonAction(sender: UIButton){
+        print("==========")
+        switch sender.tag {
+        case 1:  //静音
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.videoMute(aSession: self.callSession, isMute: sender.isSelected)
+        case 2:  //录制
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
+        case 3:  //转视频通话
+            self.monitor2Video()
+        case 4:  //拍照
+            KPEMChatHelper.takeRemoteVideoPicture()
+        case 5:  //全屏
+            fullScreen()
+        case 2000:  //左转
+            orientation(left: true)
+        case 2001:  //右转
+            orientation(left: false)
+        default:
+            break
+        }
+    }
+    
+    /// 按钮按下
+    ///
+    /// - Parameter sender: 按钮
+    @objc private func buttonDragDown(sender: UIButton){
+        stopOrientationTimer()
+//        self.orientationTimer = Timer.init(timeInterval: 1.0, target: self, selector: #selector(orientationTimerAction), userInfo: nil, repeats: true)
+    }
+    
+    /// 停止设备转头及时
+    private func stopOrientationTimer(){
+        if let _ = orientationTimer{
+            self.orientationTimer?.invalidate()
+            self.orientationTimer = nil
+        }
+    }
+    
+    /// 设备转头方法
+    @objc private func orientationTimerAction(){
+        
+    }
+    
+    /// 转头
+    ///
+    /// - Parameter left: 左转还是右转
+    private func orientation(left: Bool){
+        let orientation = left ? "left" : "right"
+        if let _ = self.orientationTimer{
+            stopOrientationTimer()
+        }else{
+            KPEMChatHelper.sendCMDMessage(ext: ["amplitude":10,"orientation":orientation])
+        }
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
