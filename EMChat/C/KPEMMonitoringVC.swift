@@ -273,11 +273,15 @@ class KPEMMonitoringVC: UIViewController {
         guard let object = noti.object as? String else { return }
         if object == "min" {
             leftBTN.isEnabled = false
+            fullControlView.rollLeftBTN.isEnabled = false
         }else if object == "max" {
             rightBTN.isEnabled = false
+            fullControlView.rollRightBTN.isEnabled = false
         }else{
             leftBTN.isEnabled = true
             rightBTN.isEnabled = true
+            fullControlView.rollLeftBTN.isEnabled = true
+            fullControlView.rollRightBTN.isEnabled = true
         }
     }
     
@@ -323,15 +327,23 @@ class KPEMMonitoringVC: UIViewController {
     ///
     /// - Parameter sender: 按钮
     @objc private func buttonDragDown(sender: UIButton){
+        dragDownAction(left: sender.tag == 2000)
+    }
+    
+    
+    /// 按下 事件
+    ///
+    /// - Parameter tag: 事件索引
+    private func dragDownAction(left: Bool){
         stopOrientationTimer()
         self.orientationCount = 0
-        if sender.tag == 2000 { //左转
+        if left { //左转
             self.orientationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(leftTimerAction(timer:)), userInfo: nil, repeats: true)
-        }
-        if sender.tag == 2001 { //右转
+        }else { //右转
             self.orientationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(rightTimerAction(timer:)), userInfo: nil, repeats: true)
         }
     }
+    
     
     /// 停止设备转头及时
     private func stopOrientationTimer(){
@@ -428,6 +440,14 @@ extension KPEMMonitoringVC: KPEMVideoControlViewDelegate{
             halfScreen()
         case .monitor2Video:
             self.monitor2Video()
+        case .rollLeft:
+            orientationTouchUpInside(left: true)
+        case .rollLeftDown:
+            dragDownAction(left: true)
+        case .rollRight:
+            orientationTouchUpInside(left: false)
+        case .rollRightDown:
+            dragDownAction(left: false)
         }
     }
 }

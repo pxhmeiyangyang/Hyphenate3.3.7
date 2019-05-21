@@ -41,7 +41,11 @@ class KPEMVideoControlView: UIView {
         case picture
         case record
         case cancel
-        case monitor2Video
+        case monitor2Video //监控转视频
+        case rollLeft       //左转
+        case rollLeftDown   //左转 按钮按下
+        case rollRight      //右转
+        case rollRightDown  //右转 按钮按下
     }
     
     var delegate: KPEMVideoControlViewDelegate?
@@ -138,6 +142,34 @@ class KPEMVideoControlView: UIView {
     }()
     
     
+    /// 左转按钮
+    lazy var rollLeftBTN: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage.init(named: "video_anjian_LM"), for: UIControlState.normal)
+        view.setImage(UIImage.init(named: "video_anjian_LM"), for: UIControlState.highlighted)
+        view.setImage(UIImage.init(named: "video_anjian_LX"), for: UIControlState.disabled)
+        self.addSubview(view)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonDown(sender:)), for: UIControlEvents.touchDown)
+        view.tag = ControlEvent.rollLeft.rawValue
+        return view
+    }()
+    
+    /// 右转按钮
+    lazy var rollRightBTN: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage.init(named: "video_anjian_RM"), for: UIControlState.normal)
+        view.setImage(UIImage.init(named: "video_anjian_RM"), for: UIControlState.highlighted)
+        view.setImage(UIImage.init(named: "video_anjian_RX"), for: UIControlState.disabled)
+        self.addSubview(view)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonDown(sender:)), for: UIControlEvents.touchDown)
+        view.tag = ControlEvent.rollRight.rawValue
+        return view
+    }()
+    
+    
+    
     convenience init(type: ControlType) {
         self.init()
         self.backgroundColor = UIColor.clear
@@ -221,6 +253,24 @@ class KPEMVideoControlView: UIView {
                 make.bottom.equalTo(-20)
                 make.centerX.equalTo(width * 2.5)
             }
+            
+            
+            
+            /// 右转按钮
+            rollRightBTN.snp.makeConstraints { (make) in
+                make.width.equalTo(64)
+                make.height.equalTo(85)
+                make.right.equalTo(-25)
+                make.bottom.equalTo(autoLayoutX(X: -111))
+            }
+            
+            /// 左转按钮
+            rollLeftBTN.snp.makeConstraints { (make) in
+                make.width.equalTo(64)
+                make.height.equalTo(85)
+                make.centerY.equalTo(rollRightBTN)
+                make.right.equalTo(rollRightBTN.snp.left)
+            }
         }
         
     }
@@ -234,6 +284,19 @@ class KPEMVideoControlView: UIView {
     @objc func buttonAction(sender: UIButton){
         if let delegate = delegate{
             delegate.action(sender: sender, type: KPEMVideoControlView.ControlEvent.init(rawValue: sender.tag))
+        }
+    }
+    
+    @objc func buttonDown(sender: UIButton){
+        if let delegate = delegate{
+            var type = 0
+            if sender.tag == KPEMVideoControlView.ControlEvent.rollLeft.rawValue{
+                type = KPEMVideoControlView.ControlEvent.rollLeftDown.rawValue
+            }
+            if sender.tag == KPEMVideoControlView.ControlEvent.rollRight.rawValue{
+                type = KPEMVideoControlView.ControlEvent.rollRightDown.rawValue
+            }
+            delegate.action(sender: sender, type: KPEMVideoControlView.ControlEvent.init(rawValue: type))
         }
     }
 }

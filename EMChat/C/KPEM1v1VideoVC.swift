@@ -167,6 +167,14 @@ extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
             break
         case .monitor2Video:
             break
+        case .rollLeft:
+            break
+        case .rollLeftDown:
+            break
+        case .rollRight:
+            break
+        case .rollRightDown:
+            break
         }
     }
 }
