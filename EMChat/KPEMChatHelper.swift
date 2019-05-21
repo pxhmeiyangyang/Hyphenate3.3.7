@@ -8,7 +8,7 @@
 
 import UIKit
 
-let testEMName = "123456789"
+let testEMName = "azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11"
 //azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11  //机器人
 
 let kMonitorToVideoNN = NSNotification.Name.init("MonitoringToVideoCall")
@@ -104,8 +104,13 @@ extension KPEMChatHelper: EMChatManagerDelegate{
     func didUpdateConversationList(_ aConversationList: [Any]!) {
         
     }
+    
     func didReceiveMessages(_ aMessages: [Any]!) {
         
+    }
+    
+    func cmdMessagesDidReceive(_ aCmdMessages: [Any]!) {
+        print(aCmdMessages)
     }
 }
 
@@ -427,6 +432,20 @@ extension KPEMChatHelper{
             videoVC.callSession = callSession
             KPEMCommon.rootVC()?.present(videoVC, animated: false, completion: nil)
         }
+    }
+    
+    /// 发送构造消息
+    class func sendCMDMessage(ext: [String: Any]){
+        let body = EMCmdMessageBody.init(action: "turn")
+        let from = EMClient.shared()?.currentUsername
+        let message = EMMessage.init(conversationID: testEMName, from: from, to: testEMName, body: body, ext: ext)
+//        ["amplitude":10,"orientation":"left"]
+        message?.chatType = EMChatTypeChat //设置为单聊消息
+        EMClient.shared()?.chatManager.send(message, progress: { (progress) in
+            
+        }, completion: { (message, error) in
+            
+        })
     }
     
     

@@ -77,6 +77,8 @@ class KPEMMonitoringVC: UIViewController {
         controlBG.addSubview(view)
         view.setBackgroundImage(UIImage.init(named: "video_anjian_L"), for: UIControlState.normal)
         view.setBackgroundImage(UIImage.init(named: "video_anjian_LS"), for: UIControlState.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = 2000
         return view
     }()
     
@@ -86,6 +88,8 @@ class KPEMMonitoringVC: UIViewController {
         controlBG.addSubview(view)
         view.setBackgroundImage(UIImage.init(named: "video_anjian_R"), for: UIControlState.normal)
         view.setBackgroundImage(UIImage.init(named: "video_anjian_RS"), for: UIControlState.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = 2001
         return view
     }()
     
@@ -218,6 +222,10 @@ class KPEMMonitoringVC: UIViewController {
             KPEMChatHelper.takeRemoteVideoPicture()
         case 5:  //全屏
             fullScreen()
+        case 2000:  //左转
+            KPEMChatHelper.sendCMDMessage(ext: ["amplitude":10,"orientation":"left"])
+        case 2001:  //右转
+            KPEMChatHelper.sendCMDMessage(ext: ["amplitude":10,"orientation":"right"])
         default:
             break
         }
@@ -227,6 +235,7 @@ class KPEMMonitoringVC: UIViewController {
     private func fullScreen(){
         guard let callSession = self.callSession else { return }
         guard let window = UIApplication.shared.keyWindow else { return }
+        guard let _ = callSession.remoteVideoView else { return }
         self.movieViewParentView = callSession.remoteVideoView.superview
         self.movieViewFrame = callSession.remoteVideoView.frame
         UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.none)
