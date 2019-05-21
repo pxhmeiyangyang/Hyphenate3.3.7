@@ -300,17 +300,22 @@ class KPEMMonitoringVC: UIViewController {
         case 5:  //全屏
             fullScreen()
         case 2000:  //左转
-            stopOrientationTimer()
-            if orientationCount == 0{
-                orientation(left: true, time: 10)
-            }
+            orientationTouchUpInside(left: true)
         case 2001:  //右转
-            stopOrientationTimer()
-            if orientationCount == 0{
-                orientation(left: false, time: 10)
-            }
+            orientationTouchUpInside(left: false)
         default:
             break
+        }
+    }
+    
+    
+    /// 按钮抬起转动方法
+    ///
+    /// - Parameter left: 是否是左转
+    private func orientationTouchUpInside(left: Bool){
+        stopOrientationTimer()
+        if orientationCount == 0{
+            orientation(left: left, time: 10)
         }
     }
     
@@ -318,7 +323,6 @@ class KPEMMonitoringVC: UIViewController {
     ///
     /// - Parameter sender: 按钮
     @objc private func buttonDragDown(sender: UIButton){
-        print("=========buttonDragDown")
         stopOrientationTimer()
         self.orientationCount = 0
         if sender.tag == 2000 { //左转
