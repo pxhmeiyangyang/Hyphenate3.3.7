@@ -229,7 +229,7 @@ class KPEMMonitoringVC: UIViewController {
         guard let window = UIApplication.shared.keyWindow else { return }
         self.movieViewParentView = callSession.remoteVideoView.superview
         self.movieViewFrame = callSession.remoteVideoView.frame
-        
+        UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.none)
         callSession.remoteVideoView.removeFromSuperview()
         window.addSubview(callSession.remoteVideoView)
         callSession.remoteVideoView.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
@@ -249,6 +249,7 @@ class KPEMMonitoringVC: UIViewController {
     /// 半屏
     private func halfScreen(){
         guard let callSession = self.callSession else { return }
+        UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
         let frame = self.movieViewParentView?.convert(self.movieViewFrame, to: UIApplication.shared.keyWindow)
         fullControlView.removeFromSuperview()
         callSession.remoteVideoView.transform = CGAffineTransform.identity
