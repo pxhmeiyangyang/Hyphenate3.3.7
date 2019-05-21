@@ -8,7 +8,7 @@
 
 import UIKit
 
-let testEMName = "azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11"
+let testEMName = "123456789"
 //azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11  //机器人
 
 let kMonitorToVideoNN = NSNotification.Name.init("MonitoringToVideoCall")

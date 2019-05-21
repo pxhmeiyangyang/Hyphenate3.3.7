@@ -80,6 +80,8 @@ class KPEMMonitoringVC: UIViewController {
     private func monitoring(){
         EMClient.shared()?.callManager.add?(self, delegateQueue: nil)
         KPEMChatHelper.startVideoCall(name: testEMName, ext: "peep") { (callSession, error) in
+            self.callSession = callSession
+            print(callSession)
         }
     }
     
