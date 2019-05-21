@@ -14,11 +14,25 @@ class KPEMMonitoringVC: UIViewController {
     /// 通话对象
     private var callSession: EMCallSession?
     
+    /// 通话计时
+    private var callDurationTimer: Timer?
+    private var callDuration: Int = 0
     /// 视屏界面
     lazy var videoView: UIView = {
         let view = UIView()
         self.view.addSubview(view)
         view.backgroundColor = UIColor.black
+        return view
+    }()
+    
+    /// 计时标签
+    lazy var timeLB: UILabel = {
+        let view = UILabel()
+        videoView.addSubview(view)
+        view.textColor = UIColor.white
+        view.font = UIFont.systemFont(ofSize: 16)
+        view.textAlignment = NSTextAlignment.right
+        view.backgroundColor = UIColor.clear
         return view
     }()
     
@@ -73,7 +87,7 @@ class KPEMMonitoringVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        KPEMChatHelper.hangupVideoCall(aSession: self.callSession)
+        self.huangup()
     }
     
     /// 监控
@@ -81,7 +95,6 @@ class KPEMMonitoringVC: UIViewController {
         EMClient.shared()?.callManager.add?(self, delegateQueue: nil)
         KPEMChatHelper.startVideoCall(name: testEMName, ext: "peep") { (callSession, error) in
             self.callSession = callSession
-            print(callSession)
         }
     }
     
@@ -96,13 +109,20 @@ class KPEMMonitoringVC: UIViewController {
             make.edges.equalToSuperview()
         }
         self.videoView.bringSubview(toFront: simpleControlView)
+        self.videoView.bringSubview(toFront: timeLB)
     }
     
     /// 配置子view
     private func deploySubviews(){
         videoView.snp.makeConstraints { (make) in
-            make.top.left.right.equalTo(0)
-            make.height.equalTo(261)
+            make.top.equalTo(64)
+            make.left.right.equalTo(0)
+            make.height.equalTo(autoLayoutX(X: 260))
+        }
+        
+        timeLB.snp.makeConstraints { (make) in
+            make.top.equalTo(5)
+            make.right.equalTo(-10)
         }
         
         simpleControlView.snp.makeConstraints { (make) in
@@ -181,7 +201,7 @@ class KPEMMonitoringVC: UIViewController {
             sender.isSelected = !sender.isSelected
             KPEMChatHelper.recorderVideo(isRecorder: sender.isSelected)
         case 3:  //转视频通话
-            self.huangup()
+            self.monitor2Video()
         case 4:  //拍照
             KPEMChatHelper.takeRemoteVideoPicture()
         case 5:  //全屏
@@ -225,17 +245,60 @@ class KPEMMonitoringVC: UIViewController {
         videoView.sendSubview(toBack: callSession.remoteVideoView)
     }
     
-    /// 监控转视频通话
+    /// 挂断通话
     private func huangup(){
+        stopCallDurationTimer()
         KPEMChatHelper.hangupVideoCall(aSession: self.callSession)
+    }
+    
+    /// 监控转视频通话
+    private func monitor2Video(){
+        huangup()
         self.navigationController?.popViewController(animated: false)
         NotificationCenter.default.post(name: kMonitorToVideoNN, object: nil)
     }
     
+    
     deinit {
+        huangup()
         EMClient.shared()?.callManager.remove?(self)
     }
     
+}
+
+// MARK: - about CallDurationTimer
+extension KPEMMonitoringVC{
+    /// 开启计时
+    private func startCallDurationTimer(){
+        self.stopCallDurationTimer()
+        self.callDuration = 0
+        self.callDurationTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    }
+    
+    /// 停止计时
+    private func stopCallDurationTimer(){
+        if let _ = self.callDurationTimer{
+            self.callDurationTimer?.invalidate()
+            self.callDurationTimer = nil
+        }
+    }
+
+    @objc func timerAction(){
+        self.callDuration += 1
+        let hour = self.callDuration / 3600;
+        let m = (self.callDuration - hour * 3600) / 60;
+        let s = self.callDuration - hour * 3600 - m * 60;
+        
+        if (hour > 0) {
+            self.timeLB.text = String.init(format: "%i:%i:%i", hour, m, s)
+        }
+        else if(m > 0){
+            self.timeLB.text = String.init(format: "%i:%i", m, s)
+        }
+        else{
+            self.timeLB.text = String.init(format: "00:%i", s)
+        }
+    }
 }
 
 // MARK: - KPEMVideoControlViewDelegate
@@ -261,7 +324,7 @@ extension KPEMMonitoringVC: KPEMVideoControlViewDelegate{
         case .cancel:
             halfScreen()
         case .monitor2Video:
-            self.huangup()
+            self.monitor2Video()
         }
     }
 }
@@ -309,6 +372,7 @@ extension KPEMMonitoringVC: EMCallManagerDelegate{
      *  @param aSession
      */
     func callDidAccept(_ aSession: EMCallSession!) {
+        startCallDurationTimer()
         self.receiveAnswer(aSession: aSession)
     }
     /*!
