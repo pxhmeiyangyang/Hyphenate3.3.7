@@ -13,6 +13,9 @@ let testEMName = "azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11"
 
 let kMonitorToVideoNN = NSNotification.Name.init("MonitoringToVideoCall")
 
+/// 机器人方向 通知
+let orientationNN = Notification.Name.init("deviceOrientation")
+
 /// karPro 环信聊天助手
 class KPEMChatHelper: NSObject {
     
@@ -110,7 +113,9 @@ extension KPEMChatHelper: EMChatManagerDelegate{
     }
     
     func cmdMessagesDidReceive(_ aCmdMessages: [Any]!) {
-        print(aCmdMessages)
+        guard let message = aCmdMessages.first as? EMMessage else { return }
+        guard let orientation = message.ext["orientation"] as? String else { return }
+        NotificationCenter.default.post(name: orientationNN, object: orientation)
     }
 }
 

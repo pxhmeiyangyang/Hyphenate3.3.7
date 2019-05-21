@@ -76,7 +76,8 @@ class KPEMMonitoringVC: UIViewController {
         let view = UIButton()
         controlBG.addSubview(view)
         view.setBackgroundImage(UIImage.init(named: "video_anjian_L"), for: UIControlState.normal)
-        view.setBackgroundImage(UIImage.init(named: "video_anjian_LS"), for: UIControlState.highlighted)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_L"), for: UIControlState.highlighted)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_LS"), for: UIControlState.disabled)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
         view.tag = 2000
         return view
@@ -87,7 +88,8 @@ class KPEMMonitoringVC: UIViewController {
         let view = UIButton()
         controlBG.addSubview(view)
         view.setBackgroundImage(UIImage.init(named: "video_anjian_R"), for: UIControlState.normal)
-        view.setBackgroundImage(UIImage.init(named: "video_anjian_RS"), for: UIControlState.highlighted)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_R"), for: UIControlState.highlighted)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_RS"), for: UIControlState.disabled)
         view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
         view.tag = 2001
         return view
@@ -98,6 +100,7 @@ class KPEMMonitoringVC: UIViewController {
         self.title = "安全监控"
         monitoring()
         deploySubviews()
+        NotificationCenter.default.addObserver(self, selector: #selector(notiAction(noti:)), name: orientationNN, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -283,8 +286,25 @@ class KPEMMonitoringVC: UIViewController {
         NotificationCenter.default.post(name: kMonitorToVideoNN, object: nil)
     }
     
+    /// 通知方法
+    ///
+    /// - Parameter noti: 通知携带数据
+    @objc func notiAction(noti: Notification){
+        guard let object = noti.object as? String else { return }
+        print("======\(object)")
+        if object == "min" {
+            leftBTN.isEnabled = false
+        }else if object == "max" {
+            rightBTN.isEnabled = false
+        }else{
+            leftBTN.isEnabled = true
+            rightBTN.isEnabled = true
+        }
+    }
+    
     
     deinit {
+        NotificationCenter.default.removeObserver(self)
         huangup()
         EMClient.shared()?.callManager.remove?(self)
     }
