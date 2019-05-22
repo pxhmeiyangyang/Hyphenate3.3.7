@@ -31,6 +31,25 @@ class KPMainVC: UIViewController {
         tableview.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
+        
+        guard let test = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return }
+        let path = test + "/1.mp4"
+        //                try data.write(to: URL.init(fileURLWithPath: path))
+        PhotoAlbumUtil.saveVideo(path: path, albumName: photoAlbumName) { (error) in
+            print(error)
+        }
+        
+        let path2 = test + "/2.mkv"
+        //                try data.write(to: URL.init(fileURLWithPath: path))
+        PhotoAlbumUtil.saveVideo(path: path2, albumName: photoAlbumName) { (error) in
+            print(error)
+        }
+        
+        let path3 = test + "/3.mp4"
+        //                try data.write(to: URL.init(fileURLWithPath: path))
+        PhotoAlbumUtil.saveVideo(path: path3, albumName: photoAlbumName) { (error) in
+            print(error)
+        }
     }
     
 }

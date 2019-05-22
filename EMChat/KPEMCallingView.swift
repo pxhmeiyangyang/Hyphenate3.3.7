@@ -10,7 +10,7 @@ import UIKit
 
 /// 呼叫界面回调
 protocol KPEMCallingViewDelegate {
-    func action(index: Int)
+    func action(sender: UIButton)
 }
 
 
@@ -32,6 +32,22 @@ class KPEMCallingView: UIView {
         case called
     }
     
+    /// 是否是只进行语音通话
+    var _onlyVoice: Bool = false
+    var onlyVoice: Bool{
+        set{
+            _onlyVoice = newValue
+            guard newValue else { return }
+            for tag in self.viewTag...self.viewTag + 2{
+                guard let view = self.viewWithTag(tag) else { return }
+                view.isHidden = true
+            }
+            deployOnlyVoiceSubviews()
+        }
+        get{
+            return _onlyVoice
+        }
+    }
     
     /// 背景图片
     private let BGIM = UIImageView.init(image: UIImage.init(named: "video_bgD"))
@@ -98,6 +114,31 @@ class KPEMCallingView: UIView {
         return view
     }()
     
+    
+    /// 静音按钮
+    lazy var muteBTN: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage.init(named: "video_icon5"), for: UIControlState.normal)
+        view.setImage(UIImage.init(named: "video_icon5_1"), for: UIControlState.selected)
+        self.addSubview(view)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = self.viewTag + 3
+        return view
+    }()
+    
+    
+    
+    /// 挂断按钮
+    lazy var hangupBTN: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.normal)
+        view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.highlighted)
+        self.addSubview(view)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.tag = self.viewTag + 4
+        return view
+    }()
+    
     /// 初始化
     ///
     /// - Parameters:
@@ -128,6 +169,24 @@ class KPEMCallingView: UIView {
             answerBTN.snp.updateConstraints { (make) in
                 make.centerX.equalToSuperview().offset(90)
             }
+        }
+    }
+    
+    /// 配置只有语音通话的界面
+    private func deployOnlyVoiceSubviews(){
+        /// 静音按钮
+        muteBTN.snp.makeConstraints { (make) in
+            make.width.height.equalTo(60)
+            make.bottom.equalTo(-20)
+            make.centerX.equalToSuperview().offset(-90)
+        }
+        
+        
+        /// 挂断按钮
+        hangupBTN.snp.makeConstraints { (make) in
+            make.width.height.equalTo(60)
+            make.bottom.equalTo(-20)
+            make.centerX.equalToSuperview().offset(90)
         }
     }
     
@@ -186,7 +245,7 @@ class KPEMCallingView: UIView {
     
     @objc func buttonAction(sender: UIButton){
         if let delegate = delegate{
-            delegate.action(index: sender.tag)
+            delegate.action(sender: sender)
         }
     }
 }

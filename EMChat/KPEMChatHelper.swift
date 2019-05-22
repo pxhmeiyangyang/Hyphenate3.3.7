@@ -8,7 +8,7 @@
 
 import UIKit
 
-let testEMName = "azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11"
+let testEMName = "123456789"
 //azyepndb4t6ixzlksfl64kdeq656waparzir2cqp6outu3dzfn11  //机器人
 
 let kMonitorToVideoNN = NSNotification.Name.init("MonitoringToVideoCall")
@@ -426,9 +426,21 @@ extension KPEMChatHelper{
             EMCallRecorderPlugin.sharedInstance()?.startVideoRecording(toFilePath: filePath, error: nil)
         }else{
             guard let path = EMCallRecorderPlugin.sharedInstance()?.stopVideoRecording(nil) else { return }
-            PhotoAlbumUtil.saveVideo(path: path, albumName: photoAlbumName) { (error) in
-                print(error)
+            do{
+//                let data = try Data.init(contentsOf: URL.init(fileURLWithPath: path))
+                guard let test = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return }
+                let path = test + "/1.mp4"
+//                try data.write(to: URL.init(fileURLWithPath: path))
+                PhotoAlbumUtil.saveVideo(path: path, albumName: photoAlbumName) { (error) in
+                    print(error)
+                }
+            }catch{
+                
             }
+            
+//            PhotoAlbumUtil.saveVideo(path: path, albumName: photoAlbumName) { (error) in
+//                print(error)
+//            }
         }
     }
     

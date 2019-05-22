@@ -11,19 +11,19 @@ import UIKit
 /// 环信视频聊天界面
 class KPEM1v1VideoVC: UIViewController {
 
-    /// 切换到语音控制参数
-    private var _onlyVoice: Bool = false
-    private var onlyVoice: Bool{
-        set{
-            _onlyVoice = newValue
-            if newValue {
-                callingView?.voiceBTN.isHidden = true
-            }
-        }
-        get{
-            return _onlyVoice
-        }
-    }
+//    /// 切换到语音控制参数
+//    private var _onlyVoice: Bool = false
+//    private var onlyVoice: Bool{
+//        set{
+//            _onlyVoice = newValue
+//            if newValue {
+//                callingView?.voiceBTN.isHidden = true
+//            }
+//        }
+//        get{
+//            return _onlyVoice
+//        }
+//    }
     
     /// 视图 frame
     var viewRect = CGRect.zero
@@ -57,15 +57,20 @@ class KPEM1v1VideoVC: UIViewController {
         viewRect = self.view.bounds
         EMClient.shared()?.callManager.add?(self, delegateQueue: nil)
         deploySubviews()
+        UIApplication.shared.setStatusBarHidden(true, with: UIStatusBarAnimation.none)
     }
     
     override var prefersStatusBarHidden: Bool{
         return true
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.setStatusBarHidden(false, with: UIStatusBarAnimation.none)
+    }
     /// 加载通话界面
     private func addCallingView(){
         let callingView = KPEMCallingView.init(type: self.callType)
+        self.callingView = callingView
         self.view.addSubview(callingView)
         callingView.delegate = self
         callingView.snp.makeConstraints { (make) in
@@ -150,7 +155,13 @@ extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
         guard let type = type else { return }
         switch type {
         case .changeVoice:
-            break
+            guard let remoteVideoView = self.callSession?.remoteVideoView,
+                let localView = self.callSession?.localVideoView else { return }
+            remoteVideoView.removeFromSuperview()
+            localView.removeFromSuperview()
+            self.controlView.removeFromSuperview()
+            self.callingView?.onlyVoice = true
+            self.callSession?.pauseVideo()
         case .rollback:
             sender.isSelected = !sender.isSelected
             KPEMChatHelper.switchCamera(aSession: self.callSession, position: sender.isSelected)
@@ -182,14 +193,19 @@ extension KPEM1v1VideoVC: KPEMVideoControlViewDelegate{
 
 // MARK: - KPEMCallingViewDelegate
 extension KPEM1v1VideoVC: KPEMCallingViewDelegate{
-    func action(index: Int) {
-        switch index {
+    func action(sender: UIButton) {
+        switch sender.tag {
         case 2000: //取消
             self.hangup()
         case 2001: //接听
             self.answer()
         case 2002: //切换
-            self.onlyVoice = true
+            break
+        case 2003://静音
+            sender.isSelected = !sender.isSelected
+            KPEMChatHelper.videoMute(aSession: self.callSession, isMute: sender.isSelected)
+        case 2004: //挂断
+            self.hangup()
         default:
             break
         }
