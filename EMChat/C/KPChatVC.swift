@@ -17,6 +17,8 @@ class KPChatVC: EaseMessageViewController {
         self.showRefreshHeader = true
         self.tableViewDidTriggerHeaderRefresh()
         deployMessageStyle()
+        self.delegate = self
+        self.dataSource = self
     }
     
     
@@ -34,6 +36,9 @@ class KPChatVC: EaseMessageViewController {
         cell.messageTextColor = UIColor.UT20Color()
         cell.messageVoiceDurationFont = UIFont.systemFont(ofSize: 12)
         cell.messageVoiceDurationColor = UIColor.UT4AColor()
+        //设置语音消息图片样式
+//        cell.sendMessageVoiceAnimationImages = [UIImage.init(named: "")]
+//        cell.recvMessageVoiceAnimationImages = [UIImage.init(named: "")]
         //设置底部输入栏
         self.chatBarMoreView.removeItematIndex(1)
     }
@@ -49,7 +54,36 @@ class KPChatVC: EaseMessageViewController {
     
 }
 
-// MARK: - EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource
-extension KPChatVC: EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource{
+// MARK: - EaseMessageViewControllerDelegate
+extension KPChatVC: EaseMessageViewControllerDelegate{
+    
+}
+
+// MARK: - EaseMessageViewControllerDataSource
+extension KPChatVC: EaseMessageViewControllerDataSource{
+    /*!
+     @method
+     @brief 将EMMessage类型转换为符合<IMessageModel>协议的类型
+     @discussion 将EMMessage类型转换为符合<IMessageModel>协议的类型,设置用户信息,消息显示用户昵称和头像
+     @param viewController 当前消息视图
+     @param EMMessage 聊天消息对象类型
+     @result 返回<IMessageModel>协议的类型
+     */
+    func messageViewController(_ viewController: EaseMessageViewController!, modelFor message: EMMessage!) -> IMessageModel! {
+        let model = EaseMessageModel.init(message: message)
+        model?.avatarImage = UIImage.init(named: "chat_speek_face1")
+        model?.avatarURLPath = ""
+        model?.nickname = ""
+        return model
+    }
+    //是否允许长按
+    func messageViewController(_ viewController: EaseMessageViewController!, canLongPressRowAt indexPath: IndexPath!) -> Bool {
+        return true
+    }
+    //触发长按手势
+    func messageViewController(_ viewController: EaseMessageViewController!, didLongPressRowAt indexPath: IndexPath!) -> Bool {
+        //给出长按menu 图
+        return true
+    }
     
 }
