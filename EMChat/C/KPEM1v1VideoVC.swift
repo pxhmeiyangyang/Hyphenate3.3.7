@@ -10,20 +10,6 @@ import UIKit
 
 /// 环信视频聊天界面
 class KPEM1v1VideoVC: UIViewController {
-
-//    /// 切换到语音控制参数
-//    private var _onlyVoice: Bool = false
-//    private var onlyVoice: Bool{
-//        set{
-//            _onlyVoice = newValue
-//            if newValue {
-//                callingView?.voiceBTN.isHidden = true
-//            }
-//        }
-//        get{
-//            return _onlyVoice
-//        }
-//    }
     
     /// 视图 frame
     var viewRect = CGRect.zero
@@ -109,6 +95,7 @@ class KPEM1v1VideoVC: UIViewController {
     ///
     /// - Parameter aSession: 通话对象
     private func receiveAnswer(aSession: EMCallSession){
+        guard let temp = self.callingView?.onlyVoice, !temp else { return }
         self.controlView.isHidden = false
         let videoView = KPEMChatHelper.receiveVideoCall(aSession: aSession)
         self.view.addSubview(videoView)
@@ -200,7 +187,8 @@ extension KPEM1v1VideoVC: KPEMCallingViewDelegate{
         case 2001: //接听
             self.answer()
         case 2002: //切换
-            break
+            self.callingView?.onlyVoice = true
+            self.callSession?.pauseVideo()
         case 2003://静音
             sender.isSelected = !sender.isSelected
             KPEMChatHelper.videoMute(aSession: self.callSession, isMute: sender.isSelected)
