@@ -415,8 +415,7 @@ extension KPEMChatHelper{
         var error:EMError? = nil
         EMCallRecorderPlugin.sharedInstance()?.screenCapture(toFilePath: fileName, error: &error)
         guard error == nil, let image = UIImage.init(contentsOfFile: fileName) else { return }
-        PhotoAlbumUtil.saveImage(image: image, albumName: "KARPro") { (error) in
-            print(error)
+        PhotoAlbumUtil.saveImage(image: image, albumName: photoAlbumName) { (error) in
         }
     }
     
@@ -426,8 +425,10 @@ extension KPEMChatHelper{
         if isRecorder {
             EMCallRecorderPlugin.sharedInstance()?.startVideoRecording(toFilePath: filePath, error: nil)
         }else{
-            let path = EMCallRecorderPlugin.sharedInstance()?.stopVideoRecording(nil)
-            print("录制视频路径\(path)")
+            guard let path = EMCallRecorderPlugin.sharedInstance()?.stopVideoRecording(nil) else { return }
+            PhotoAlbumUtil.saveVideo(path: path, albumName: photoAlbumName) { (error) in
+                print(error)
+            }
         }
     }
     

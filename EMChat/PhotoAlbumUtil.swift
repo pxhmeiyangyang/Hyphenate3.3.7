@@ -9,9 +9,11 @@
 import UIKit
 import Photos
 
+//相册名称
+let photoAlbumName = "KARPro"
+
 /// 相册工具类
 class PhotoAlbumUtil: NSObject {
-
     
     /// 保存图片到相册
     ///
@@ -51,7 +53,44 @@ class PhotoAlbumUtil: NSObject {
     
     
     
-    
+    /// 存储视频到相册
+    ///
+    /// - Parameters:
+    ///   - path: 视频路径
+    ///   - albumName: 相册名称
+    ///   - completionHandler: 存储回调
+    class func saveVideo(path: String,albumName: String, completionHandler: @escaping(_ error: Error?)->()){
+        let url = URL.init(fileURLWithPath: path)
+        //1、获取相册对象
+        let library = PHPhotoLibrary.shared()
+        var collectionRequest: PHAssetCollectionChangeRequest?
+        //2、判断是否有相册 没有创建相册
+        guard let collection = self.photoCollection(name: albumName) else {
+            //创建相册
+            library.performChanges({
+                collectionRequest = PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: albumName)
+            }) { (isSuccess, error) in
+                if let _ = error{
+                    self.saveVideo(path: path, albumName: albumName, completionHandler: { (error) in
+                        completionHandler(error)
+                    })
+                }else{
+                    completionHandler(error)
+                }
+            }
+            return
+        }
+        
+        //2、视频到相册
+        library.performChanges({
+            guard let assetRequest = PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url) else { return }
+            guard let placeholder = assetRequest.placeholderForCreatedAsset else { return }
+            collectionRequest = PHAssetCollectionChangeRequest.init(for: collection)
+            collectionRequest?.addAssets([placeholder] as NSFastEnumeration)
+        }) { (isSuccess, error) in
+            completionHandler(error)
+        }
+    }
     
     
     
