@@ -144,6 +144,7 @@
 		F1BED39E228CFC7C00A1CB82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1BED39C228CFC7C00A1CB82 /* LaunchScreen.storyboard */; };
 		F1BED3A9228CFC7C00A1CB82 /* EMChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3A8228CFC7C00A1CB82 /* EMChatTests.swift */; };
 		F1BED3B4228CFC7C00A1CB82 /* EMChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BED3B3228CFC7C00A1CB82 /* EMChatUITests.swift */; };
+		F1D656FE2294FAF800D9494D /* PhotoAlbumUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D656FD2294FAF800D9494D /* PhotoAlbumUtil.swift */; };
 		F1DE3A0B228FB64F00FC4F73 /* KPEMVideoControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */; };
 		F1DE3A0D228FE03200FC4F73 /* UIView+Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */; };
 		F1DE3A15228FEE4800FC4F73 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F1DE3A14228FEE4800FC4F73 /* libbz2.tbd */; };
@@ -478,6 +479,7 @@
 		F1BED3AF228CFC7C00A1CB82 /* EMChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EMChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1BED3B3228CFC7C00A1CB82 /* EMChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EMChatUITests.swift; sourceTree = "<group>"; };
 		F1BED3B5228CFC7C00A1CB82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1D656FD2294FAF800D9494D /* PhotoAlbumUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumUtil.swift; sourceTree = "<group>"; };
 		F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPEMVideoControlView.swift; sourceTree = "<group>"; };
 		F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Rect.swift"; sourceTree = "<group>"; };
 		F1DE3A14228FEE4800FC4F73 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
@@ -1207,6 +1209,7 @@
 				F1DE3A0A228FB64F00FC4F73 /* KPEMVideoControlView.swift */,
 				F1DE3A0C228FE03200FC4F73 /* UIView+Rect.swift */,
 				F1F4BFE7229242BC0089DE56 /* KPLinkManCell.swift */,
+				F1D656FD2294FAF800D9494D /* PhotoAlbumUtil.swift */,
 			);
 			path = EMChat;
 			sourceTree = "<group>";
@@ -1506,6 +1509,7 @@
 				F1594CE1228D3D0B00191171 /* PSTGridLayoutInfo.m in Sources */,
 				F1594CE0228D3D0B00191171 /* PSTCollectionViewCell.m in Sources */,
 				F1594CF6228D3D0B00191171 /* SDWebImageDownloaderOperation.m in Sources */,
+				F1D656FE2294FAF800D9494D /* PhotoAlbumUtil.swift in Sources */,
 				F1594CC2228D3D0B00191171 /* MJRefreshGifHeader.m in Sources */,
 				F1594CE4228D3D0B00191171 /* PSTCollectionViewUpdateItem.m in Sources */,
 				F1594CB6228D3D0B00191171 /* MJRefreshConst.m in Sources */,

@@ -394,10 +394,10 @@ extension KPEMChatHelper{
     /// - Returns: 返回文件路径
     class func EMFilePath(file: String)->String?{
         guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return nil}
-        let filePath = path + "/KARPro/" + file
+        let filePath = path + "/" + file
         let fileManager = FileManager.default
         var directoryExists = ObjCBool(false)
-        if fileManager.fileExists(atPath: filePath, isDirectory: &directoryExists){
+        if !fileManager.fileExists(atPath: filePath, isDirectory: &directoryExists){
             do{
                 try fileManager.createDirectory(atPath: filePath, withIntermediateDirectories: true, attributes: nil)
             }catch{
@@ -411,8 +411,13 @@ extension KPEMChatHelper{
     class func takeRemoteVideoPicture(){
         guard let filePath = self.EMFilePath(file: "image") else { return }
         let time = Date().timeIntervalSince1970
-        let fileName = String.init(format: "%@/%.0f.jpeg", filePath, time)
-        EMCallRecorderPlugin.sharedInstance()?.screenCapture(toFilePath: fileName, error: nil)
+        let fileName = String.init(format: "%@/picture.jpeg", filePath, time)
+        var error:EMError? = nil
+        EMCallRecorderPlugin.sharedInstance()?.screenCapture(toFilePath: fileName, error: &error)
+        guard error == nil, let image = UIImage.init(contentsOfFile: fileName) else { return }
+        PhotoAlbumUtil.saveImage(image: image, albumName: "KARPro") { (error) in
+            print(error)
+        }
     }
     
     /// 录制视频
