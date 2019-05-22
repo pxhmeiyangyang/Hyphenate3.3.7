@@ -34,6 +34,7 @@ class KPEM1v1VideoVC: UIViewController {
     lazy var controlView: KPEMVideoControlView = {
         let view = KPEMVideoControlView.init(type: KPEMVideoControlView.ControlType.video)
         self.view.addSubview(view)
+        view.transform = CGAffineTransform.init(rotationAngle: CGFloat(M_PI_2))
         view.delegate = self
         view.isHidden = true
         return view
@@ -93,8 +94,8 @@ class KPEM1v1VideoVC: UIViewController {
     /// 配置子视图
     private func deploySubviews(){
         controlView.snp.makeConstraints { (make) in
-            make.width.equalTo(kScreenRect.height)
-            make.height.equalTo(kScreenRect.width)
+            make.width.equalTo(kScreenH)
+            make.height.equalTo(kScreenW)
             make.center.equalToSuperview()
         }
     }
