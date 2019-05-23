@@ -40,10 +40,10 @@
     if (self) {
         // Initialization code
         UIView *bgView = [[UIView alloc] initWithFrame:self.bounds];
-        bgView.backgroundColor = [UIColor grayColor];
-        bgView.layer.cornerRadius = 5;
+        bgView.backgroundColor = [UIColor colorWithRed:0.13 green:0.13 blue:0.13 alpha:1.0];
+        bgView.layer.cornerRadius = 10;
         bgView.layer.masksToBounds = YES;
-        bgView.alpha = 0.6;
+        bgView.alpha = 0.7;
         [self addSubview:bgView];
         
         _recordAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width - 20, self.bounds.size.height - 30)];

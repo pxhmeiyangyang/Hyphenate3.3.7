@@ -1505,7 +1505,9 @@ typedef enum : NSUInteger {
                 }
                 _isRecording = YES;
                 EaseRecordView *tmpView = (EaseRecordView *)recordView;
-                tmpView.center = self.view.center;
+                CGPoint center = self.view.center;
+                tmpView.center = CGPointMake(center.x, center.y - 110);
+                
                 [weakSelf.view addSubview:tmpView];
                 [weakSelf.view bringSubviewToFront:recordView];
                 int x = arc4random() % 100000;
