@@ -39,8 +39,8 @@ class KPChatVC: EaseMessageViewController {
         //设置语音消息图片样式
 //        cell.sendMessageVoiceAnimationImages = [UIImage.init(named: "")]
 //        cell.recvMessageVoiceAnimationImages = [UIImage.init(named: "")]
-        //设置底部输入栏
-        self.chatBarMoreView.removeItematIndex(1)
+        guard let chatToolbar = self.chatToolbar else { return }
+//        self.chatBarMoreView.removeItematIndex(0)
     }
     
     

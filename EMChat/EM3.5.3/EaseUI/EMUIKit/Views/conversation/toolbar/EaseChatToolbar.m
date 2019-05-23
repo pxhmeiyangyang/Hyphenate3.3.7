@@ -193,7 +193,7 @@
     [self.moreButton addTarget:self action:@selector(moreButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     EaseChatToolbarItem *moreItem = [[EaseChatToolbarItem alloc] initWithButton:self.moreButton withView:self.moreView];
     
-    [self setInputViewRightItems:@[faceItem, moreItem]];
+    [self setInputViewRightItems:@[/*faceItem,*/ moreItem]];
 }
 
 - (void)dealloc
