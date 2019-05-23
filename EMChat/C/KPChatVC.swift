@@ -26,8 +26,8 @@ class KPChatVC: EaseMessageViewController {
     private func deployMessageStyle(){
         //设置起泡
         let cell = EaseBaseMessageCell.appearance()
-//        cell.sendBubbleBackgroundImage = UIImage.init(named: "<#T##String#>")
-//        cell.recvBubbleBackgroundImage = UIImage.init(named: "<#T##String#>")
+        cell.sendBubbleBackgroundImage = UIImage.init(named: "Combined-ShapeL")?.stretchableImage(withLeftCapWidth: 10, topCapHeight: 10)
+        cell.recvBubbleBackgroundImage = UIImage.init(named: "Combined Shape")?.stretchableImage(withLeftCapWidth: 10, topCapHeight: 10)
         //设置头像
         cell.avatarSize = 40
         cell.avatarCornerRadius = 20.0
