@@ -833,7 +833,7 @@
 - (void)moreButtonAction:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-    button.selected = !button.selected;
+//    button.selected = !button.selected;
     
     EaseChatToolbarItem *moreItem = nil;
     for (EaseChatToolbarItem *item in self.rightItems) {
@@ -849,7 +849,7 @@
         item.button.selected = NO;
     }
     
-    if (button.selected) {
+//    if (button.selected) {
         [self.inputTextView resignFirstResponder];
         
         [self _willShowBottomView:moreItem.button2View];
@@ -857,11 +857,11 @@
             self.recordButton.hidden = button.selected;
             self.inputTextView.hidden = !button.selected;
         } completion:nil];
-    }
-    else
-    {
-        [self.inputTextView becomeFirstResponder];
-    }
+//    }
+//    else
+//    {
+//        [self.inputTextView becomeFirstResponder];
+//    }
 }
 
 - (void)recordButtonTouchDown
