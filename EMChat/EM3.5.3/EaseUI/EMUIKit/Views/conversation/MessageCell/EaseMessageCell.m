@@ -92,7 +92,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.accessibilityIdentifier = @"table_cell";
-
+        
         _messageType = model.bodyType;
         [self _setupSubviewsWithType:_messageType
                             isSender:model.isSender
@@ -112,7 +112,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
 /*!
  @method
  @brief 加载子视图
- @discussion  
+ @discussion
  @param messageType  消息体类型
  @param isSender     登录用户是否为发送方
  @param model        消息对象model
@@ -241,7 +241,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     
     self.bubbleMaxWidthConstraint = [NSLayoutConstraint constraintWithItem:self.bubbleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.bubbleMaxWidth];
     [self addConstraint:self.bubbleMaxWidthConstraint];
-//    self.bubbleMaxWidthConstraint.active = YES;
+    //    self.bubbleMaxWidthConstraint.active = YES;
     
     //status button
     self.statusWidthConstraint = [NSLayoutConstraint constraintWithItem:self.statusButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.statusSize];
@@ -258,7 +258,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     [self _updateHasReadWidthConstraint];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.hasRead attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.hasRead attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.statusButton attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
-//    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.hasRead attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.activity attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
+    //    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.hasRead attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.activity attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0]];
 }
 
 #pragma mark - Update Constraint
@@ -320,12 +320,12 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
 - (void)_updateBubbleMaxWidthConstraint
 {
     [self removeConstraint:self.bubbleMaxWidthConstraint];
-//    self.bubbleMaxWidthConstraint.active = NO;
+    //    self.bubbleMaxWidthConstraint.active = NO;
     
     //气泡宽度小于等于bubbleMaxWidth
     self.bubbleMaxWidthConstraint = [NSLayoutConstraint constraintWithItem:self.bubbleView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:self.bubbleMaxWidth];
     [self addConstraint:self.bubbleMaxWidthConstraint];
-//    self.bubbleMaxWidthConstraint.active = YES;
+    //    self.bubbleMaxWidthConstraint.active = YES;
 }
 
 #pragma mark - setter
@@ -369,7 +369,8 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
                         self.bubbleView.voiceImageView.image = self.model.isSender ?[self.sendMessageVoiceAnimationImages objectAtIndex:0] : [self.recvMessageVoiceAnimationImages objectAtIndex:0];
                         _bubbleView.voiceImageView.animationImages = self.model.isSender ? self.sendMessageVoiceAnimationImages:self.recvMessageVoiceAnimationImages;
                     } else {
-                        self.bubbleView.voiceImageView.image = self.model.isSender ?[UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_full"]: [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing_full"];
+                        //                        self.bubbleView.voiceImageView.image = self.model.isSender ?[UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_full"]: [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing_full"];
+                        self.bubbleView.voiceImageView.image = self.model.isSender ?[UIImage imageNamed:@"chat_shengyinR3"]: [UIImage imageNamed:@"chat_shengyinL3"];
                     }
                 }
                 if (!self.model.isSender) {
@@ -642,25 +643,25 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
 
 #pragma mark - IModelCell
 /*
-- (BOOL)isCustomBubbleView:(id<IMessageModel>)model
-{
-    return NO;
-}
-
-- (void)setCustomModel:(id<IMessageModel>)model
-{
-
-}
-
-- (void)setCustomBubbleView:(id<IMessageModel>)model
-{
-
-}
-
-- (void)updateCustomBubbleViewMargin:(UIEdgeInsets)bubbleMargin model:(id<IMessageModel>)model
-{
-
-}*/
+ - (BOOL)isCustomBubbleView:(id<IMessageModel>)model
+ {
+ return NO;
+ }
+ 
+ - (void)setCustomModel:(id<IMessageModel>)model
+ {
+ 
+ }
+ 
+ - (void)setCustomBubbleView:(id<IMessageModel>)model
+ {
+ 
+ }
+ 
+ - (void)updateCustomBubbleViewMargin:(UIEdgeInsets)bubbleMargin model:(id<IMessageModel>)model
+ {
+ 
+ }*/
 
 #pragma mark - public
 
@@ -754,17 +755,17 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
             NSAttributedString *text = [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:model.text textFont:cell.messageTextFont];
             CGRect rect = [text boundingRectWithSize:CGSizeMake(bubbleMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading context:nil];
             height += (rect.size.height > 20 ? rect.size.height : 20) + 10;
-//            NSString *text = model.text;
-//            UIFont *textFont = cell.messageTextFont;
-//            CGSize retSize;
-//            if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-//                retSize = [text boundingRectWithSize:CGSizeMake(bubbleMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:textFont} context:nil].size;
-//            }else{
-//                retSize = [text sizeWithFont:textFont constrainedToSize:CGSizeMake(bubbleMaxWidth, CGFLOAT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
-//            }
-//            
-//            
-//            height += (retSize.height > 20 ? retSize.height : 20) + 10;
+            //            NSString *text = model.text;
+            //            UIFont *textFont = cell.messageTextFont;
+            //            CGSize retSize;
+            //            if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+            //                retSize = [text boundingRectWithSize:CGSizeMake(bubbleMaxWidth, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:textFont} context:nil].size;
+            //            }else{
+            //                retSize = [text sizeWithFont:textFont constrainedToSize:CGSizeMake(bubbleMaxWidth, CGFLOAT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
+            //            }
+            //
+            //
+            //            height += (retSize.height > 20 ? retSize.height : 20) + 10;
         }
             break;
         case EMMessageBodyTypeImage:
@@ -785,7 +786,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
                 retSize.width = width;
                 retSize.height = kEMMessageImageSizeHeight;
             }
-
+            
             height += retSize.height;
         }
             break;
@@ -825,7 +826,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
         default:
             break;
     }
-
+    
     height += EaseMessageCellPadding;
     model.cellHeight = height;
     
