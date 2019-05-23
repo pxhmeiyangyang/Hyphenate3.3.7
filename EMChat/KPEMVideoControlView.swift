@@ -119,16 +119,16 @@ class KPEMVideoControlView: UIView {
         return view
     }()
     
-    /// 录制按钮
-    lazy var recordBTN: UIButton = {
-        let view = UIButton()
-        view.setImage(UIImage.init(named: "video_icon4"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_icon6_1"), for: UIControlState.selected)
-        self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.tag = ControlEvent.record.rawValue
-        return view
-    }()
+//    /// 录制按钮
+//    lazy var recordBTN: UIButton = {
+//        let view = UIButton()
+//        view.setImage(UIImage.init(named: "video_icon4"), for: UIControlState.normal)
+//        view.setImage(UIImage.init(named: "video_icon6_1"), for: UIControlState.selected)
+//        self.addSubview(view)
+//        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+//        view.tag = ControlEvent.record.rawValue
+//        return view
+//    }()
     
     /// 监控切视频通话
     lazy var monitor2VideoBTN: UIButton = {
@@ -192,14 +192,14 @@ class KPEMVideoControlView: UIView {
             rollbackBTN.snp.makeConstraints { (make) in
                 make.width.height.equalTo(60)
                 make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview().offset(interval(tag: rollbackBTN.tag))
+                make.centerX.equalTo(interval(tag: rollbackBTN.tag))
             }
             
             /// 静音按钮
             muteBTN.snp.makeConstraints { (make) in
                 make.width.height.equalTo(60)
                 make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview().offset(interval(tag: muteBTN.tag))
+                make.centerX.equalTo(interval(tag: muteBTN.tag))
             }
             
             
@@ -207,7 +207,7 @@ class KPEMVideoControlView: UIView {
             hangupBTN.snp.makeConstraints { (make) in
                 make.width.height.equalTo(60)
                 make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview()
+                make.centerX.equalTo(interval(tag: hangupBTN.tag))
             }
             
             
@@ -215,15 +215,15 @@ class KPEMVideoControlView: UIView {
             pictureBTN.snp.makeConstraints { (make) in
                 make.width.height.equalTo(60)
                 make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview().offset(interval(tag: pictureBTN.tag))
+                make.centerX.equalTo(interval(tag: pictureBTN.tag))
             }
             
-            /// 录制按钮
-            recordBTN.snp.makeConstraints { (make) in
-                make.width.height.equalTo(60)
-                make.bottom.equalTo(-20)
-                make.centerX.equalToSuperview().offset(interval(tag: recordBTN.tag))
-            }
+//            /// 录制按钮
+//            recordBTN.snp.makeConstraints { (make) in
+//                make.width.height.equalTo(60)
+//                make.bottom.equalTo(-20)
+//                make.centerX.equalToSuperview().offset(interval(tag: recordBTN.tag))
+//            }
         }else{
             // 返回按钮
             cancelBTN.snp.makeConstraints { (make) in
@@ -231,7 +231,7 @@ class KPEMVideoControlView: UIView {
                 make.left.top.equalTo(10)
             }
             
-            let width = kScreenH / 3.0
+            let width = kScreenH / 2.0
             
             /// 监控切视频按钮
             monitor2VideoBTN.snp.makeConstraints { (make) in
@@ -247,12 +247,12 @@ class KPEMVideoControlView: UIView {
                 make.centerX.equalTo(width * 1.5)
             }
             
-            /// 录制按钮
-            recordBTN.snp.makeConstraints { (make) in
-                make.width.height.equalTo(60)
-                make.bottom.equalTo(-20)
-                make.centerX.equalTo(width * 2.5)
-            }
+//            /// 录制按钮
+//            recordBTN.snp.makeConstraints { (make) in
+//                make.width.height.equalTo(60)
+//                make.bottom.equalTo(-20)
+//                make.centerX.equalTo(width * 2.5)
+//            }
             
             
             
@@ -278,7 +278,7 @@ class KPEMVideoControlView: UIView {
     ///
     /// - Returns: 间隔数据
     private func interval(tag: Int)->CGFloat{
-        return autoLayoutY(Y: CGFloat(tag - 3003) * 140.0)
+        return (CGFloat(tag - 3001) + 0.5) * kScreenH * 0.25
     }
     
     @objc func buttonAction(sender: UIButton){

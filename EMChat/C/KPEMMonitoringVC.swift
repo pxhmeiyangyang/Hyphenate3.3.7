@@ -154,13 +154,13 @@ class KPEMMonitoringVC: UIViewController {
         }
         
         
-        let interval = kScreenW * 0.25
-        for i in 2...5 {
+        let interval = kScreenW / 3.0
+        for i in 3...5 {
             let button = UIButton()
             simpleControlView.addSubview(button)
             button.snp.makeConstraints { (make) in
                 make.centerY.equalToSuperview()
-                make.centerX.equalTo((CGFloat(i - 2) + 0.5) * interval)
+                make.centerX.equalTo((CGFloat(i - 3) + 0.5) * interval)
                 make.width.equalTo(25)
                 make.height.equalTo(21)
             }
@@ -289,7 +289,6 @@ class KPEMMonitoringVC: UIViewController {
     ///
     /// - Parameter sender: 按钮
     @objc private func buttonAction(sender: UIButton){
-        print("==========")
         switch sender.tag {
         case 1:  //静音
             sender.isSelected = !sender.isSelected
