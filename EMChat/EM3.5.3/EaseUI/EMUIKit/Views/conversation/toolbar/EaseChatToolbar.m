@@ -126,7 +126,7 @@
     _toolbarBackgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _toolbarView.frame.size.width, _toolbarView.frame.size.height)];
     _toolbarBackgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _toolbarBackgroundImageView.backgroundColor = [UIColor clearColor];
-    [_toolbarView addSubview:_toolbarBackgroundImageView];
+//    [_toolbarView addSubview:_toolbarBackgroundImageView];
     
     //input textview
     _inputTextView = [[EaseTextView alloc] initWithFrame:CGRectMake(self.horizontalPadding, self.verticalPadding, self.frame.size.width - self.verticalPadding * 2, self.frame.size.height - self.verticalPadding * 2)];
@@ -161,10 +161,12 @@
     //record
     self.recordButton = [[UIButton alloc] initWithFrame:self.inputTextView.frame];
     self.recordButton.accessibilityIdentifier = @"record";
-    self.recordButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
-    [self.recordButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_recordBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
-    [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_recordSelectedBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
+    self.recordButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [self.recordButton setTitleColor:[UIColor colorWithRed:0.13 green:0.13 blue:0.13 alpha:1.0] forState:UIControlStateNormal];
+//    [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_recordBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
+//    [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_recordSelectedBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
+    [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"chatBar_recordSelectedBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateNormal];
+    [self.recordButton setBackgroundImage:[[UIImage imageNamed:@"chatBar_recordSelectedBg"] stretchableImageWithLeftCapWidth:10 topCapHeight:10] forState:UIControlStateHighlighted];
     
     [self.recordButton setTitle:@"按住 说话" forState:UIControlStateNormal];
     [self.recordButton setTitle:@"松开 发送" forState:UIControlStateHighlighted];

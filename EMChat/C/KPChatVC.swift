@@ -37,8 +37,24 @@ class KPChatVC: EaseMessageViewController {
         cell.messageVoiceDurationFont = UIFont.systemFont(ofSize: 12)
         cell.messageVoiceDurationColor = UIColor.UT4AColor()
         //设置语音消息图片样式
-//        cell.sendMessageVoiceAnimationImages = [UIImage.init(named: "")]
-//        cell.recvMessageVoiceAnimationImages = [UIImage.init(named: "")]
+        var sendImages = [UIImage]()
+        var recvImages = [UIImage]()
+        for i in 0...3 {
+            var index = 0
+            if i == 0{
+                index = 3
+            }else{
+                index = i
+            }
+            if let sendImage = UIImage.init(named: "chat_shengyinR\(index)"){
+                sendImages.append(sendImage)
+            }
+            if let recvImage = UIImage.init(named: "chat_shengyinL\(index)"){
+                recvImages.append(recvImage)
+            }
+        }
+        cell.sendMessageVoiceAnimationImages = sendImages
+        cell.recvMessageVoiceAnimationImages = recvImages
         guard let chatToolbar = self.chatToolbar else { return }
 //        self.chatBarMoreView.removeItematIndex(0)
     }
