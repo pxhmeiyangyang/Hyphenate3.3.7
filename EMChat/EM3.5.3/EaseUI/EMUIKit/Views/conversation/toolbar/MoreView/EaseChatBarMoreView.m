@@ -89,22 +89,28 @@
     [self addSubview:_pageControl];
     
     CGFloat insets = (self.frame.size.width - 4 * CHAT_BUTTON_SIZE.width) / 5;
-    
-    _photoButton = [self btnWithImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photo"]
-                     highlightedImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photoSelected"]
-                                title:@"相册"];
+    CGFloat top = 30;
+//    _photoButton = [self btnWithImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photo"]
+//                     highlightedImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_photoSelected"]
+//                                title:@"视频通话"];
+    _photoButton = [self btnWithImage:[UIImage imageNamed:@"chat_shipintonghua"]
+                     highlightedImage:[UIImage imageNamed:@"chat_shipintonghua"]
+                                title:@"视频通话"];
 
     _photoButton.accessibilityIdentifier = @"image";
-    [_photoButton setFrame:CGRectMake(insets, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+    [_photoButton setFrame:CGRectMake(insets, top, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
     [_photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
     _photoButton.tag = MOREVIEW_BUTTON_TAG;
     [_scrollview addSubview:_photoButton];
     
-    _locationButton = [self btnWithImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_location"]
-                        highlightedImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_locationSelected"]
-                                   title:@"位置"];
+//    _locationButton = [self btnWithImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_location"]
+//                        highlightedImage:[UIImage imageNamed:@"EaseUIResource.bundle/chatBar_colorMore_locationSelected"]
+//                                   title:@"安全监看"];
+    _locationButton = [self btnWithImage:[UIImage imageNamed:@"chat_yuanchengjiankan"]
+                        highlightedImage:[UIImage imageNamed:@"chat_yuanchengjiankan"]
+                                   title:@"安全监看"];
     _locationButton.accessibilityIdentifier = @"location";
-    [_locationButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE.width, 10, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
+    [_locationButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE.width, top, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
     [_locationButton addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
     _locationButton.tag = MOREVIEW_BUTTON_TAG + 1;
     [_scrollview addSubview:_locationButton];
@@ -136,7 +142,7 @@
 //    [_scrollview addSubview:_videoCallButton];
 
     CGRect frame = self.frame;
-    frame.size.height = 150;
+    frame.size.height = 113;
 //    if (type == EMChatToolbarTypeChat) {
 //        [_audioCallButton setTitle:@"语音" forState:UIControlStateNormal];
 //        [_videoCallButton setTitle:@"视频" forState:UIControlStateNormal];
@@ -158,10 +164,13 @@
     [btn setImage:aImage forState:UIControlStateNormal];
     [btn setImage:aHighLightedImage forState:UIControlStateHighlighted];
     [btn setTitle:aTitle forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorWithRed:0.47 green:0.47 blue:0.47 alpha:1.0] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor colorWithRed:0.47 green:0.47 blue:0.47 alpha:1.0] forState:UIControlStateHighlighted];
+    btn.titleLabel.textAlignment = NSTextAlignmentCenter;
     btn.titleLabel.font = [UIFont systemFontOfSize: 12.0];
-    btn.imageEdgeInsets = UIEdgeInsetsMake(-10, 0, 20, 0);
-    btn.titleEdgeInsets = UIEdgeInsetsMake(14, -60, -20, 0);
+    btn.imageEdgeInsets = UIEdgeInsetsMake(-10, -5, 20, 0);
+    btn.titleEdgeInsets = UIEdgeInsetsMake(14, -60, -30, 0);
     return btn;
 }
 
