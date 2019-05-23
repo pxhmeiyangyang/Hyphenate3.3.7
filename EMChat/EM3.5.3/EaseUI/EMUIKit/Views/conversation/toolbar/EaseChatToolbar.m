@@ -117,7 +117,8 @@
     _backgroundImageView.image = [[UIImage imageNamed:@"EaseUIResource.bundle/messageToolbarBg"] stretchableImageWithLeftCapWidth:0.5 topCapHeight:10];
     //    [self addSubview:_backgroundImageView];
     self.backgroundColor = [UIColor colorWithRed:0.95 green:0.96 blue:0.97 alpha:1];
-    
+    self.layer.borderColor = [[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0] CGColor];
+    self.layer.borderWidth = 0.5;
     //toolbar
     _toolbarView = [[UIView alloc] initWithFrame:self.bounds];
     _toolbarView.backgroundColor = [UIColor clearColor];
