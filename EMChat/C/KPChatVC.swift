@@ -71,7 +71,11 @@ extension KPChatVC: EaseMessageViewControllerDataSource{
      */
     func messageViewController(_ viewController: EaseMessageViewController!, modelFor message: EMMessage!) -> IMessageModel! {
         let model = EaseMessageModel.init(message: message)
-        model?.avatarImage = UIImage.init(named: "chat_speek_face1")
+        if model?.isSender ?? false {
+            model?.avatarImage = UIImage.init(named: "chat_speek_face1")
+        }else{
+            model?.avatarImage = UIImage.init(named: "chat_babyface")
+        }
         model?.avatarURLPath = ""
         model?.nickname = ""
         return model
