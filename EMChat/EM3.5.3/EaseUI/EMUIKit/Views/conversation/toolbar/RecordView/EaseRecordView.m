@@ -70,7 +70,7 @@
         _countDownLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, _size.width, 52)];
         [self addSubview:_countDownLB];
         _countDownLB.textColor = [UIColor whiteColor];
-        _countDownLB.font = [UIFont systemFontOfSize:22];
+        _countDownLB.font = [UIFont systemFontOfSize:72];
         _countDownLB.textAlignment = NSTextAlignmentCenter;
         //提示
         _tipIM = [[UIImageView alloc] initWithFrame:CGRectMake(65, 89, 13, 13)];
@@ -161,17 +161,33 @@
     [_recordAnimationView stopAnimating];
     _recordAnimationView.image = [UIImage imageNamed:@"chat_chexiao"];
     _recordAnimationView.frame = CGRectMake(_size.width * 0.5 - 29.5, 20, 59, 73);
+    [_textLabel setHidden:false];
+    [_recordAnimationView setHidden:false];
     [_countDownLB setHidden:true];
     [_tipIM setHidden:true];
     [_timeLB setHidden:true];
+}
+
+- (void)clearTimer{
+    [_timer invalidate];
+    _timer = nil;
 }
 
 -(void)setVoiceImage {
     _time ++;
     int second = _time;
     _timeLB.text = [NSString stringWithFormat:@"%d″",second];
-    if (second < 50) {
-        
+    if (second == 50) {
+        [_recordAnimationView stopAnimating];
+        [_recordAnimationView setHidden:true];
+        [_countDownLB setHidden: false];
+    }
+    _countDownLB.text = [NSString stringWithFormat:@"%d",60 - second];
+    if (second == 60) {
+        _countDownLB.frame = CGRectMake(0, 37, _size.width, 22);
+        _countDownLB.font = [UIFont systemFontOfSize:22];
+        _countDownLB.text = @"说话时间过长";
+        [self clearTimer];
     }
     //    _recordAnimationView.image = [UIImage imageNamed:[_voiceMessageAnimationImages objectAtIndex:0]];
     //    double voiceSound = 0;
