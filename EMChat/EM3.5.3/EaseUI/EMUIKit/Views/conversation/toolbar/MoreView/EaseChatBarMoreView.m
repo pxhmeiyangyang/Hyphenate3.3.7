@@ -11,7 +11,7 @@
  */
 
 #import "EaseChatBarMoreView.h"
-
+#import "EaseSDKHelper.h"
 #define CHAT_BUTTON_SIZE CGSizeMake(50,60)
 #define INSETS 10
 #define MOREVIEW_COL 4
@@ -99,7 +99,7 @@
 
     _photoButton.accessibilityIdentifier = @"image";
     [_photoButton setFrame:CGRectMake(insets, top, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-    [_photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
+    [_photoButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     _photoButton.tag = MOREVIEW_BUTTON_TAG;
     [_scrollview addSubview:_photoButton];
     
@@ -111,7 +111,7 @@
                                    title:@"安全监看"];
     _locationButton.accessibilityIdentifier = @"location";
     [_locationButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE.width, top, CHAT_BUTTON_SIZE.width , CHAT_BUTTON_SIZE.height)];
-    [_locationButton addTarget:self action:@selector(locationAction) forControlEvents:UIControlEventTouchUpInside];
+    [_locationButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     _locationButton.tag = MOREVIEW_BUTTON_TAG + 1;
     [_scrollview addSubview:_locationButton];
     
@@ -329,6 +329,11 @@
         [_delegate moreViewTakePicAction:self];
     }
 }
+
+- (void)buttonAction:(UIButton* )sender{
+    [[NSNotificationCenter defaultCenter] postNotificationName:KPChatBarMoreNN object:sender];
+}
+
 
 - (void)photoAction
 {

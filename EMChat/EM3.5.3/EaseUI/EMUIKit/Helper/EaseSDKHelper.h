@@ -33,6 +33,8 @@
 /** @brief 使用的SDK是否为Lite版本(即不包含实时音视频功能) */
 #define kEaseUISDKConfigIsUseLite @"isUselibHyphenateClientSDKLite"
 
+/** 聊天界面 更多按钮列表 通知*/
+#define KPChatBarMoreNN @"KPEaseChatBarMoreNN"
 @interface EaseSDKHelper : NSObject<EMClientDelegate>
 
 /** @brief 当前是否有imagePickerViewController弹出 */

@@ -13,12 +13,13 @@ class KPChatVC: EaseMessageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        NotificationCenter.default.addObserver(self, selector: #selector(notificationSelector), name: NSNotification.Name.init(KNOTIFICATION_MAKE1V1CALL), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(notiAction(noti:)), name: NSNotification.Name.init(KPChatBarMoreNN), object: nil)
         self.showRefreshHeader = true
         self.tableViewDidTriggerHeaderRefresh()
         deployMessageStyle()
         self.delegate = self
         self.dataSource = self
+        
     }
     
     
@@ -60,8 +61,13 @@ class KPChatVC: EaseMessageViewController {
     }
     
     
-    @objc func notificationSelector(){
-        
+    @objc func notiAction(noti: NSNotification){
+        guard let button = noti.object as? UIButton else { return }
+        if button.tag == 1000 { //视频通话
+            
+        }else if button.tag == 1001{ //安全监看
+            
+        }
     }
     
     deinit {
