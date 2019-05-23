@@ -18,7 +18,12 @@
 {
     NSTimer *_timer;
     UIImageView *_recordAnimationView;
+    UILabel* _countDownLB;
+    UIImageView* _tipIM;
+    UILabel* _timeLB;
     UILabel *_textLabel;
+    int _time;
+    CGSize _size;
 }
 
 @end
@@ -29,7 +34,8 @@
 {
     // UIAppearance Proxy Defaults
     EaseRecordView *recordView = [self appearance];
-    recordView.voiceMessageAnimationImages = @[@"EaseUIResource.bundle/VoiceSearchFeedback001",@"EaseUIResource.bundle/VoiceSearchFeedback002",@"EaseUIResource.bundle/VoiceSearchFeedback003",@"EaseUIResource.bundle/VoiceSearchFeedback004",@"EaseUIResource.bundle/VoiceSearchFeedback005",@"EaseUIResource.bundle/VoiceSearchFeedback006",@"EaseUIResource.bundle/VoiceSearchFeedback007",@"EaseUIResource.bundle/VoiceSearchFeedback008",@"EaseUIResource.bundle/VoiceSearchFeedback009",@"EaseUIResource.bundle/VoiceSearchFeedback010",@"EaseUIResource.bundle/VoiceSearchFeedback011",@"EaseUIResource.bundle/VoiceSearchFeedback012",@"EaseUIResource.bundle/VoiceSearchFeedback013",@"EaseUIResource.bundle/VoiceSearchFeedback014",@"EaseUIResource.bundle/VoiceSearchFeedback015",@"EaseUIResource.bundle/VoiceSearchFeedback016",@"EaseUIResource.bundle/VoiceSearchFeedback017",@"EaseUIResource.bundle/VoiceSearchFeedback018",@"EaseUIResource.bundle/VoiceSearchFeedback019",@"EaseUIResource.bundle/VoiceSearchFeedback020"];
+//    recordView.voiceMessageAnimationImages = @[@"EaseUIResource.bundle/VoiceSearchFeedback001",@"EaseUIResource.bundle/VoiceSearchFeedback002",@"EaseUIResource.bundle/VoiceSearchFeedback003",@"EaseUIResource.bundle/VoiceSearchFeedback004",@"EaseUIResource.bundle/VoiceSearchFeedback005",@"EaseUIResource.bundle/VoiceSearchFeedback006",@"EaseUIResource.bundle/VoiceSearchFeedback007",@"EaseUIResource.bundle/VoiceSearchFeedback008",@"EaseUIResource.bundle/VoiceSearchFeedback009",@"EaseUIResource.bundle/VoiceSearchFeedback010",@"EaseUIResource.bundle/VoiceSearchFeedback011",@"EaseUIResource.bundle/VoiceSearchFeedback012",@"EaseUIResource.bundle/VoiceSearchFeedback013",@"EaseUIResource.bundle/VoiceSearchFeedback014",@"EaseUIResource.bundle/VoiceSearchFeedback015",@"EaseUIResource.bundle/VoiceSearchFeedback016",@"EaseUIResource.bundle/VoiceSearchFeedback017",@"EaseUIResource.bundle/VoiceSearchFeedback018",@"EaseUIResource.bundle/VoiceSearchFeedback019",@"EaseUIResource.bundle/VoiceSearchFeedback020"];
+    recordView.voiceMessageAnimationImages = @[@"chat_shengyinL1",@"chat_shengyinL1",@"chat_shengyinL1",@"chat_shengyinL1",@"chat_shengyinL1",@"chat_shengyinL1"];
     recordView.upCancelText = @"手指上划，取消发送";
     recordView.loosenCancelText = @"松开手指，取消发送";
 }
@@ -45,14 +51,37 @@
         bgView.layer.masksToBounds = YES;
         bgView.alpha = 0.7;
         [self addSubview:bgView];
-        CGSize size = frame.size;
-        CGFloat width_2 = size.width * 0.5;
+        _size = frame.size;
+        CGFloat width_2 = _size.width * 0.5;
         //        _recordAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, self.bounds.size.width - 20, self.bounds.size.height - 30)];
-        _recordAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake(width_2 - 29.5, 20, 59, 73)];
-//        _recordAnimationView.image = [UIImage imageNamed:@"EaseUIResource.bundle/VoiceSearchFeedback001"];
+        _recordAnimationView = [[UIImageView alloc] initWithFrame:CGRectMake(width_2 - 44, 35, 88, 28)];
         _recordAnimationView.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_recordAnimationView];
-        
+        NSMutableArray* images = [NSMutableArray array];
+        NSArray* imageNames = @[@"chat_luru1",@"chat_luru2",@"chat_luru3",@"chat_luru4",@"chat_luru5",@"chat_luru6"];
+        for (NSString* name in imageNames) {
+            [images addObject:[UIImage imageNamed:name]];
+        }
+        _recordAnimationView.animationImages = images;
+        _recordAnimationView.animationDuration = 0.5;
+        _recordAnimationView.image = [UIImage imageNamed:@"chat_luru1"];
+        //为适应定制功能新加控件
+        //倒计时
+        _countDownLB = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, _size.width, 52)];
+        [self addSubview:_countDownLB];
+        _countDownLB.textColor = [UIColor whiteColor];
+        _countDownLB.font = [UIFont systemFontOfSize:22];
+        _countDownLB.textAlignment = NSTextAlignmentCenter;
+        //提示
+        _tipIM = [[UIImageView alloc] initWithFrame:CGRectMake(65, 89, 13, 13)];
+        _tipIM.image = [UIImage imageNamed:@"chat_shengboicon"];
+        [self addSubview:_tipIM];
+        //时间
+        _timeLB = [[UILabel alloc] initWithFrame:CGRectMake(85, 86, 50, 18)];
+        [self addSubview:_timeLB];
+        _timeLB.textColor = [UIColor whiteColor];
+        _timeLB.font = [UIFont systemFontOfSize:18];
+//        _recordAnimationView.image = [UIImage imageNamed:@"EaseUIResource.bundle/VoiceSearchFeedback001"];
         //        _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(5,
         //                                                               self.bounds.size.height - 30,
         //                                                               self.bounds.size.width - 10,
@@ -97,7 +126,10 @@
 {
     _textLabel.text = _upCancelText;
     _textLabel.backgroundColor = [UIColor clearColor];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.05
+    _time = 0;
+    [_countDownLB setHidden:true];
+    [_recordAnimationView startAnimating];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                               target:self
                                             selector:@selector(setVoiceImage)
                                             userInfo:nil
@@ -128,9 +160,19 @@
     _textLabel.textColor = [UIColor colorWithRed:1.0 green:0.21 blue:0.21 alpha:1.0];
     [_recordAnimationView stopAnimating];
     _recordAnimationView.image = [UIImage imageNamed:@"chat_chexiao"];
+    _recordAnimationView.frame = CGRectMake(_size.width * 0.5 - 29.5, 20, 59, 73);
+    [_countDownLB setHidden:true];
+    [_tipIM setHidden:true];
+    [_timeLB setHidden:true];
 }
 
 -(void)setVoiceImage {
+    _time ++;
+    int second = _time;
+    _timeLB.text = [NSString stringWithFormat:@"%d″",second];
+    if (second < 50) {
+        
+    }
     //    _recordAnimationView.image = [UIImage imageNamed:[_voiceMessageAnimationImages objectAtIndex:0]];
     //    double voiceSound = 0;
     //    voiceSound = [[EMCDDeviceManager sharedInstance] emPeekRecorderVoiceMeter];
