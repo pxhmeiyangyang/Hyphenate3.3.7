@@ -70,6 +70,7 @@ extension KPChatVC: EaseMessageViewControllerDataSource{
      @result 返回<IMessageModel>协议的类型
      */
     func messageViewController(_ viewController: EaseMessageViewController!, modelFor message: EMMessage!) -> IMessageModel! {
+        message.chatType = EMChatTypeChat;
         let model = EaseMessageModel.init(message: message)
         if model?.isSender ?? false {
             model?.avatarImage = UIImage.init(named: "chat_speek_face1")
