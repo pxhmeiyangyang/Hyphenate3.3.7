@@ -43,7 +43,9 @@ class KPLinkManVC: UIViewController {
 // MARK: - UITableViewDelegate,UITableViewDataSource
 extension KPLinkManVC: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(KPChatVC.init(conversationChatter: testEMName, conversationType: EMConversationTypeChat), animated: true)
+       
+        guard let chatVC =  KPChatVC.init(conversationChatter: testEMName, conversationType: EMConversationTypeChat) else { return }
+        self.navigationController?.pushViewController(chatVC, animated: false)
     }
     
     

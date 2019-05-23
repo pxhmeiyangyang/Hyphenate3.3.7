@@ -230,6 +230,7 @@ extension KPEMChatHelper{
         options.isAutoAcceptGroupInvitation = false
         options.apnsCertName = "chatdemoui_dev"
         EMClient.shared()?.initializeSDK(with: options)
+        print(EMClient.shared()?.version ?? "")
     }
     
     /// 初始化环信视频聊天
@@ -426,21 +427,6 @@ extension KPEMChatHelper{
             EMCallRecorderPlugin.sharedInstance()?.startVideoRecording(toFilePath: filePath, error: nil)
         }else{
             guard let path = EMCallRecorderPlugin.sharedInstance()?.stopVideoRecording(nil) else { return }
-            do{
-//                let data = try Data.init(contentsOf: URL.init(fileURLWithPath: path))
-                guard let test = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else { return }
-                let path = test + "/1.mp4"
-//                try data.write(to: URL.init(fileURLWithPath: path))
-                PhotoAlbumUtil.saveVideo(path: path, albumName: photoAlbumName) { (error) in
-                    print(error)
-                }
-            }catch{
-                
-            }
-            
-//            PhotoAlbumUtil.saveVideo(path: path, albumName: photoAlbumName) { (error) in
-//                print(error)
-//            }
         }
     }
     
