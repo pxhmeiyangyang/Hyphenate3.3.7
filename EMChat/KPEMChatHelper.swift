@@ -463,6 +463,20 @@ extension KPEMChatHelper{
     }
     
     
+    /// 获取所有环信未读消息数量
+    ///
+    /// - Returns: 返回获取的数量
+    class func EMAllUnreadMessageCount()->String?{
+        guard let conversations = EMClient.shared()?.chatManager.getAllConversations() as? [EMConversation] else { return nil }
+        var count: Int32 = 0
+        for conversation in conversations{
+            count += conversation.unreadMessagesCount
+        }
+        return count > 0 ? "\(count)" : nil
+        
+    }
+    
+    
     /// 退出函数
     class func quit(){
         guard let error = EMClient.shared()?.logout(true) else {
