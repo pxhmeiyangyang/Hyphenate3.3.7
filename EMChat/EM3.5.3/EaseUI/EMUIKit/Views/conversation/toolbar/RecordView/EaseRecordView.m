@@ -13,7 +13,7 @@
 #import "EaseRecordView.h"
 #import "EMCDDeviceManager.h"
 #import "EaseLocalDefine.h"
-
+#import "EaseSDKHelper.h"
 @interface EaseRecordView ()
 {
     NSTimer *_timer;
@@ -105,6 +105,19 @@
     return self;
 }
 
+
+- (void)resetUI{
+    _time = 0;
+    [_recordAnimationView startAnimating];
+    [_countDownLB setHidden:true];
+    [_recordAnimationView setHidden:false];
+    [_tipIM setHidden:false];
+    [_timeLB setHidden:false];
+    [_textLabel setHidden:false];
+    _timeLB.text = @"0″";
+}
+
+
 #pragma mark - setter
 - (void)setVoiceMessageAnimationImages:(NSArray *)voiceMessageAnimationImages
 {
@@ -124,11 +137,9 @@
 
 -(void)recordButtonTouchDown
 {
+    [self resetUI];
     _textLabel.text = _upCancelText;
     _textLabel.backgroundColor = [UIColor clearColor];
-    _time = 0;
-    [_countDownLB setHidden:true];
-    [_recordAnimationView startAnimating];
     _timer = [NSTimer scheduledTimerWithTimeInterval:1.0
                                               target:self
                                             selector:@selector(setVoiceImage)
@@ -183,11 +194,12 @@
         [_countDownLB setHidden: false];
     }
     _countDownLB.text = [NSString stringWithFormat:@"%d",60 - second];
-    if (second == 60) {
+    if (second == 61) {
         _countDownLB.frame = CGRectMake(0, 37, _size.width, 22);
         _countDownLB.font = [UIFont systemFontOfSize:22];
         _countDownLB.text = @"说话时间过长";
         [self clearTimer];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KPRecordTimeOutNN object:nil];
     }
     //    _recordAnimationView.image = [UIImage imageNamed:[_voiceMessageAnimationImages objectAtIndex:0]];
     //    double voiceSound = 0;

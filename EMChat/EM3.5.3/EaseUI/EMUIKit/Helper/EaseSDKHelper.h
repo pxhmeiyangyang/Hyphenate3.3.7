@@ -35,6 +35,10 @@
 
 /** 聊天界面 更多按钮列表 通知*/
 #define KPChatBarMoreNN @"KPEaseChatBarMoreNN"
+
+/** 聊天界面 录音超时 通知*/
+#define KPRecordTimeOutNN @"KPRecordTimeOutNN"
+
 @interface EaseSDKHelper : NSObject<EMClientDelegate>
 
 /** @brief 当前是否有imagePickerViewController弹出 */
