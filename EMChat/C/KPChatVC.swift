@@ -56,8 +56,6 @@ class KPChatVC: EaseMessageViewController {
         }
         cell.sendMessageVoiceAnimationImages = sendImages
         cell.recvMessageVoiceAnimationImages = recvImages
-        guard let chatToolbar = self.chatToolbar else { return }
-//        self.chatBarMoreView.removeItematIndex(0)
     }
     
     
