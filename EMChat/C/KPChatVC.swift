@@ -88,6 +88,10 @@ extension KPChatVC: EaseMessageViewControllerDataSource{
     //触发长按手势
     func messageViewController(_ viewController: EaseMessageViewController!, didLongPressRowAt indexPath: IndexPath!) -> Bool {
         //给出长按menu 图
+        guard let cell = self.tableView.cellForRow(at: indexPath) as? EaseMessageCell else { return true }
+        cell.becomeFirstResponder()
+        self.menuIndexPath = indexPath
+        self.showMenuViewController(cell.bubbleView, andIndexPath: indexPath, messageType: cell.model.bodyType)
         return true
     }
     
