@@ -64,9 +64,9 @@ class KPChatVC: EaseMessageViewController {
     @objc func notiAction(noti: NSNotification){
         guard let button = noti.object as? UIButton else { return }
         if button.tag == 1000 { //视频通话
-            
+            KPEMChatHelper.present1v1VideoCall(rootVC: self)
         }else if button.tag == 1001{ //安全监看
-            
+            self.navigationController?.pushViewController(KPEMMonitoringVC(), animated: true)
         }
     }
     

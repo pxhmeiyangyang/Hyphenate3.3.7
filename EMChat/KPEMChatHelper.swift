@@ -55,7 +55,7 @@ class KPEMChatHelper: NSObject {
     ///
     /// - Parameter noti: 通知对象
     @objc func notiAction(noti: Notification){
-        KPEMChatHelper.present1v1VideoCall()
+        KPEMChatHelper.present1v1VideoCall(rootVC: nil)
     }
     
     
@@ -432,14 +432,19 @@ extension KPEMChatHelper{
     
     
     /// present一对一视频聊天
-    class func present1v1VideoCall(){
+    class func present1v1VideoCall(rootVC: UIViewController?){
         let ext = "{\"userIcon\": \"http://ks3-cn-shanghai.ksyun.com/kar-chat-audio/2019/04/16/acWNzWgY4HnaLIsOqGF2hi.JPEG\",\"userName\": \"用户2707\"}"
         KPEMChatHelper.initializeEMChat()
         KPEMChatHelper.startVideoCall(name: testEMName, ext: ext) { (callSession, error) in
             guard let callSession = callSession else { return }
             let videoVC = KPEM1v1VideoVC.init(type: .caller)
             videoVC.callSession = callSession
-            KPEMCommon.rootVC()?.present(videoVC, animated: false, completion: nil)
+            if let vc = rootVC{
+                vc.present(videoVC, animated: false, completion: nil)
+            }else{
+               KPEMCommon.rootVC()?.present(videoVC, animated: false, completion: nil)
+            }
+            
         }
     }
     

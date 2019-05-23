@@ -42,7 +42,7 @@ extension KPMainVC: UITableViewDelegate,UITableViewDataSource{
         case "语聊":
             self.navigationController?.pushViewController(KPLinkManVC(), animated: true)
         case "视频":
-            KPEMChatHelper.present1v1VideoCall()
+            KPEMChatHelper.present1v1VideoCall(rootVC: nil)
         case "监控":
             self.navigationController?.pushViewController(KPEMMonitoringVC(), animated: true)
         default:
