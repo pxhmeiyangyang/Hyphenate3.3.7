@@ -26,8 +26,8 @@ class KPChatVC: EaseMessageViewController {
     private func deployMessageStyle(){
         //设置起泡
         let cell = EaseBaseMessageCell.appearance()
-        cell.sendBubbleBackgroundImage = UIImage.init(named: "Combined-ShapeL")?.stretchableImage(withLeftCapWidth: 10, topCapHeight: 10)
-        cell.recvBubbleBackgroundImage = UIImage.init(named: "Combined Shape")?.stretchableImage(withLeftCapWidth: 10, topCapHeight: 10)
+        cell.sendBubbleBackgroundImage = UIImage.init(named: "Combined-ShapeL")?.stretchableImage(withLeftCapWidth: 8, topCapHeight: 8)
+        cell.recvBubbleBackgroundImage = UIImage.init(named: "Combined Shape")?.stretchableImage(withLeftCapWidth: 8, topCapHeight: 8)
         //设置头像
         cell.avatarSize = 40
         cell.avatarCornerRadius = 20.0
@@ -74,11 +74,12 @@ extension KPChatVC: EaseMessageViewControllerDataSource{
         let model = EaseMessageModel.init(message: message)
         if model?.isSender ?? false {
             model?.avatarImage = UIImage.init(named: "chat_speek_face1")
+            model?.nickname = ""
         }else{
             model?.avatarImage = UIImage.init(named: "chat_babyface")
+            model?.nickname = "123123213"
         }
         model?.avatarURLPath = ""
-        model?.nickname = ""
         return model
     }
     //是否允许长按
