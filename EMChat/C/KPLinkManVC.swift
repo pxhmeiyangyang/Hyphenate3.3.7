@@ -18,7 +18,7 @@ class KPLinkManVC: UIViewController {
         view.tableFooterView = UIView()
         view.delegate = self
         view.dataSource = self
-        view.separatorStyle = UITableViewCellSeparatorStyle.none
+        view.separatorStyle = UITableViewCell.SeparatorStyle.none
         view.backgroundColor = UIColor.clear
         view.register(KPLinkManCell.self, forCellReuseIdentifier: "KPLinkManCell")
         return view

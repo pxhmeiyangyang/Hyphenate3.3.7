@@ -85,9 +85,9 @@ class KPEMCallingView: UIView {
     lazy var cancelBTN: CallingBTN = {
         let view = CallingBTN.init(title: "取消",height: 90)
         BGIM.addSubview(view)
-        view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.highlighted)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.setImage(UIImage.init(named: "video_chat1"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_chat1"), for: UIControl.State.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = self.viewTag
         return view
     }()
@@ -96,9 +96,9 @@ class KPEMCallingView: UIView {
     lazy var answerBTN: CallingBTN = {
         let view = CallingBTN.init(title: "接听",height: 90)
         BGIM.addSubview(view)
-        view.setImage(UIImage.init(named: "video_chat2"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_chat2"), for: UIControlState.highlighted)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.setImage(UIImage.init(named: "video_chat2"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_chat2"), for: UIControl.State.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = self.viewTag + 1
         return view
     }()
@@ -107,9 +107,9 @@ class KPEMCallingView: UIView {
     lazy var voiceBTN: CallingBTN = {
         let view = CallingBTN.init(title: "切换到语音通话",height: 60)
         BGIM.addSubview(view)
-        view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.highlighted)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.setImage(UIImage.init(named: "video_voice"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_voice"), for: UIControl.State.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = self.viewTag + 2
         return view
     }()
@@ -118,10 +118,10 @@ class KPEMCallingView: UIView {
     /// 静音按钮
     lazy var muteBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_icon5"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_icon5_1"), for: UIControlState.selected)
+        view.setImage(UIImage.init(named: "video_icon5"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_icon5_1"), for: UIControl.State.selected)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = self.viewTag + 3
         return view
     }()
@@ -131,10 +131,10 @@ class KPEMCallingView: UIView {
     /// 挂断按钮
     lazy var hangupBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.highlighted)
+        view.setImage(UIImage.init(named: "video_chat1"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_chat1"), for: UIControl.State.highlighted)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = self.viewTag + 4
         return view
     }()

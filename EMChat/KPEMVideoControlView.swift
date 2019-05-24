@@ -54,9 +54,9 @@ class KPEMVideoControlView: UIView {
     lazy var cancelBTN: UIButton = {
         let view = UIButton()
         addSubview(view)
-        view.setImage(UIImage.init(named: "back_white"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "back_white"), for: UIControlState.normal)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.setImage(UIImage.init(named: "back_white"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "back_white"), for: UIControl.State.normal)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = ControlEvent.cancel.rawValue
         return view
     }()
@@ -65,9 +65,9 @@ class KPEMVideoControlView: UIView {
     lazy var voiceBTN: CallingBTN = {
         let view = CallingBTN.init(title: "切换到语音通话",height: 60)
         self.addSubview(view)
-        view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_voice"), for: UIControlState.highlighted)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.setImage(UIImage.init(named: "video_voice"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_voice"), for: UIControl.State.highlighted)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = ControlEvent.changeVoice.rawValue
         return view
     }()
@@ -75,10 +75,10 @@ class KPEMVideoControlView: UIView {
     /// 反转摄像头
     lazy var rollbackBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_icon1"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_icon1"), for: UIControlState.highlighted)
+        view.setImage(UIImage.init(named: "video_icon1"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_icon1"), for: UIControl.State.highlighted)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = ControlEvent.rollback.rawValue
         return view
     }()
@@ -86,10 +86,10 @@ class KPEMVideoControlView: UIView {
     /// 静音按钮
     lazy var muteBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_icon5"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_icon5_1"), for: UIControlState.selected)
+        view.setImage(UIImage.init(named: "video_icon5"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_icon5_1"), for: UIControl.State.selected)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = ControlEvent.mute.rawValue
         return view
     }()
@@ -99,10 +99,10 @@ class KPEMVideoControlView: UIView {
     /// 挂断按钮
     lazy var hangupBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_chat1"), for: UIControlState.highlighted)
+        view.setImage(UIImage.init(named: "video_chat1"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_chat1"), for: UIControl.State.highlighted)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = ControlEvent.hangup.rawValue
         return view
     }()
@@ -111,10 +111,10 @@ class KPEMVideoControlView: UIView {
     /// 拍照按钮
     lazy var pictureBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_icon3"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_icon3"), for: UIControlState.highlighted)
+        view.setImage(UIImage.init(named: "video_icon3"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_icon3"), for: UIControl.State.highlighted)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = ControlEvent.picture.rawValue
         return view
     }()
@@ -122,10 +122,10 @@ class KPEMVideoControlView: UIView {
 //    /// 录制按钮
 //    lazy var recordBTN: UIButton = {
 //        let view = UIButton()
-//        view.setImage(UIImage.init(named: "video_icon4"), for: UIControlState.normal)
-//        view.setImage(UIImage.init(named: "video_icon6_1"), for: UIControlState.selected)
+//        view.setImage(UIImage.init(named: "video_icon4"), for: UIControl.State.normal)
+//        view.setImage(UIImage.init(named: "video_icon6_1"), for: UIControl.State.selected)
 //        self.addSubview(view)
-//        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+//        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
 //        view.tag = ControlEvent.record.rawValue
 //        return view
 //    }()
@@ -133,10 +133,10 @@ class KPEMVideoControlView: UIView {
     /// 监控切视频通话
     lazy var monitor2VideoBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_iconSXT"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_iconSXT"), for: UIControlState.highlighted)
+        view.setImage(UIImage.init(named: "video_iconSXT"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_iconSXT"), for: UIControl.State.highlighted)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
         view.tag = ControlEvent.monitor2Video.rawValue
         return view
     }()
@@ -145,12 +145,12 @@ class KPEMVideoControlView: UIView {
     /// 左转按钮
     lazy var rollLeftBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_anjian_LM"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_anjian_LM"), for: UIControlState.highlighted)
-        view.setImage(UIImage.init(named: "video_anjian_LX"), for: UIControlState.disabled)
+        view.setImage(UIImage.init(named: "video_anjian_LM"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_anjian_LM"), for: UIControl.State.highlighted)
+        view.setImage(UIImage.init(named: "video_anjian_LX"), for: UIControl.State.disabled)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.addTarget(self, action: #selector(buttonDown(sender:)), for: UIControlEvents.touchDown)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
+        view.addTarget(self, action: #selector(buttonDown(sender:)), for: UIControl.Event.touchDown)
         view.tag = ControlEvent.rollLeft.rawValue
         return view
     }()
@@ -158,12 +158,12 @@ class KPEMVideoControlView: UIView {
     /// 右转按钮
     lazy var rollRightBTN: UIButton = {
         let view = UIButton()
-        view.setImage(UIImage.init(named: "video_anjian_RM"), for: UIControlState.normal)
-        view.setImage(UIImage.init(named: "video_anjian_RM"), for: UIControlState.highlighted)
-        view.setImage(UIImage.init(named: "video_anjian_RX"), for: UIControlState.disabled)
+        view.setImage(UIImage.init(named: "video_anjian_RM"), for: UIControl.State.normal)
+        view.setImage(UIImage.init(named: "video_anjian_RM"), for: UIControl.State.highlighted)
+        view.setImage(UIImage.init(named: "video_anjian_RX"), for: UIControl.State.disabled)
         self.addSubview(view)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.addTarget(self, action: #selector(buttonDown(sender:)), for: UIControlEvents.touchDown)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
+        view.addTarget(self, action: #selector(buttonDown(sender:)), for: UIControl.Event.touchDown)
         view.tag = ControlEvent.rollRight.rawValue
         return view
     }()

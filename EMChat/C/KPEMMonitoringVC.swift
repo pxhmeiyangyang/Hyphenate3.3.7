@@ -77,11 +77,11 @@ class KPEMMonitoringVC: UIViewController {
     lazy var leftBTN: UIButton = {
         let view = UIButton()
         controlBG.addSubview(view)
-        view.setBackgroundImage(UIImage.init(named: "video_anjian_L"), for: UIControlState.normal)
-        view.setBackgroundImage(UIImage.init(named: "video_anjian_L"), for: UIControlState.highlighted)
-        view.setBackgroundImage(UIImage.init(named: "video_anjian_LS"), for: UIControlState.disabled)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.addTarget(self, action: #selector(buttonDragDown(sender:)), for: UIControlEvents.touchDown)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_L"), for: UIControl.State.normal)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_L"), for: UIControl.State.highlighted)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_LS"), for: UIControl.State.disabled)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
+        view.addTarget(self, action: #selector(buttonDragDown(sender:)), for: UIControl.Event.touchDown)
         view.tag = 2000
         return view
     }()
@@ -90,11 +90,11 @@ class KPEMMonitoringVC: UIViewController {
     lazy var rightBTN: UIButton = {
         let view = UIButton()
         controlBG.addSubview(view)
-        view.setBackgroundImage(UIImage.init(named: "video_anjian_R"), for: UIControlState.normal)
-        view.setBackgroundImage(UIImage.init(named: "video_anjian_R"), for: UIControlState.highlighted)
-        view.setBackgroundImage(UIImage.init(named: "video_anjian_RS"), for: UIControlState.disabled)
-        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
-        view.addTarget(self, action: #selector(buttonDragDown(sender:)), for: UIControlEvents.touchDown)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_R"), for: UIControl.State.normal)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_R"), for: UIControl.State.highlighted)
+        view.setBackgroundImage(UIImage.init(named: "video_anjian_RS"), for: UIControl.State.disabled)
+        view.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
+        view.addTarget(self, action: #selector(buttonDragDown(sender:)), for: UIControl.Event.touchDown)
         view.tag = 2001
         return view
     }()
@@ -130,8 +130,8 @@ class KPEMMonitoringVC: UIViewController {
         aSession.remoteVideoView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
-        self.videoView.bringSubview(toFront: simpleControlView)
-        self.videoView.bringSubview(toFront: timeLB)
+        self.videoView.bringSubviewToFront(simpleControlView)
+        self.videoView.bringSubviewToFront(timeLB)
         self.callSession = aSession
     }
     
@@ -165,17 +165,17 @@ class KPEMMonitoringVC: UIViewController {
                 make.height.equalTo(21)
             }
             button.tag = i
-            button.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControlEvents.touchUpInside)
+            button.addTarget(self, action: #selector(buttonAction(sender:)), for: UIControl.Event.touchUpInside)
             switch i {
             case 2:
-                button.setImage(UIImage.init(named: "video_icon10"), for: UIControlState.normal)
-                button.setImage(UIImage.init(named: "video_icon13"), for: UIControlState.selected)
+                button.setImage(UIImage.init(named: "video_icon10"), for: UIControl.State.normal)
+                button.setImage(UIImage.init(named: "video_icon13"), for: UIControl.State.selected)
             case 3:
-                button.setImage(UIImage.init(named: "video_icon9"), for: UIControlState.normal)
+                button.setImage(UIImage.init(named: "video_icon9"), for: UIControl.State.normal)
             case 4:
-                button.setImage(UIImage.init(named: "video_icon8"), for: UIControlState.normal)
+                button.setImage(UIImage.init(named: "video_icon8"), for: UIControl.State.normal)
             case 5:
-                button.setImage(UIImage.init(named: "video_icon14"), for: UIControlState.normal)
+                button.setImage(UIImage.init(named: "video_icon14"), for: UIControl.State.normal)
             default:
                 break
             }
@@ -250,7 +250,7 @@ class KPEMMonitoringVC: UIViewController {
         callSession.remoteVideoView.removeFromSuperview()
         callSession.remoteVideoView.frame = self.movieViewFrame
         self.movieViewParentView?.addSubview(callSession.remoteVideoView)
-        self.movieViewParentView?.sendSubview(toBack: callSession.remoteVideoView)
+        self.movieViewParentView?.sendSubviewToBack(callSession.remoteVideoView)
     }
     
     /// 挂断通话
