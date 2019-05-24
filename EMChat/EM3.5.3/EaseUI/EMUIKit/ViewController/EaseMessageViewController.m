@@ -1580,6 +1580,28 @@ typedef enum : NSUInteger {
     }
 }
 
+- (void)didFinishRecoingVoice{
+    if (_isRecording) {
+        if ([self.recordView isKindOfClass:[EaseRecordView class]]) {
+            [(EaseRecordView *)self.recordView recordButtonTouchUpInside];
+        }
+        [self.recordView removeFromSuperview];
+        __weak typeof(self) weakSelf = self;
+        [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
+            if (!error) {
+                [weakSelf sendVoiceMessageWithLocalPath:recordPath duration:aDuration];
+            }
+            else {
+                [weakSelf showHudInView:self.view hint:error.domain];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [weakSelf hideHud];
+                });
+            }
+        }];
+        _isRecording = NO;
+    }
+}
+
 - (void)didDragInsideAction:(UIView *)recordView
 {
     if ([self.delegate respondsToSelector:@selector(messageViewController:didSelectRecordView:withEvenType:)]) {

@@ -543,4 +543,9 @@ shouldSendHasReadAckForMessage:(EMMessage *)message
 - (void)sendMessage:(EMMessage *)message
    isNeedUploadFile:(BOOL)isUploadFile;
 
+
+/**
+ 停止录音
+ */
+- (void)didFinishRecoingVoice;
 @end

@@ -15,8 +15,8 @@ class KPChatVC: EaseMessageViewController {
         // Do any additional setup after loading the view.
         NotificationCenter.default.addObserver(self, selector: #selector(notiAction(noti:)), name: NSNotification.Name.init(KPChatBarMoreNN), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(notiAction(noti:)), name: NSNotification.Name.init(KPRecordTimeOutNN), object: nil)
-        self.showRefreshHeader = true
-        self.tableViewDidTriggerHeaderRefresh()
+//        self.showRefreshHeader = true
+//        self.tableViewDidTriggerHeaderRefresh()
         deployMessageStyle()
         self.delegate = self
         self.dataSource = self
@@ -63,6 +63,7 @@ class KPChatVC: EaseMessageViewController {
     @objc func notiAction(noti: NSNotification){
         if noti.name == NSNotification.Name.init(KPRecordTimeOutNN){
             //在这里终止录音
+            self.didFinishRecoingVoice()
         }else if noti.name == NSNotification.Name.init(KPChatBarMoreNN){
             guard let button = noti.object as? UIButton else { return }
             if button.tag == 1000 { //视频通话
